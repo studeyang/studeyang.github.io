@@ -1,10 +1,6 @@
 <!-- _navbar.md -->
 
-- [文档导航页](README)
-  - [消息总线](消息总线/)
-  - [一账通](一账通/)
-  - [学习分享](学习分享/)
+- [文章](articles/README.md)
 
-- [联系我们]()
-  - [关于我们](_aboutus.md)
-  
+- [学习笔记](https://www.dbses.cn/technotes)
+- [联系我](_aboutme.md)
