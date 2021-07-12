@@ -2,8 +2,10 @@
 
 ## 2021.7
 
-- [运维常用操作](articles/运维常用操作.md)
-- [GIT常用操作](articles/GIT常用操作.md)
+- [运维笔记](articles/运维笔记.md)
+- [GIT使用笔记](articles/GIT使用笔记.md)
+- [Shell样例笔记](articles/Shell样例笔记.md)
+- [Go样例笔记](articles/Go样例笔记.md)
 
 ## 2021.6
 
