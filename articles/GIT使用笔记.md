@@ -1,8 +1,14 @@
+<center><h1>Git使用笔记</h1></center>
+
+data：2021-07-12
+
+---
+
 # 01 | GIT 常用操作
 
 ## 1. 标签操作
 
-- 查看 tag
+**查看 tag**
 
 ```shell
 $ git tag
@@ -15,7 +21,7 @@ v1.0.4
 v1.1.0
 ```
 
-- 查看 tag，带上 tag message
+**查看 tag，带上 tag message**
 
 ```shell
 $ git tag -n1
@@ -28,7 +34,7 @@ v1.0.4          20迭代 正式版本
 v1.1.0          22迭代正式版本
 ```
 
-- 查看 tag 的详细信息
+**查看 tag 的详细信息**
 
 ```shell
 $ git show v1.4
@@ -45,7 +51,7 @@ Date:   Mon Mar 17 21:52:11 2008 -0700
     changed the version number
 ```
 
-- tag 数量很多，如果只对 v1.0 系列感兴趣
+**tag 数量很多，如果只对 v1.0 系列感兴趣**
 
 ```shell
 $ git tag -l v1.0*
@@ -58,7 +64,7 @@ v1.0.4
 
 ## 2. 日志操作
 
-- 查看日志
+**查看日志**
 
 ```shell
 $ git log --pretty=oneline
@@ -71,7 +77,7 @@ fb7e7527dc8da20e69b6b2b02f0118985bcba03a merge release-Aston51 to develop
 
 ## 3. 分支操作
 
-- 合并分支，将 feature-a 合并到 develop
+**合并分支，将 feature-a 合并到 develop**
 
 ```shell
 # 切换到 develop
@@ -81,7 +87,7 @@ git pull
 git merge --no-ff origin/feature-a
 ```
 
-- 删除远端分支
+**删除远端分支**
 
 ```shell
 git push origin --delete feature-a
