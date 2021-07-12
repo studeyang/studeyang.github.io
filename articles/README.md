@@ -4,8 +4,8 @@
 
 - [运维笔记](articles/运维笔记.md)
 - [GIT使用笔记](articles/GIT使用笔记.md)
-- [Shell样例笔记](articles/Shell样例笔记.md)
-- [Go样例笔记](articles/Go样例笔记.md)
+- [Shell使用样例](articles/Shell使用样例.md)
+- [Go样例](articles/Go样例.md)
 
 ## 2021.6
 
