@@ -6,6 +6,7 @@
 - [GIT使用笔记](articles/GIT使用笔记.md)
 - [Shell使用样例](articles/Shell使用样例.md)
 - [Go样例](articles/Go样例.md)
+- [SQL样例](articles/SQL样例.md)
 
 ## 2021.6
 
