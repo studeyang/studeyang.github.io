@@ -1,6 +1,6 @@
-<h1><center>My Engineering Axioms</center></h1>
+# My Engineering Axioms
 
-> author: yanglulu<br/>date: 2021-06-22 14:17:00
+> date: 2021-06-22 14:17:00
 ---
 
 A few months back I gave a talk in which I shared a list of my personal engineering axioms – things that, over the years, I've come to think of as generally true and useful to have in mind when writing code, building things, and working with others.

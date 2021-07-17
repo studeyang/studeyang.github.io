@@ -1,4 +1,4 @@
-<center><h1>SQL样例笔记</h1></center>
+# SQL样例笔记
 
 > data：2021-07-13
 

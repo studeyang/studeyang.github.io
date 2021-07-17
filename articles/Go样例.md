@@ -1,4 +1,4 @@
-<center><h1>Go样例笔记</h1></center>
+# Go样例笔记
 
 > data：2021-07-12
 
