@@ -7,5 +7,5 @@
   - [Go样例](articles/Go样例.md)
   - [SQL样例](articles/SQL样例.md)
 - **学习笔记**
-  - [学习笔记](technotes/technotes.md)
+  - [technotes](https://www.dbses.cn/technotes)
 
