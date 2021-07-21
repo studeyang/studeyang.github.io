@@ -11,7 +11,7 @@
 
 ## 2021.03
 
-- [《软技能-代码之外的生存指南》（John Z. Sonmez）](article/202103/《软技能-代码之外的生存指南》（John Z. Sonmez）.md)
+- [《软技能-代码之外的生存指南》（John Z. Sonmez）](article/202103/《软技能-代码之外的生存指南》（John%20Z.%20Sonmez）.md)
 
 ## 2021.01
 
