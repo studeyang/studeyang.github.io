@@ -6,7 +6,7 @@
   - [Shell使用样例](articles/202107/Shell使用样例.md)
   - [Go样例](articles/202107/Go样例.md)
   - [SQL样例](articles/202107/SQL样例.md)
-  - [更多...](article/README.md)
+  - [更多...](articles/README.md)
 - **学习笔记**
   - [technotes](https://www.dbses.cn/technotes)
 
