@@ -53,7 +53,7 @@ const themePlugin = (hook, vm) => {
 
             // toc目录属性
             if (window.location.hash === HOME_HASH) {
-                setStyle(toc, 'display:none')
+                toc.style.display = 'none';
             } else {
                 toc.style.background = 'var(--background)';
                 toc.style.color = 'var(--textColor)';
@@ -68,7 +68,7 @@ const themePlugin = (hook, vm) => {
 
             // toc目录属性
             if (window.location.hash === HOME_HASH) {
-                setStyle(toc, 'display:none')
+                toc.style.display = 'none';
             } else {
                 toc.style.background = '#091a28';
                 toc.style.color = '#b4b4b4';
