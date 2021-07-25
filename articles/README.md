@@ -1,6 +1,6 @@
 <h1><center>文章导航页</center></h1>
 
-## 2021.07
+## 2021.07<!-- {docsify-ignore-all} -->
 
 - [互联网人的25点经验](articles/202107/My-Engineering-Axioms.md)
 - [运维笔记](articles/202107/运维笔记.md)

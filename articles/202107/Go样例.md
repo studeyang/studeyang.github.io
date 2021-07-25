@@ -1,4 +1,4 @@
-# Go样例笔记
+# Go样例笔记<!-- {docsify-ignore-all} -->
 
 > data：2021-07-12
 

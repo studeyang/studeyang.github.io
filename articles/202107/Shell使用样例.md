@@ -1,4 +1,4 @@
-# Shell样例笔记
+# Shell样例笔记<!-- {docsify-ignore-all} -->
 
 > date：2021-07-12
 

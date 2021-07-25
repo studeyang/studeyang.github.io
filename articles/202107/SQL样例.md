@@ -1,4 +1,4 @@
-# SQL样例笔记
+# SQL样例笔记<!-- {docsify-ignore-all} -->
 
 > data：2021-07-13
 

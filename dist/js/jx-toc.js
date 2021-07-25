@@ -1,32 +1,63 @@
 var defaultOptions = {
     headings: 'h1, h2, h3',
-}
+};
 
-var HOME_HASH = '#/'
+var HOME_HASH = '#/';
 
-var aTag = function (src) {
+var createLink = function (src, level) {
     var a = document.createElement('a');
     var content = src.firstChild.innerHTML;
+
+    // 设置级联
+    while (--level > 0) {
+        content = "&nbsp;&nbsp;&nbsp;&nbsp;" + content;
+    }
 
     // 使用这个限制长度，未使用。
     // https://github.com/arendjr/text-clipper
     a.innerHTML = content;
     a.href = src.firstChild.href;
-    a.onclick = activeClass;
+    // a.onclick = activeClass;
+    a.style.textDecoration = 'none';
+    a.addEventListener('click', activeClass);
+    a.addEventListener('mouseover', function () {
+        a.style.color = '#42b983';
+    });
+    a.addEventListener('mouseout', function () {
+        a.style.color = '';
+    });
 
     return a
 };
 
-var activeClass = function (e) {
-    var divs = document.querySelectorAll('#jx-toc .active');
-
+var activeClass = function (event) {
+    var divs = document.querySelectorAll('#jx-toc .toc-active');
     // 删除之前的样式
     [].forEach.call(divs, function (div) {
         div.setAttribute('class', '')
     });
 
     // 给当前点击的项加入新的样式
-    e.target.parentNode.setAttribute('class', 'active')
+    event.target.parentNode.setAttribute('class', 'toc-active')
+};
+
+var initActivedToc = function () {
+    var links = document.querySelectorAll('#jx-toc a');
+    [].forEach.call(links, function (link) {
+        if (link.href === window.location.href) {
+            link.setAttribute('class', 'toc-active');
+        }
+    });
+};
+
+var initActivedSideBar = function () {
+    var links = document.querySelectorAll('.sidebar a');
+    [].forEach.call(links, function (link) {
+        if (link.innerHTML !== $docsify.name && window.location.href.indexOf(link.href) !== -1) {
+            link.setAttribute('class', 'active');
+            // link.parentElement.setAttribute('class', 'active');
+        }
+    });
 };
 
 var createList = function (wrapper, count) {
@@ -34,7 +65,6 @@ var createList = function (wrapper, count) {
         wrapper = wrapper.appendChild(
             document.createElement('ul')
         );
-
         if (count) {
             wrapper = wrapper.appendChild(
                 document.createElement('li')
@@ -70,7 +100,7 @@ var jumpBack = function (currentWrapper, offset) {
     return currentWrapper;
 };
 
-var buildTOC = function (options) {
+var buildTOC = function buildTOC(options) {
     var ret = document.createElement('ul');
     var wrapper = ret;
     var lastLi = null;
@@ -78,6 +108,7 @@ var buildTOC = function (options) {
     var headers = getHeaders(selector).filter(h => h.id);
 
     headers.reduce(function (prev, curr, index) {
+        // debugger
         var currentLevel = getLevel(curr.tagName);
         var offset = currentLevel - prev;
 
@@ -88,8 +119,7 @@ var buildTOC = function (options) {
         wrapper = wrapper || ret;
 
         var li = document.createElement('li');
-
-        wrapper.appendChild(li).appendChild(aTag(curr));
+        wrapper.appendChild(li).appendChild(createLink(curr, currentLevel));
 
         lastLi = li;
 
@@ -111,11 +141,6 @@ var goTopFunction = function (e) {
     scroll();
 };
 
-
-function setStyle(jxtoc, style) {
-    jxtoc.setAttribute('style', style);
-}
-
 // Docsify plugin functions
 function plugin(hook, vm) {
     var userOptions = vm.config.jxtoc;
@@ -124,26 +149,33 @@ function plugin(hook, vm) {
         var mainElm = document.querySelector("main");
         var content = window.Docsify.dom.find(".content");
         if (content) {
+
             var jxtoc = window.Docsify.dom.create("div", "");
             jxtoc.id = "jx-toc";
             if (window.location.hash === HOME_HASH) {
-                setStyle(jxtoc, 'display:none')
+                jxtoc.style.display = 'none';
             }
+
             window.Docsify.dom.before(mainElm, jxtoc);
 
             window.addEventListener('hashchange', function () {
                 if (window.location.hash === HOME_HASH) {
-                    setStyle(jxtoc, 'display:none')
-                } else {
-                    setStyle(jxtoc, 'display:block')
+                    jxtoc.style.display = 'none';
+                } else if (localStorage.getItem('DARK_LIGHT_THEME') === 'dark') {
+                    jxtoc.style.display = 'block';
+                    jxtoc.style.background = '#091a28';
+                    jxtoc.style.color = '#b4b4b4';
+                    jxtoc.style.borderLeftColor = '#414344'
+                } else if (localStorage.getItem('DARK_LIGHT_THEME') === 'light') {
+                    jxtoc.style.display = 'block';
                 }
-
-            }, false)
+            }, false);
 
             var jxGoTop = window.Docsify.dom.create("span", "<i class='fas fa-arrow-up'></i>");
             jxGoTop.id = "jx-toc-gotop";
             jxGoTop.onclick = goTopFunction;
             window.Docsify.dom.before(mainElm, jxGoTop);
+
         }
     });
 
@@ -153,11 +185,11 @@ function plugin(hook, vm) {
         if (!jxtoc) {
             return;
         }
-        jxtoc.innerHTML = null
+        jxtoc.innerHTML = null;
 
-        var TocAnchor = document.createElement('i');
-        TocAnchor.setAttribute('class', 'fas fa-list');
-        jxtoc.appendChild(TocAnchor);
+        // var TocAnchor = document.createElement('i');
+        // TocAnchor.setAttribute('class', 'fas fa-list');
+        // jxtoc.appendChild(TocAnchor);
 
         const toc = buildTOC(userOptions);
 
@@ -166,7 +198,11 @@ function plugin(hook, vm) {
         }
 
         jxtoc.appendChild(toc);
+
+        initActivedToc();
+        initActivedSideBar();
     });
+
 }
 
 // Docsify plugin options
