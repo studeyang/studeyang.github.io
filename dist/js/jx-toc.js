@@ -163,7 +163,7 @@ function plugin(hook, vm) {
                     jxtoc.style.display = 'none';
                 } else if (localStorage.getItem('DARK_LIGHT_THEME') === 'dark') {
                     jxtoc.style.display = 'block';
-                    jxtoc.style.background = '#091a28';
+                    jxtoc.style.background = '#363B40';
                     jxtoc.style.color = '#b4b4b4';
                     jxtoc.style.borderLeftColor = '#414344'
                 } else if (localStorage.getItem('DARK_LIGHT_THEME') === 'light') {

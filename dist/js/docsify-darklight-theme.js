@@ -24,10 +24,10 @@ const themePlugin = (hook, vm) => {
         dark: {
             accent: '#42b983',
             toogleBackground: '#ffffff',
-            background: '#091a28',
+            background: '#363B40',
             textColor: '#b4b4b4',
             codeTextColor: '#ffffff',
-            codeBackgroundColor: '#0e2233',
+            codeBackgroundColor: '#2E3033',
             borderColor: '#0d2538',
             blockQuoteColor: '#636363',
             highlightColor: '#d22778',
@@ -70,7 +70,7 @@ const themePlugin = (hook, vm) => {
             if (window.location.hash === HOME_HASH) {
                 toc.style.display = 'none';
             } else {
-                toc.style.background = '#091a28';
+                toc.style.background = 'var(--background)';
                 toc.style.color = '#b4b4b4';
                 toc.style.borderLeftColor = '#414344'
             }
