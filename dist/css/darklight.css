@@ -383,7 +383,7 @@ body.sticky .sidebar-toggle {
 }
 
 .markdown-section {
-    margin: 0 auto;
+    margin: 0 210px 0 80px;
     max-width: 90%;
     padding: 30px 15px 40px;
     position: relative
@@ -1001,8 +1001,8 @@ pre:after {
 
 #docsify-darklight-theme {
     position: absolute;
-    right: 10px;
-    top: 15px;
+    right: -15px;
+    top: 26px;
     width: 25px;
     height: 25px;
     background-repeat: no-repeat;
