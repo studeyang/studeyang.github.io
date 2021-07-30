@@ -1,4 +1,4 @@
-# Grafana可视化监控系统
+# Grafana可视化监控系统<!-- {docsify-ignore-all} -->
 
 > data：2021-07-27<br>资料：<br/>https://mp.weixin.qq.com/s/F392WVfVlqBNlUQVtQUn8A<br/>https://grafana.com/docs/grafana/latest/best-practices/
 
