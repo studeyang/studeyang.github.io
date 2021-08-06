@@ -150,10 +150,10 @@ function plugin(hook, vm) {
         var content = window.Docsify.dom.find(".content");
         if (content) {
 
-            var jxtoc = window.Docsify.dom.create("div", "");
-            jxtoc.id = "jx-toc";
-            if (window.location.hash === HOME_HASH) {
-                jxtoc.style.display = 'none';
+            // 小屏展示
+            if (document.documentElement.clientWidth > 500) {
+                var jxtoc = window.Docsify.dom.create("div", "");
+                jxtoc.id = "jx-toc";
             }
 
             window.Docsify.dom.before(mainElm, jxtoc);

@@ -1001,7 +1001,7 @@ pre:after {
 
 #docsify-darklight-theme {
     position: absolute;
-    right: -15px;
+    /*right: -15px;*/
     top: 26px;
     width: 25px;
     height: 25px;

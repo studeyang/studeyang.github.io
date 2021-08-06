@@ -119,6 +119,15 @@ const themePlugin = (hook, vm) => {
         themeConfig.defaultTheme = 'light'
     }
 
+    hook.beforeEach(function (content) {
+        // 小屏展示
+        if (document.documentElement.clientWidth < 500) {
+            var main = document.querySelector('.markdown-section');
+            main.style.margin = '0 auto';
+        }
+        return content
+    });
+
     hook.afterEach(function (html, next) {
         var darkEl = `<div id="docsify-darklight-theme"><p>.</p></div>`;
         html = `${darkEl}${html}`;
@@ -134,26 +143,12 @@ const themePlugin = (hook, vm) => {
             setTheme(themeConfig.defaultTheme)
         }
 
-        document
-            .getElementById('docsify-darklight-theme')
+        document.getElementById('docsify-darklight-theme')
             .addEventListener('click', function () {
                 themeConfig.defaultTheme === 'light'
                     ? setTheme('dark')
                     : setTheme('light')
             })
-
-        // Side menu tooltip
-        // let title, action;
-        // document.querySelectorAll(".sidebar-nav .section-link").forEach(menu => {
-
-        //   title = menu.innerText;
-        //   action = menu.getAttribute("href");
-        //   menu.parentElement.innerHTML = `<div class="tooltip">
-        //       <span class="tooltiptext">${title}</span>
-        //       <a class="section-link" href="${action}">${title}</a>
-        //     </div>`;
-
-        // });
     })
 };
 
