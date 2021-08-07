@@ -3,7 +3,7 @@ function plugin(hook) {
         return (
             html +
             '\n\n---\n' +
-            'Last modified: {docsify-updated}'
+            '> Last modified: {docsify-updated}'
         );
     });
 }
