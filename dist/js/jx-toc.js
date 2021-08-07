@@ -55,7 +55,6 @@ var initActivedSideBar = function () {
     [].forEach.call(links, function (link) {
         if (link.innerHTML !== $docsify.name && window.location.href.indexOf(link.href) !== -1) {
             link.setAttribute('class', 'active');
-            // link.parentElement.setAttribute('class', 'active');
         }
     });
 };
@@ -108,7 +107,6 @@ var buildTOC = function buildTOC(options) {
     var headers = getHeaders(selector).filter(h => h.id);
 
     headers.reduce(function (prev, curr, index) {
-        // debugger
         var currentLevel = getLevel(curr.tagName);
         var offset = currentLevel - prev;
 
@@ -129,18 +127,6 @@ var buildTOC = function buildTOC(options) {
     return ret;
 };
 
-var goTopFunction = function (e) {
-    e.stopPropagation();
-    var step = window.scrollY / 50;
-    var scroll = function () {
-        window.scrollTo(0, window.scrollY - step);
-        if (window.scrollY > 0) {
-            setTimeout(scroll, 10);
-        }
-    };
-    scroll();
-};
-
 // Docsify plugin functions
 function plugin(hook, vm) {
     var userOptions = vm.config.jxtoc;
@@ -154,28 +140,22 @@ function plugin(hook, vm) {
             if (document.documentElement.clientWidth > 500) {
                 var jxtoc = window.Docsify.dom.create("div", "");
                 jxtoc.id = "jx-toc";
+
+                window.Docsify.dom.before(mainElm, jxtoc);
+
+                window.addEventListener('hashchange', function () {
+                    if (window.location.hash === HOME_HASH) {
+                        jxtoc.style.display = 'none';
+                    } else if (localStorage.getItem('DARK_LIGHT_THEME') === 'dark') {
+                        jxtoc.style.display = 'block';
+                        jxtoc.style.background = '#363B40';
+                        jxtoc.style.color = '#b4b4b4';
+                        jxtoc.style.borderLeftColor = '#414344'
+                    } else if (localStorage.getItem('DARK_LIGHT_THEME') === 'light') {
+                        jxtoc.style.display = 'block';
+                    }
+                }, false);
             }
-
-            window.Docsify.dom.before(mainElm, jxtoc);
-
-            window.addEventListener('hashchange', function () {
-                if (window.location.hash === HOME_HASH) {
-                    jxtoc.style.display = 'none';
-                } else if (localStorage.getItem('DARK_LIGHT_THEME') === 'dark') {
-                    jxtoc.style.display = 'block';
-                    jxtoc.style.background = '#363B40';
-                    jxtoc.style.color = '#b4b4b4';
-                    jxtoc.style.borderLeftColor = '#414344'
-                } else if (localStorage.getItem('DARK_LIGHT_THEME') === 'light') {
-                    jxtoc.style.display = 'block';
-                }
-            }, false);
-
-            var jxGoTop = window.Docsify.dom.create("span", "<i class='fas fa-arrow-up'></i>");
-            jxGoTop.id = "jx-toc-gotop";
-            jxGoTop.onclick = goTopFunction;
-            window.Docsify.dom.before(mainElm, jxGoTop);
-
         }
     });
 
@@ -186,10 +166,6 @@ function plugin(hook, vm) {
             return;
         }
         jxtoc.innerHTML = null;
-
-        // var TocAnchor = document.createElement('i');
-        // TocAnchor.setAttribute('class', 'fas fa-list');
-        // jxtoc.appendChild(TocAnchor);
 
         const toc = buildTOC(userOptions);
 

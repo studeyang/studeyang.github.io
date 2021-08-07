@@ -52,14 +52,13 @@ const themePlugin = (hook, vm) => {
             }
 
             // toc目录属性
-            if (window.location.hash === HOME_HASH) {
+            if (toc && window.location.hash === HOME_HASH) {
                 toc.style.display = 'none';
-            } else {
+            } else if (toc) {
                 toc.style.background = 'var(--background)';
                 toc.style.color = 'var(--textColor)';
                 toc.style.borderLeftColor = 'var(--sidebar-border-color, #00000012)'
             }
-
         } else if (theme === 'dark') {
             localStorage.setItem('DARK_LIGHT_THEME', 'dark');
             for (var [key, value] of Object.entries(themeConfig.dark)) {
@@ -67,9 +66,9 @@ const themePlugin = (hook, vm) => {
             }
 
             // toc目录属性
-            if (window.location.hash === HOME_HASH) {
+            if (toc && window.location.hash === HOME_HASH) {
                 toc.style.display = 'none';
-            } else {
+            } else if (toc) {
                 toc.style.background = 'var(--background)';
                 toc.style.color = '#b4b4b4';
                 toc.style.borderLeftColor = '#414344'
