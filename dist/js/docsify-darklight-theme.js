@@ -59,6 +59,7 @@ const themePlugin = (hook, vm) => {
                 toc.style.color = 'var(--textColor)';
                 toc.style.borderLeftColor = 'var(--sidebar-border-color, #00000012)'
             }
+
         } else if (theme === 'dark') {
             localStorage.setItem('DARK_LIGHT_THEME', 'dark');
             for (var [key, value] of Object.entries(themeConfig.dark)) {
