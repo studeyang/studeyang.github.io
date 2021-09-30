@@ -4,8 +4,8 @@
 
 ```mermaid
 sequenceDiagram
-    @EnableEurekaServer->>EurekaServerMarkerConfiguration: 
-    EurekaServerMarkerConfiguration->>EurekaServerMarkerConfiguration.Marker: 
+    @EnableEurekaServer->>EurekaServerMarkerConfiguration: call
+    EurekaServerMarkerConfiguration->>EurekaServerMarkerConfiguration.Marker: call 
 ```
 
 `EurekaServerMarkerConfiguration`源码如下：
