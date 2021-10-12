@@ -1,7 +1,7 @@
 > 参考资料：
 >
 > - 原版：http://logback.qos.ch/manual/index.html
-> - 翻译版：https://github.com/YLongo/logback-chinese-manual/blob/master
+> - 翻译版：https://github.com/YLongo/logback-chinese-manual/
 > - https://logbackcn.gitbook.io/logback/
 
 # 01 | logback介绍
@@ -167,6 +167,95 @@ public class SelectionRule {
 }
 ```
 **Appender与Layout**
+
+站在 logback 的角度来说，输出目的地叫做 appender。appender 包括console、file、remote socket server、MySQL、PostgreSQL、Oracle 或者其它的数据库、JMS、remote UNIX Syslog daemons 中。
+
+> 一个 logger 可以有多个 appender。
+
+如果 root logger 添加了一个 console appender，所有允许输出的日志至少会在控制台打印出来。如果再给一个叫做 ***L*** 的 logger 添加了一个 file appender，那么 ***L*** 以及 ***L*** 的子级 logger 都可以在文件和控制台打印日志。可以通过设置 additivity = false 来改写默认的设置，这样 appender 将不再具有叠加性。
+
+例子：
+
+| Logger          | Appender   | Additivity 标识 | 输出目的地             | 说明                                                         |
+| --------------- | ---------- | --------------- | ---------------------- | ------------------------------------------------------------ |
+| root            | A1         | 不适用          | A1                     | root logger 为 logger 层级中的最高层，additivity 对它不适用  |
+| x               | A-x1, A-x2 | True            | A1, A-x1, A-x2         | x 与 root 的 appender                                        |
+| x.y             | 无         | true            | A1, A-x1, A-x2         | x 与 root 的 appender                                        |
+| x.y.z           | A-xyz1     | true            | A1, A-x1, A-x2, A-xyz1 | x 与 x.y 与 root 的 appender                                 |
+| security        | A-sec      | **false**       | A-sec                  | 因为 additivity = false，所以只有 A-sec 这个 appender        |
+| security.access | 无         | true            | A-sec                  | 因为它的父级 logger security 设置了 additivity = false，所以只有 A-sec 这一个 appender |
+
+通常，用户既想自定义日志的输出地，也想自定义日志的输出格式。通过给 appender 添加一个 *layout* 可以做到。layout 的作用是将日志格式化，而 appender 的作用是将格式化后的日志输出到指定的目的地。**PatternLayout** 能够根据用户指定的格式来格式化日志，类似于 C 语言的 printf 函数。
+
+例：PatternLayout 通过格式化串 "%-4relative [%thread] %-5level %logger{32} - %msg%n" 会将日志格式化成如下结果：
+
+```
+176  [main] DEBUG manual.architecture.HelloWorld2 - Hello world.
+```
+
+> 第一个参数表示程序启动以来的耗时，单位为毫秒。第二个参数表示当前的线程号。第三个参数表示当前日志的级别。第四个参数是 logger 的名字。“-” 之后是具体的日志信息。
+
+**底层实现初探**
+
+![点击查看大图](https://gitee.com/yanglu_u/ImgRepository/raw/master/images/20211012102927.gif)
+
+# 03 | logback配置
+
+**logback初始化步骤**
+
+以下是 logback 的初始化步骤：
+
+1. logback 会在类路径下寻找名为 logback-test.xml 的文件。
+2. 如果没有找到，logback 会继续寻找名为 logback.groovy 的文件。
+3. 如果没有找到，logback 会继续寻找名为 logback.xml 的文件。
+4. 如果没有找到，将会通过 JDK 提供的 [ServiceLoader](https://docs.oracle.com/javase/6/docs/api/java/util/ServiceLoader.html) 工具在类路径下寻找文件 *META-INFO/services/ch.qos.logback.classic.spi.Configurator*，该文件的内容为实现了 [`Configurator`](https://logback.qos.ch/xref/ch/qos/logback/classic/spi/Configurator.html) 接口的实现类的全限定类名。
+5. 如果以上都没有成功，logback 会通过 [BasicConfigurator](https://logback.qos.ch/xref/ch/qos/logback/classic/BasicConfigurator.html) 为自己进行配置，并且日志将会全部在控制台打印出来。
+
+**状态数据**
+
+你可以通过构造一个配置文件来打印状态信息，而不需要通过编码的方式调用 `StatusPrinter` 去实现。只需要在 *configuration* 元素上添加 *debug* 属性。配置文件如下所示。
+
+> 注意：debug 属性只跟状态信息有关，并不会影响 logback 的配置文件，也不会影响 logger 的日志级别。
+
+*Example: sample1.xml*
+
+```xml
+<configuration debug="true">
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    
+    <root level="debug">
+        <appender-ref ref="STDOUT" />
+    </root>
+</configuration>
+```
+
+如果配置文件的配置有问题，logback 会检测到这个错误并且在控制台打印它的内部状态。
+
+**当配置文件更改时，自动加载**
+
+为了让 logback 能够在配置文件改变的时候自动去扫描，需要在 `<configuration>` 标签上添加 `scan=true` 属性。
+
+*Example*
+
+```xml
+<configuration scan="true">
+    ...
+</configuration>
+```
+
+# 04 | Appenders
+
+
+
+
+
+
+
+
 
 
 
