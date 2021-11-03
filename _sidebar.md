@@ -26,10 +26,4 @@
   - [《干法》（稻盛和夫）](articles/202101/《干法》（稻盛和夫）.md)
   - [《情商》（丹尼尔·戈尔曼）](articles/202101/《情商》（丹尼尔·戈尔曼）.md)
 
-- **项目**
-
-  - [technotes](https://www.dbses.cn/technotes)
-  - [ruankao](https://www.dbses.cn/ruankao/)
-  - [casslog](https:www.dbses.cn/casslog)
-  - [zebra](https://github.com/dbses/zebra)
 
