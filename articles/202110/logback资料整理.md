@@ -1,7 +1,7 @@
-> 参考资料：
->
+参考资料：
+
 > - 原版：http://logback.qos.ch/manual/index.html
-> - 翻译版：https://github.com/YLongo/logback-chinese-manual/
+>- 翻译版：https://github.com/YLongo/logback-chinese-manual/
 > - https://logbackcn.gitbook.io/logback/
 
 # 01 | logback介绍
@@ -253,13 +253,169 @@ public class SelectionRule {
 
 
 
+# 08 | MDC
+
+为了给每个请求打上唯一的标记，用户需要将上下文信息放到 `MDC` (Mapped Diagnostic Context 的缩写) 中。
+
+Example: *[SimpleMDC.java](https://logback.qos.ch/xref/chapters/mdc/SimpleMDC.html)*
+
+```java
+package chapters.mdc;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.MDC;
+
+import ch.qos.logback.classic.PatternLayout;
+import ch.qos.logback.core.ConsoleAppender;
+
+public class SimpleMDC {
+  static public void main(String[] args) throws Exception {
+
+    // 你可以选择在任何时候将值放入 MDC 中    
+    MDC.put("first", "Dorothy");
+    
+    Logger logger = LoggerFactory.getLogger(SimpleMDC.class);
+    
+    MDC.put("last", "Parker");
+    
+    logger.info("Check enclosed.");
+    logger.debug("The most beautiful two words in English.");
+
+    MDC.put("first", "Richard");
+    MDC.put("last", "Nixon");
+    logger.info("I am not a crook.");
+    logger.info("Attributed to the former US president. 17 Nov 1973.");
+  }
+
+}
+```
+
+```xml
+<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender"> 
+  <layout>
+    <Pattern>%X{first} %X{last} - %m%n</Pattern>
+  </layout> 
+</appender>
+```
+
+运行 SimpleMDC 将会输出：
+
+```
+Dorothy Parker - Check enclosed.
+Dorothy Parker - The most beautiful two words in English.
+Richard Nixon - I am not a crook.
+Richard Nixon - Attributed to the former US president. 17 Nov 1973.
+```
+
+# 提问
+
+## 1、logback 如何集成 slf4j?
+
+问：获取`ILoggerFactory`过程？<br>答：
+
+```mermaid
+sequenceDiagram
+    activate LoggerFactory
+    LoggerFactory->>LoggerFactory: getLogger()
+    LoggerFactory->>LoggerFactory: getILoggerFactory()
+    LoggerFactory->>LoggerFactoryBinder: getLoggerFactory()
+    LoggerFactoryBinder-->>LoggerFactory: return ILoggerFactory
+    deactivate LoggerFactory
+```
+
+问：`StaticLoggerBinder`是属于 logback 包下的类，是怎么写到 slf4j 包下`LoggerFactory # getILoggerFactory()`方法里的？<br>答：logback 包下对该类进行了覆盖。
+
+问：`logback`初始化过程？<br>答：
+
+![image-20211021095113793](https://gitee.com/yanglu_u/ImgRepository/raw/master/image-20211021095113793.png)
+
+问：`org.slf4j.LoggerFactory#getILoggerFactory()`有哪些状态?<br>答：
+
+| 状态                        | 值   | 说明         |
+| --------------------------- | ---- | ------------ |
+| UNINITIALIZED               | 0    | 未初始化     |
+| ONGOING_INITIALIZATION      | 1    | 正在初始化   |
+| FAILED_INITIALIZATION       | 2    | 初始化失败   |
+| SUCCESSFUL_INITIALIZATION   | 3    | 初始化成功   |
+| NOP_FALLBACK_INITIALIZATION | 4    | 无底层实现类 |
 
 
 
+## 2、Logger 初始化过程
 
+> `logback-classic:1.1.11`版本。
 
+- 何时初始化的`ch.qos.logback.classic.Logger`对象？
 
+`LoggerContext # getLogger()`方法。（方法内154行）
 
+- 初始化过程
 
+`StaticLoggerBinder`类初始化过程如下：
 
+```
+StaticLoggerBinder # init()
+-> ContextInitializer # autoConfig()
+```
+
+`autoConfig()`方法里展示了初始化过程。
+
+> 可以新建`logback.xml`文件进行配置，`logback.xml`比`CassConfigurator`优化级更高。但不建议覆盖，因为不方便统一修改。
+
+## 3、如何封装 log.info 方法?
+
+重写`ch.qos.logback.classic.Logger`并覆盖。
+
+要保证类加载的顺序。
+
+## 4、工具类实现关注点
+
+- [x] 扩展性：集成skywalking；
+- [x] 校验：不可过长、不可打印对象、不可打印json序列化对象；
+- [ ] 提供配置渠道；
+- [ ] 通过代码实现初始配置；
+- [ ] spring-boot 的日志配置在哪里？
+
+技术点研究：
+
+问：打包时如何排除某个 class?<br>答：使用了`maven-antrun-plugin`插件。
+
+## 5、spring-boot 的日志初始化
+
+切入点：spring-boot.jar logback 包。
+
+```
+LoggingApplicationListener
+```
+
+## 6、logback 在何处读取 spring 环境变量？
+
+切入点：全局搜索`springProperty`。
+
+```
+SpringBootJoranConfigurator
+SpringPropertyAction
+```
+
+## 7、spring-boot 默认日志框架选择
+
+切入点：spring-boot 日志初始化`LoggingApplicationListener`。
+
+```
+LoggingApplicationListener # onApplicationStartingEvent()
+LoggingSystem # get()
+```
+
+## 8、spring-boot 启动了哪些 ApplicationListener？
+
+> 基于spring-boot 1.5.7版本。
+
+切入点：
+
+```
+ApplicationEnvironmentPreparedEvent 这个事件在哪里 new 了？
+在 EventPublishingRunListener # environmentPrepared() (74行)
+进而调用了 SimpleApplicationEventMulticaster # multicastEvent() (122行)
+```
 
