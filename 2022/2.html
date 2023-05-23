@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Nacos配置中心落地与实践 - Studeyang&#039;s Blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="Studeyang&#039;s Blog"><meta name="msapplication-TileImage" content="https://technotes.oss-cn-shenzhen.aliyuncs.com/2023/202305212017244.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Studeyang&#039;s Blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="一、背景目前，我们公司各团队配置中心使用各异，电商使用的是 Spring Cloud Config，支付使用的是 Apollo，APP 团队使用的是 Apollo+Nacos。为了更好地应对公司业务的发展，统一基础设施技术栈必不可少。"><meta property="og:type" content="blog"><meta property="og:title" content="Nacos配置中心落地与实践"><meta property="og:url" content="http://www.studeyang.tech/2022/2.html"><meta property="og:site_name" content="Studeyang&#039;s Blog"><meta property="og:description" content="一、背景目前，我们公司各团队配置中心使用各异，电商使用的是 Spring Cloud Config，支付使用的是 Apollo，APP 团队使用的是 Apollo+Nacos。为了更好地应对公司业务的发展，统一基础设施技术栈必不可少。"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://technotes.oss-cn-shenzhen.aliyuncs.com/2022/image-20220222140242719.png"><meta property="og:image" content="https://technotes.oss-cn-shenzhen.aliyuncs.com/2022/image-20220222142033442.png"><meta property="og:image" content="https://technotes.oss-cn-shenzhen.aliyuncs.com/2022/image-20220222142102625.png"><meta property="og:image" content="https://technotes.oss-cn-shenzhen.aliyuncs.com/2022/image-20220222142123826.png"><meta property="og:image" content="https://technotes.oss-cn-shenzhen.aliyuncs.com/2022/image-20220222142232508.png"><meta property="og:image" content="https://technotes.oss-cn-shenzhen.aliyuncs.com/2022/image-20220222143101832.png"><meta property="og:image" content="https://technotes.oss-cn-shenzhen.aliyuncs.com/2022/image-20220222143133401.png"><meta property="og:image" content="https://technotes.oss-cn-shenzhen.aliyuncs.com/2022/image-20220222143208909.png"><meta property="og:image" content="https://technotes.oss-cn-shenzhen.aliyuncs.com/2022/image-20220222143652521.png"><meta property="og:image" content="https://technotes.oss-cn-shenzhen.aliyuncs.com/2022/image-20220222143612121.png"><meta property="og:image" content="https://technotes.oss-cn-shenzhen.aliyuncs.com/2022/image-20220222143742655.png"><meta property="article:published_time" content="2022-10-24T01:00:00.000Z"><meta property="article:modified_time" content="2023-05-23T06:19:28.721Z"><meta property="article:author" content="studeyang"><meta property="article:tag" content="Nacos"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://technotes.oss-cn-shenzhen.aliyuncs.com/2022/image-20220222140242719.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://www.studeyang.tech/2022/2.html"},"headline":"Nacos配置中心落地与实践","image":["https://technotes.oss-cn-shenzhen.aliyuncs.com/2022/image-20220222140242719.png","https://technotes.oss-cn-shenzhen.aliyuncs.com/2022/image-20220222142033442.png","https://technotes.oss-cn-shenzhen.aliyuncs.com/2022/image-20220222142102625.png","https://technotes.oss-cn-shenzhen.aliyuncs.com/2022/image-20220222142123826.png","https://technotes.oss-cn-shenzhen.aliyuncs.com/2022/image-20220222142232508.png","https://technotes.oss-cn-shenzhen.aliyuncs.com/2022/image-20220222143101832.png","https://technotes.oss-cn-shenzhen.aliyuncs.com/2022/image-20220222143133401.png","https://technotes.oss-cn-shenzhen.aliyuncs.com/2022/image-20220222143208909.png","https://technotes.oss-cn-shenzhen.aliyuncs.com/2022/image-20220222143652521.png","https://technotes.oss-cn-shenzhen.aliyuncs.com/2022/image-20220222143612121.png","https://technotes.oss-cn-shenzhen.aliyuncs.com/2022/image-20220222143742655.png"],"datePublished":"2022-10-24T01:00:00.000Z","dateModified":"2023-05-23T06:19:28.721Z","author":{"@type":"Person","name":"studeyang"},"publisher":{"@type":"Organization","name":"Studeyang's Blog","logo":{"@type":"ImageObject","url":"https://technotes.oss-cn-shenzhen.aliyuncs.com/2023/202305212017244.png"}},"description":"一、背景目前，我们公司各团队配置中心使用各异，电商使用的是 Spring Cloud Config，支付使用的是 Apollo，APP 团队使用的是 Apollo+Nacos。为了更好地应对公司业务的发展，统一基础设施技术栈必不可少。"}</script><link rel="canonical" href="http://www.studeyang.tech/2022/2.html"><link rel="icon" href="https://technotes.oss-cn-shenzhen.aliyuncs.com/2023/202305212017244.png"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><script>var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?63dd71367176b52c6d8aa50635993633";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();</script><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="https://technotes.oss-cn-shenzhen.aliyuncs.com/2023/202305212017244.png" alt="Studeyang&#039;s Blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">归档</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">关于</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/studeyang/learning-share"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2022-10-24T01:00:00.000Z" title="2022/10/24 09:00:00">2022-10-24</time>发表</span><span class="level-item"><time dateTime="2023-05-23T06:19:28.721Z" title="2023/5/23 14:19:28">2023-05-23</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/technotes/">technotes</a></span><span class="level-item">17 分钟读完 (大约2516个字)</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>次访问</span></div></div><h1 class="title is-3 is-size-4-mobile">Nacos配置中心落地与实践</h1><div class="content"><h2 id="一、背景"><a href="#一、背景" class="headerlink" title="一、背景"></a>一、背景</h2><p>目前，我们公司各团队配置中心使用各异，电商使用的是 Spring Cloud Config，支付使用的是 Apollo，APP 团队使用的是 Apollo+Nacos。为了更好地应对公司业务的发展，统一基础设施技术栈必不可少。</p>
+<span id="more"></span>
+<img src="https://technotes.oss-cn-shenzhen.aliyuncs.com/2022/image-20220222140242719.png" alt="image-20220222140242719"  />
+
+<blockquote>
+<p>图片来源：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1GR4y137RS?spm_id_from=333.999.0.0">直播《如何做好微服务基础设施选型》</a>–李运华</p>
+</blockquote>
+<p>此外，电商团队使用的 Spring Cloud Config 面临以下技术痛点：</p>
+<ul>
+<li>修改配置需要重启服务</li>
+<li>配置管理不友好（通过gitlab修改）</li>
+<li>缺少权限管控、格式检验、安全配置等特性</li>
+</ul>
+<h2 id="二、配置中心选型"><a href="#二、配置中心选型" class="headerlink" title="二、配置中心选型"></a>二、配置中心选型</h2><h3 id="开源产品分析"><a href="#开源产品分析" class="headerlink" title="开源产品分析"></a>开源产品分析</h3><ul>
+<li>Spring Cloud Config</li>
+</ul>
+<p>2014年9月开源，Spring Cloud 生态组件，可以和 Spring Cloud 体系无缝整合。</p>
+<ul>
+<li>Apollo</li>
+</ul>
+<p>2016年5月，携程开源的一款可靠的分布式配置管理中心。能够集中化管理应用不同环境、不同集群的配置，配置修改后能够实时推送到应用端，并且具备规范的权限、流程治理等特性，适用于微服务配置管理场景。</p>
+<ul>
+<li>Nacos</li>
+</ul>
+<p>2018年6月，阿里开源的一个更易于构建云原生应用的动态服务发现、配置管理和服务管理平台。它孵化于阿里巴巴，成长于十年双十一的洪峰考验，沉淀了简单易用、稳定可靠、性能卓越的核心竞争力。</p>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th>比较项</th>
+<th>Nacos</th>
+<th>Apollo</th>
+<th>Spring Cloud Config</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">社区活跃度</td>
+<td>开源时间</td>
+<td>2018.6</td>
+<td>2016.5</td>
+<td>2014.9</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td>github关注</td>
+<td>20.5k</td>
+<td>26K</td>
+<td>1.7K</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td>文档</td>
+<td><a target="_blank" rel="noopener" href="https://nacos.io/zh-cn/docs/system-configurations.html">完善</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.apolloconfig.com/#/">完善</a></td>
+<td><a target="_blank" rel="noopener" href="https://spring.io/projects/spring-cloud-config#overview">完善</a></td>
+</tr>
+<tr>
+<td align="center">性能</td>
+<td>单机读（QPS）</td>
+<td>15000</td>
+<td>9000</td>
+<td>7(限流所致)</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td>单机写（QPS）</td>
+<td>1800</td>
+<td>1100</td>
+<td>5(限流所致)</td>
+</tr>
+<tr>
+<td align="center">可用性</td>
+<td>停服影响（配置服务）</td>
+<td>已启动的客户端不影响</td>
+<td>已启动的客户端不影响</td>
+<td>已启动的客户端不影响</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td>部署模式</td>
+<td>集群</td>
+<td>集群</td>
+<td>集群</td>
+</tr>
+<tr>
+<td align="center">易用性</td>
+<td>配置生效时间</td>
+<td>实时</td>
+<td>实时</td>
+<td>重启生效，或手动refresh生效</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td>数据一致性</td>
+<td>HTTP异步通知</td>
+<td>数据库模拟消息队列，Apollo定时读消息 一分钟实时生效</td>
+<td>Git保证数据一致性，Config-server从Git读数据</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td>配置界面</td>
+<td>支持</td>
+<td>支持</td>
+<td>不支持</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td>配置格式校验</td>
+<td>支持</td>
+<td>支持</td>
+<td>不支持</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td>配置回滚</td>
+<td>支持</td>
+<td>支持</td>
+<td>支持（基于git的回滚）</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td>版本管理</td>
+<td>支持</td>
+<td>支持</td>
+<td>支持（基于git的版本管理）</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td>客户端支持语言</td>
+<td>官方java 非官方 Go、Python、NodeJS、C++</td>
+<td>官方java .net 非官方 Go、Python、NodeJS、PHP、C++</td>
+<td></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td>客户端使用</td>
+<td>nacos client</td>
+<td>apollo client</td>
+<td>cloud config client</td>
+</tr>
+<tr>
+<td align="center">安全性</td>
+<td>权限管理</td>
+<td>支持</td>
+<td>完善 数据权限都比较完善</td>
+<td>支持（git）</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td>授权&#x2F;审计&#x2F;审核</td>
+<td>支持</td>
+<td>界面上直接操作且支持修改和发布权限分离</td>
+<td>依赖git权限管理</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td>数据加密</td>
+<td>不支持</td>
+<td>不支持</td>
+<td>加密和解密属性值</td>
+</tr>
+<tr>
+<td align="center">架构复杂度</td>
+<td>运维成本</td>
+<td>Nacos+MySQL（部署简单）</td>
+<td>Config+Admin+Portal+MySQL（部署复杂）</td>
+<td>Config-server+Git+MQ（部署复杂）</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td>服务依赖</td>
+<td>自身就是注册发现中心 阿里云两个功能隔开了</td>
+<td>分布式 需要注册中心 内置了eureka</td>
+<td>需要注册中心</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td>灰度发布</td>
+<td>支持 客户端配置 且路由规则客户端计算 耦合高 繁琐</td>
+<td>支持 服务端配置 且路由规则服务端计算 客户端透明 简单</td>
+<td>支持</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td>邮件服务</td>
+<td>不支持</td>
+<td>支持</td>
+<td>不支持</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td>查询配置监听</td>
+<td>支持</td>
+<td>支持</td>
+<td>支持</td>
+</tr>
+</tbody></table>
+<ol>
+<li>从性能方面看：读写性能 Nacos &gt; Apollo &gt; Spring Cloud Config。</li>
+<li>从功能方面看：功能完善度 Apollo &gt; Nacos &gt; Spring Cloud Config。</li>
+<li>从社区活跃性看：原来Spring Cloud 那一套生态Netflix基本上不怎么维护了，因为不赚钱；但是 Spring Alibaba 这套微服务生态会一直开源且有维护，因为阿里将这一块 SaaS 化后赚钱。</li>
+<li>Nacos的优势：简单。它整合了注册中心、配置中心功能，部署和操作相比Apollo都要直观简单，因此它简化了架构复杂度，并减轻运维及部署工作。</li>
+</ol>
+<h3 id="性能对比"><a href="#性能对比" class="headerlink" title="性能对比"></a>性能对比</h3><ul>
+<li>压力机信息</li>
+</ul>
+<p>处理器：Intel(R) Core(TM) i5-9500 CPU @ 3.00GHz 3.00 GHz</p>
+<p>系统：window 10</p>
+<p>内测：16G</p>
+<ul>
+<li>压测工具：JMeter</li>
+<li>压测策略：100用户请求线程 10内递增开启，持续时间100s</li>
+</ul>
+<p><strong>场景一：调用服务端</strong></p>
+<p><img src="https://technotes.oss-cn-shenzhen.aliyuncs.com/2022/image-20220222142033442.png" alt="image-20220222142033442"></p>
+<p>测试结果如下：</p>
+<p><img src="https://technotes.oss-cn-shenzhen.aliyuncs.com/2022/image-20220222142102625.png" alt="image-20220222142102625"></p>
+<p>通过压测发现，Nacos读配置的TPS大约是11000左右 ，写配置TPS大约是1800左右，而Apollo读配置TPS大约是1100，写配置TPS大约310，Nacos读写性能优势非常明显。</p>
+<p><strong>场景二：调用客户端</strong></p>
+<p><img src="https://technotes.oss-cn-shenzhen.aliyuncs.com/2022/image-20220222142123826.png" alt="image-20220222142123826"></p>
+<p>测试结果如下：</p>
+<p><img src="https://technotes.oss-cn-shenzhen.aliyuncs.com/2022/image-20220222142232508.png" alt="image-20220222142232508"></p>
+<p>可见，读性能相差不大。</p>
+<p><strong>结论</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>选择的原因</th>
+<th>不选择的原因</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Nacos</td>
+<td>统一技术栈能解决现有技术痛点运维成本低</td>
+<td></td>
+</tr>
+<tr>
+<td>Apollo</td>
+<td></td>
+<td>依赖 Eureka</td>
+</tr>
+<tr>
+<td>Spring Cloud Config</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>参考文档：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/62191330">深度对比三种主流微服务配置中心</a></li>
+<li><a target="_blank" rel="noopener" href="https://nacos.io/zh-cn/docs/nacos-config-benchmark.html">Nacos服务配置性能测试报告</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.bookstack.cn/read/ctripcorp-apollo/24aec7d3cf41ff30.md">Apollo性能测试报告</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/csdnsevenn/article/details/81025178">凉凉了，Eureka 宣布闭源，Spring Cloud 何去何从？</a></li>
+</ul>
+</blockquote>
+<h2 id="三、快速使用"><a href="#三、快速使用" class="headerlink" title="三、快速使用"></a>三、快速使用</h2><blockquote>
+<p>参考文档：<a target="_blank" rel="noopener" href="https://nacos.io/en-us/docs/quick-start-spring-boot.html">https://nacos.io/en-us/docs/quick-start-spring-boot.html</a></p>
+</blockquote>
+<h3 id="升级依赖"><a href="#升级依赖" class="headerlink" title="升级依赖"></a>升级依赖</h3><p>去除 spring-cloud-config 依赖：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-config<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>添加 Nacos 依赖:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;com.alibaba.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;nacos-config-spring-boot-starter&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;0.1.8&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="替换-Nacos-配置"><a href="#替换-Nacos-配置" class="headerlink" title="替换 Nacos 配置"></a>替换 Nacos 配置</h3><p>将原 bootstrap.yml 文件中的 config 配置替换成 nacos 的配置。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> &#123;<span class="string">应用名</span>&#125;</span><br><span class="line">  <span class="attr">cloud:</span>                                                      <span class="comment"># 移除</span></span><br><span class="line">    <span class="attr">config:</span>                                                   <span class="comment"># 移除</span></span><br><span class="line">      <span class="attr">uri:</span> <span class="string">http://config-center.alpha-intra.dbses.com/conf</span>    <span class="comment"># 移除</span></span><br><span class="line">      <span class="attr">label:</span> <span class="string">alpha</span>                                            <span class="comment"># 移除</span></span><br></pre></td></tr></table></figure>
+
+<p>替换结果如下：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> &#123;<span class="string">应用名</span>&#125;</span><br><span class="line"><span class="attr">nacos:</span></span><br><span class="line">  <span class="attr">config:</span></span><br><span class="line">    <span class="attr">server-addr:</span> <span class="string">http://ec-nacos.dbses.com</span></span><br><span class="line">    <span class="attr">namespace:</span> <span class="string">alpha</span></span><br><span class="line">    <span class="attr">group:</span> &#123;<span class="string">组名</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="启动类添加注解"><a href="#启动类添加注解" class="headerlink" title="启动类添加注解"></a>启动类添加注解</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// dataId 对应服务的配置</span></span><br><span class="line"><span class="meta">@NacosPropertySource(groupId = &quot;$&#123;nacos.config.group&#125;&quot;, dataId = &quot;$&#123;spring.application.name&#125;.yml&quot;, first = true)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">WebApplication</span> &#123;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        SpringApplication.run(WebApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="四、实践"><a href="#四、实践" class="headerlink" title="四、实践"></a>四、实践</h2><h3 id="配置动态刷新"><a href="#配置动态刷新" class="headerlink" title="配置动态刷新"></a>配置动态刷新</h3><p><strong>方式一：使用@NacosValue</strong></p>
+<p>使用此种方法需要在@NacosPropertySource 需加上 autoRefreshed&#x3D;true。示例代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@NacosPropertySource(groupId = &quot;infra&quot;, dataId = &quot;zebra-service.yml&quot;, first = true, autoRefreshed = true)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">WebApplication</span> &#123;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        SpringApplication.run(WebApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>nacos 配置如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">test1:</span><br><span class="line">  config: 2</span><br></pre></td></tr></table></figure>
+
+<p>接口代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TestController</span> &#123;</span><br><span class="line"> </span><br><span class="line">    <span class="meta">@NacosValue(value = &quot;$&#123;test1.config&#125;&quot;, autoRefreshed = true)</span></span><br><span class="line">    <span class="keyword">private</span> String config;</span><br><span class="line"> </span><br><span class="line">    <span class="meta">@GetMapping(&quot;/config&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">getConfig</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> config;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>方式二：使用@NacosConfigurationProperties</strong></p>
+<p>示例代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@NacosConfigurationProperties(prefix = &quot;test2&quot;, dataId = &quot;zebra-service.yml&quot;, groupId = &quot;infra&quot;, autoRefreshed = true)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TestConfig</span> &#123;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">private</span> List&lt;String&gt; config;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">private</span> Map&lt;String, String&gt; map;</span><br><span class="line"> </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;TestConfig&#123;&quot;</span> + <span class="string">&quot;config=&quot;</span> + config + <span class="string">&quot;, map=&quot;</span> + map + <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>nacos 配置如下：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">test2:</span></span><br><span class="line">  <span class="attr">config:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">yang</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">wang</span></span><br><span class="line">  <span class="attr">map:</span></span><br><span class="line">    <span class="attr">courier:</span> <span class="string">yang</span></span><br><span class="line">    <span class="attr">zebra:</span> <span class="string">wang</span></span><br></pre></td></tr></table></figure>
+
+<p>接口代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TestController</span> &#123;</span><br><span class="line"> </span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> TestConfig testConfig;</span><br><span class="line"> </span><br><span class="line">    <span class="meta">@GetMapping(&quot;/config2&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">getConfig2</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> testConfig.toString();</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>注意</strong></p>
+<p>动态刷新map，修改了key会累加，不会删除原来的key。例如将 zebra-service.yml 配置中的 test2.map.zebra 改为 test2.map.zebr 后，获取的结果如下：</p>
+<p>TestConfig{config&#x3D;[yang, wang], map&#x3D;{courier&#x3D;yang, zebra&#x3D;wang, zebr&#x3D;wang}}</p>
+</blockquote>
+<p><strong>方式三：使用@NacosConfigListener</strong></p>
+<p>nacos 配置如下：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">test1:</span></span><br><span class="line">  <span class="attr">config:</span> <span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+<p>示例代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TestController</span> &#123;</span><br><span class="line"> </span><br><span class="line">    <span class="meta">@Value(value = &quot;$&#123;test1.config&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String config;</span><br><span class="line"> </span><br><span class="line">    <span class="meta">@GetMapping(&quot;/config&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">getConfig</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> config;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="meta">@NacosConfigListener(dataId = &quot;zebra-service.yml&quot;, groupId = &quot;infra&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testConfigChange</span><span class="params">(String newContent)</span> &#123;</span><br><span class="line">        <span class="type">YamlPropertiesFactoryBean</span> <span class="variable">yamlFactory</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">YamlPropertiesFactoryBean</span>();</span><br><span class="line">        yamlFactory.setResources(<span class="keyword">new</span> <span class="title class_">ByteArrayResource</span>(newContent.getBytes()));</span><br><span class="line">        <span class="type">Properties</span> <span class="variable">commonsProperties</span> <span class="operator">=</span> yamlFactory.getObject();</span><br><span class="line">        <span class="built_in">this</span>.config = commonsProperties.getProperty(<span class="string">&quot;test1.config&quot;</span>));</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="多配置引入"><a href="#多配置引入" class="headerlink" title="多配置引入"></a>多配置引入</h3><p><strong>问题描述</strong></p>
+<p>我们的项目之前读取了许多公共配置，现想要读取公共配置，该怎么办？</p>
+<p><strong>问题解决</strong></p>
+<p>使用 @NacosPropertySources 注解即可加入多个配置文件。</p>
+<p>样例代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@NacosPropertySources(&#123;</span></span><br><span class="line"><span class="meta">        @NacosPropertySource(groupId = &quot;infra&quot;, dataId = &quot;captcha-service.yml&quot;, first = true),</span></span><br><span class="line"><span class="meta">        @NacosPropertySource(groupId = &quot;commons&quot;, dataId = &quot;__common_eureka_.yml&quot;)</span></span><br><span class="line"><span class="meta">&#125;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">WebApplication</span> &#123;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        SpringApplication.run(WebApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>这里的 first &#x3D; true 表示这个文件的配置优先级是最高的。</p>
+</blockquote>
+<h3 id="本地配置覆盖"><a href="#本地配置覆盖" class="headerlink" title="本地配置覆盖"></a>本地配置覆盖</h3><p><strong>问题描述</strong></p>
+<p>作为开发人员，我们可能需要本地启动程序来进行调试，但此时本地启动的程序连接的是 alpha 环境的配置。如果修改 alpha 环境的配置，又可能影响 alpha 及其他人的程序运行。</p>
+<p>面对这种情况，我们怎么管理配置的优先级？</p>
+<p>下面以 test1.config 配置为例。nacos 配置文件如下：</p>
+<p><img src="https://technotes.oss-cn-shenzhen.aliyuncs.com/2022/image-20220222143101832.png" alt="image-20220222143101832"></p>
+<p>启动配置如下：</p>
+<p><img src="https://technotes.oss-cn-shenzhen.aliyuncs.com/2022/image-20220222143133401.png" alt="image-20220222143133401"></p>
+<p>测试代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TestController</span> &#123;</span><br><span class="line"> </span><br><span class="line">    <span class="meta">@NacosValue(value = &quot;$&#123;test1.config&#125;&quot;, autoRefreshed = true)</span></span><br><span class="line">    <span class="keyword">private</span> String config1;</span><br><span class="line"> </span><br><span class="line">    <span class="meta">@GetMapping(&quot;/config1&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">getConfig1</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> config1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>执行结果为：</p>
+<p><img src="https://technotes.oss-cn-shenzhen.aliyuncs.com/2022/image-20220222143208909.png" alt="image-20220222143208909"></p>
+<p>本地的配置并没有达到覆盖的效果。</p>
+<p><strong>问题分析</strong></p>
+<p>我们不妨先改造一下程序启动类。</p>
+<p><img src="https://technotes.oss-cn-shenzhen.aliyuncs.com/2022/image-20220222143652521.png" alt="image-20220222143652521"></p>
+<p>通过断点可以看到，应用配置（这里指 nacos 中的 zebra-service.yml，下同）的优先级是在公共配置之前的，这点是必要的。</p>
+<blockquote>
+<p>应用配置必须在公共配置之前。</p>
+</blockquote>
+<p>但是应用配置也在系统变量（systemProperties）、系统环境（systemEnvironment）之前。所以我们配置的 test1.config 并没有生效为 local。</p>
+<p>稍作修改一下：</p>
+<p><img src="https://technotes.oss-cn-shenzhen.aliyuncs.com/2022/image-20220222143612121.png" alt="image-20220222143612121"></p>
+<p><strong>问题解决</strong></p>
+<p>再测试一下本地配置是否覆盖。</p>
+<p><img src="https://technotes.oss-cn-shenzhen.aliyuncs.com/2022/image-20220222143742655.png" alt="image-20220222143742655"></p>
+<p>本地的配置已达到覆盖的效果。最终的启动类代码为：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@EnableDiscoveryClient</span></span><br><span class="line"><span class="meta">@EnableFeignClients</span></span><br><span class="line"><span class="meta">@PrepareConfigurations(&#123;&quot;__common_database_&quot;, &quot;__common_eureka_&quot;&#125;)</span></span><br><span class="line"><span class="meta">@NacosPropertySource(groupId = &quot;infra&quot;, dataId = &quot;zebra-service.yml&quot;, autoRefreshed = true</span></span><br><span class="line"><span class="meta">        ,after = StandardEnvironment.SYSTEM_PROPERTIES_PROPERTY_SOURCE_NAME</span></span><br><span class="line"><span class="meta">)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">WebApplication</span> &#123;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        SpringApplication.run(WebApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</div><div class="article-licensing box"><div class="licensing-title"><p>Nacos配置中心落地与实践</p><p><a href="http://www.studeyang.tech/2022/2.html">http://www.studeyang.tech/2022/2.html</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>studeyang</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2022-10-24</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2023-05-23</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/Nacos/">Nacos</a></div><div class="sharethis-inline-share-buttons"></div><script src="https://platform-api.sharethis.com/js/sharethis.js#property=6469b4acd8c6d2001a06c2d2&amp;product=inline-share-buttons&amp;source=platform" defer></script></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3><div class="buttons is-centered"><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>支付宝</span><span class="qrcode"><img src="https://technotes.oss-cn-shenzhen.aliyuncs.com/2023/202305211413297.png" alt="支付宝"></span></a><a class="button donate" href="https://www.buymeacoffee.com/studeyang" target="_blank" rel="noopener" data-type="buymeacoffee"><span class="icon is-small"><i class="fas fa-coffee"></i></span><span>送我杯咖啡</span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>微信</span><span class="qrcode"><img src="https://technotes.oss-cn-shenzhen.aliyuncs.com/2023/202305211414563.png" alt="微信"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2022/4.html"><i class="level-item fas fa-chevron-left"></i><span class="level-item">实战：如何优雅地扩展Log4j配置？</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2022/1.html"><span class="level-item">Blank</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">评论</h3><div id="comment-container"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script><script>var gitalk = new Gitalk({
+            id: "177ae972f67d774f72d3fa5b6e89572d",
+            repo: "learning-share",
+            owner: "studeyang",
+            clientID: "2335de41843b9fae10fe",
+            clientSecret: "45d7d5cd095cedd0e5443f62b0788e04cdc1f98d",
+            admin: ["studeyang"],
+            createIssueManually: false,
+            distractionFreeMode: false,
+            perPage: 20,
+            pagerDirection: "last",
+            
+            
+            enableHotKey: true,
+            language: "zh-CN",
+        })
+        gitalk.render('comment-container')</script></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="https://technotes.oss-cn-shenzhen.aliyuncs.com/2023/202305212017244.png" alt="Studeyang"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Studeyang</p><p class="is-size-6 is-block">Java开发工程师</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>China ShenZhen</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">26</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">2</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">13</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/studeyang" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/studeyang"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Facebook" href="https://facebook.com"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Twitter" href="https://twitter.com/studeyang"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://www.studeyang.tech/technotes" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">学习笔记</span></span><span class="level-right"><span class="level-item tag">www.studeyang.tech</span></span></a></li><li><a class="level is-mobile" href="https://juejin.cn/user/2594503173605767" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">掘金</span></span><span class="level-right"><span class="level-item tag">juejin.cn</span></span></a></li></ul></div></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/technotes/"><span class="level-start"><span class="level-item">technotes</span></span><span class="level-end"><span class="level-item tag">25</span></span></a></li><li><a class="level is-mobile" href="/categories/template/"><span class="level-start"><span class="level-item">template</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><figure class="media-left"><a class="image" href="/2023/10.html"><img src="https://technotes.oss-cn-shenzhen.aliyuncs.com/2023/202305131823132.png" alt="23种设计模式的必备结构图"></a></figure><div class="media-content"><p class="date"><time dateTime="2023-05-13T01:00:00.000Z">2023-05-13</time></p><p class="title"><a href="/2023/10.html">23种设计模式的必备结构图</a></p><p class="categories"><a href="/categories/technotes/">technotes</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2023/9.html"><img src="https://technotes.oss-cn-shenzhen.aliyuncs.com/2023/202304181723557.png" alt="06期：使用 OPTIMIZER_TRACE 窥探 MySQL 索引选择的秘密"></a></figure><div class="media-content"><p class="date"><time dateTime="2023-04-18T01:00:00.000Z">2023-04-18</time></p><p class="title"><a href="/2023/9.html">06期：使用 OPTIMIZER_TRACE 窥探 MySQL 索引选择的秘密</a></p><p class="categories"><a href="/categories/technotes/">technotes</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-16T01:00:00.000Z">2023-04-16</time></p><p class="title"><a href="/2023/8.html">索引失效了？看看这几个常见的原因！</a></p><p class="categories"><a href="/categories/technotes/">technotes</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2023/7.html"><img src="https://technotes.oss-cn-shenzhen.aliyuncs.com/2023/%E9%9D%A2%E5%90%91%E4%B8%9A%E5%8A%A1%E7%9A%84%E6%B6%88%E6%81%AF%E6%9C%8D%E5%8A%A1%E8%90%BD%E5%9C%B0%E5%AE%9E%E8%B7%B5.png" alt="05期：面向业务的消息服务落地实践"></a></figure><div class="media-content"><p class="date"><time dateTime="2023-03-25T01:00:00.000Z">2023-03-25</time></p><p class="title"><a href="/2023/7.html">05期：面向业务的消息服务落地实践</a></p><p class="categories"><a href="/categories/technotes/">technotes</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2023/6.html"><img src="https://technotes.oss-cn-shenzhen.aliyuncs.com/2023/202303192237602.png" alt="04期：领域驱动设计与微服务"></a></figure><div class="media-content"><p class="date"><time dateTime="2023-03-19T01:00:00.000Z">2023-03-19</time></p><p class="title"><a href="/2023/6.html">04期：领域驱动设计与微服务</a></p><p class="categories"><a href="/categories/technotes/">technotes</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2023/"><span class="level-start"><span class="level-item">2023</span></span><span class="level-end"><span class="level-item tag">10</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/"><span class="level-start"><span class="level-item">2022</span></span><span class="level-end"><span class="level-item tag">16</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">标签</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/DDD/"><span class="tag">DDD</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Git/"><span class="tag">Git</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Java%E8%84%9A%E6%89%8B%E6%9E%B6/"><span class="tag">Java脚手架</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Kafka/"><span class="tag">Kafka</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Log4j/"><span class="tag">Log4j</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Maven/"><span class="tag">Maven</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/MySQL/"><span class="tag">MySQL</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Nacos/"><span class="tag">Nacos</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Redis/"><span class="tag">Redis</span><span class="tag">6</span></a></div><div class="control"><a class="tags has-addons" href="/tags/XXL-JOB/"><span class="tag">XXL-JOB</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%9E%B6%E6%9E%84/"><span class="tag">架构</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/"><span class="tag">计算机基础</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"><span class="tag">设计模式</span><span class="tag">2</span></a></div></div></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">订阅更新</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">follow.it</h3><form action="" method="post" target="_blank"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div><div class="column-right-shadow is-hidden-widescreen is-sticky"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3 is-sticky"><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">目录</h3><ul class="menu-list"><li><a class="level is-mobile" href="#一、背景"><span class="level-left"><span class="level-item">一、背景</span></span></a></li><li><a class="level is-mobile" href="#二、配置中心选型"><span class="level-left"><span class="level-item">二、配置中心选型</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#开源产品分析"><span class="level-left"><span class="level-item">开源产品分析</span></span></a></li><li><a class="level is-mobile" href="#性能对比"><span class="level-left"><span class="level-item">性能对比</span></span></a></li></ul></li><li><a class="level is-mobile" href="#三、快速使用"><span class="level-left"><span class="level-item">三、快速使用</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#升级依赖"><span class="level-left"><span class="level-item">升级依赖</span></span></a></li><li><a class="level is-mobile" href="#替换-Nacos-配置"><span class="level-left"><span class="level-item">替换 Nacos 配置</span></span></a></li><li><a class="level is-mobile" href="#启动类添加注解"><span class="level-left"><span class="level-item">启动类添加注解</span></span></a></li></ul></li><li><a class="level is-mobile" href="#四、实践"><span class="level-left"><span class="level-item">四、实践</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#配置动态刷新"><span class="level-left"><span class="level-item">配置动态刷新</span></span></a></li><li><a class="level is-mobile" href="#多配置引入"><span class="level-left"><span class="level-item">多配置引入</span></span></a></li><li><a class="level is-mobile" href="#本地配置覆盖"><span class="level-left"><span class="level-item">本地配置覆盖</span></span></a></li></ul></li></ul></div></div><script src="/js/toc.js" defer></script></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="https://technotes.oss-cn-shenzhen.aliyuncs.com/2023/202305212017244.png" alt="Studeyang&#039;s Blog" height="28"></a><p class="is-size-7"><span>&copy; 2023 studeyang</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a><br><span id="busuanzi_container_site_uv">共<span id="busuanzi_value_site_uv">0</span>个访客</span></p><p class="is-size-7">© 2023</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>
