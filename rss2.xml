@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0"
+  xmlns:atom="http://www.w3.org/2005/Atom"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Studeyang&#39;s Blog</title>
+    <link>http://www.studeyang.tech/</link>
+    
+    <image>
+      <url>https://technotes.oss-cn-shenzhen.aliyuncs.com/2023/202305212017244.png</url>
+      <title>Studeyang&#39;s Blog</title>
+      <link>http://www.studeyang.tech/</link>
+    </image>
+    
+    <atom:link href="http://www.studeyang.tech/rss2.xml" rel="self" type="application/rss+xml"/>
+    
+    <description>A technology enthusiast.</description>
+    <pubDate>Thu, 01 Jun 2023 07:54:51 GMT</pubDate>
+    <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>23种设计模式的必备结构图</title>
+      <link>http://www.studeyang.tech/2023/10.html</link>
+      <guid>http://www.studeyang.tech/2023/10.html</guid>
+      <pubDate>Sat, 13 May 2023 01:00:00 GMT</pubDate>
+      
+      <description>&lt;p&gt;这里总结了23种设计模式的结构图及定义，样例代码在 Github：&lt;a href=&quot;https://github.com/studeyang/design-pattern&quot;&gt;studeyang&amp;#x2F;design-pattern&lt;/a&gt;。&lt;/p&gt;</description>
+      
+      
+      
+      
+      <category domain="http://www.studeyang.tech/categories/technotes/">technotes</category>
+      
+      
+      <category domain="http://www.studeyang.tech/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</category>
+      
+      
+      <comments>http://www.studeyang.tech/2023/10.html#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>06期：使用 OPTIMIZER_TRACE 窥探 MySQL 索引选择的秘密</title>
+      <link>http://www.studeyang.tech/2023/9.html</link>
+      <guid>http://www.studeyang.tech/2023/9.html</guid>
+      <pubDate>Tue, 18 Apr 2023 01:00:00 GMT</pubDate>
+      
+      <description>&lt;p&gt;这里记录的是学习分享内容，文章维护在 Github：&lt;a href=&quot;https://github.com/studeyang/learning-share&quot;&gt;studeyang&amp;#x2F;leanrning-share&lt;/a&gt;。&lt;/p&gt;</description>
+      
+      
+      
+      
+      <category domain="http://www.studeyang.tech/categories/technotes/">technotes</category>
+      
+      
+      <category domain="http://www.studeyang.tech/tags/MySQL/">MySQL</category>
+      
+      
+      <comments>http://www.studeyang.tech/2023/9.html#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>06期：使用 OPTIMIZER_TRACE 窥探 MySQL 索引选择的秘密</title>
+      <link>http://www.studeyang.tech/2023/9.html</link>
+      <guid>http://www.studeyang.tech/2023/9.html</guid>
+      <pubDate>Tue, 18 Apr 2023 01:00:00 GMT</pubDate>
+      
+      <description>&lt;p&gt;这里记录的是学习分享内容，文章维护在 Github：&lt;a href=&quot;https://github.com/studeyang/learning-share&quot;&gt;studeyang&amp;#x2F;leanrning-share&lt;/a&gt;。&lt;/p&gt;</description>
+      
+      
+      
+      
+      <category domain="http://www.studeyang.tech/categories/technotes/">technotes</category>
+      
+      
+      <category domain="http://www.studeyang.tech/tags/MySQL/">MySQL</category>
+      
+      
+      <comments>http://www.studeyang.tech/2023/9.html#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>索引失效了？看看这几个常见的原因！</title>
+      <link>http://www.studeyang.tech/2023/8.html</link>
+      <guid>http://www.studeyang.tech/2023/8.html</guid>
+      <pubDate>Sun, 16 Apr 2023 01:00:00 GMT</pubDate>
+      
+      <description>&lt;p&gt;索引是 MySQL 数据库中优化查询性能的重要工具，通过对查询条件和表数据的索引，MySQL可以快速定位数据，提高查询效率。但是，在实际的数据库开发和维护中，我们经常会遇到一些情况，导致索引失效，从而使得查询变得非常缓慢，甚至无法使用索引来优化查询，这会严重影响系统的性能。那么，是什么原因导致了索引失效呢？&lt;/p&gt;</description>
+      
+      
+      
+      
+      <category domain="http://www.studeyang.tech/categories/technotes/">technotes</category>
+      
+      
+      <category domain="http://www.studeyang.tech/tags/MySQL/">MySQL</category>
+      
+      
+      <comments>http://www.studeyang.tech/2023/8.html#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>05期：面向业务的消息服务落地实践</title>
+      <link>http://www.studeyang.tech/2023/7.html</link>
+      <guid>http://www.studeyang.tech/2023/7.html</guid>
+      <pubDate>Sat, 25 Mar 2023 01:00:00 GMT</pubDate>
+      
+      <description>&lt;blockquote&gt;
+&lt;p&gt;简介：传统的消息队列对业务方提出了更高的要求，我们期望提供的是一种以业务为重心的，面向服务的解决方案。&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+      
+      
+      
+      
+      <category domain="http://www.studeyang.tech/categories/technotes/">technotes</category>
+      
+      
+      <category domain="http://www.studeyang.tech/tags/Kafka/">Kafka</category>
+      
+      
+      <comments>http://www.studeyang.tech/2023/7.html#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>05期：面向业务的消息服务落地实践</title>
+      <link>http://www.studeyang.tech/2023/7.html</link>
+      <guid>http://www.studeyang.tech/2023/7.html</guid>
+      <pubDate>Sat, 25 Mar 2023 01:00:00 GMT</pubDate>
+      
+      <description>&lt;blockquote&gt;
+&lt;p&gt;简介：传统的消息队列对业务方提出了更高的要求，我们期望提供的是一种以业务为重心的，面向服务的解决方案。&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+      
+      
+      
+      
+      <category domain="http://www.studeyang.tech/categories/technotes/">technotes</category>
+      
+      
+      <category domain="http://www.studeyang.tech/tags/Kafka/">Kafka</category>
+      
+      
+      <comments>http://www.studeyang.tech/2023/7.html#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>04期：领域驱动设计与微服务</title>
+      <link>http://www.studeyang.tech/2023/6.html</link>
+      <guid>http://www.studeyang.tech/2023/6.html</guid>
+      <pubDate>Sun, 19 Mar 2023 01:00:00 GMT</pubDate>
+      
+      <description>&lt;p&gt;这里记录的是学习分享内容，文章维护在 Github：&lt;a href=&quot;https://github.com/studeyang/learning-share&quot;&gt;studeyang&amp;#x2F;leanrning-share&lt;/a&gt;。&lt;/p&gt;</description>
+      
+      
+      
+      
+      <category domain="http://www.studeyang.tech/categories/technotes/">technotes</category>
+      
+      
+      <category domain="http://www.studeyang.tech/tags/DDD/">DDD</category>
+      
+      
+      <comments>http://www.studeyang.tech/2023/6.html#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>04期：领域驱动设计与微服务</title>
+      <link>http://www.studeyang.tech/2023/6.html</link>
+      <guid>http://www.studeyang.tech/2023/6.html</guid>
+      <pubDate>Sun, 19 Mar 2023 01:00:00 GMT</pubDate>
+      
+      <description>&lt;p&gt;这里记录的是学习分享内容，文章维护在 Github：&lt;a href=&quot;https://github.com/studeyang/learning-share&quot;&gt;studeyang&amp;#x2F;leanrning-share&lt;/a&gt;。&lt;/p&gt;</description>
+      
+      
+      
+      
+      <category domain="http://www.studeyang.tech/categories/technotes/">technotes</category>
+      
+      
+      <category domain="http://www.studeyang.tech/tags/DDD/">DDD</category>
+      
+      
+      <comments>http://www.studeyang.tech/2023/6.html#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>学习分享（第3期）：你所理解的架构是什么？</title>
+      <link>http://www.studeyang.tech/2023/5.html</link>
+      <guid>http://www.studeyang.tech/2023/5.html</guid>
+      <pubDate>Sun, 05 Mar 2023 01:00:00 GMT</pubDate>
+      
+      <description>&lt;p&gt;本文摘要：浅谈应用架构、业务架构、技术架构。&lt;/p&gt;</description>
+      
+      
+      
+      
+      <category domain="http://www.studeyang.tech/categories/technotes/">technotes</category>
+      
+      
+      <category domain="http://www.studeyang.tech/tags/%E6%9E%B6%E6%9E%84/">架构</category>
+      
+      
+      <comments>http://www.studeyang.tech/2023/5.html#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>学习分享（第3期）：你所理解的架构是什么？</title>
+      <link>http://www.studeyang.tech/2023/5.html</link>
+      <guid>http://www.studeyang.tech/2023/5.html</guid>
+      <pubDate>Sun, 05 Mar 2023 01:00:00 GMT</pubDate>
+      
+      <description>&lt;p&gt;本文摘要：浅谈应用架构、业务架构、技术架构。&lt;/p&gt;</description>
+      
+      
+      
+      
+      <category domain="http://www.studeyang.tech/categories/technotes/">technotes</category>
+      
+      
+      <category domain="http://www.studeyang.tech/tags/%E6%9E%B6%E6%9E%84/">架构</category>
+      
+      
+      <comments>http://www.studeyang.tech/2023/5.html#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>学习分享（第 2 期）：从源码层面看 Redis 节省内存的设计</title>
+      <link>http://www.studeyang.tech/2023/4.html</link>
+      <guid>http://www.studeyang.tech/2023/4.html</guid>
+      <pubDate>Sat, 18 Feb 2023 01:00:00 GMT</pubDate>
+      
+      <description>&lt;p&gt;这里记录的是学习分享的内容，文章维护在 Github：&lt;a href=&quot;https://github.com/studeyang/learning-share&quot;&gt;studeyang&amp;#x2F;leanrning-share&lt;/a&gt;。&lt;/p&gt;</description>
+      
+      
+      
+      
+      <category domain="http://www.studeyang.tech/categories/technotes/">technotes</category>
+      
+      
+      <category domain="http://www.studeyang.tech/tags/Redis/">Redis</category>
+      
+      
+      <comments>http://www.studeyang.tech/2023/4.html#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>学习分享（第 2 期）：从源码层面看 Redis 节省内存的设计</title>
+      <link>http://www.studeyang.tech/2023/4.html</link>
+      <guid>http://www.studeyang.tech/2023/4.html</guid>
+      <pubDate>Sat, 18 Feb 2023 01:00:00 GMT</pubDate>
+      
+      <description>&lt;p&gt;这里记录的是学习分享的内容，文章维护在 Github：&lt;a href=&quot;https://github.com/studeyang/learning-share&quot;&gt;studeyang&amp;#x2F;leanrning-share&lt;/a&gt;。&lt;/p&gt;</description>
+      
+      
+      
+      
+      <category domain="http://www.studeyang.tech/categories/technotes/">technotes</category>
+      
+      
+      <category domain="http://www.studeyang.tech/tags/Redis/">Redis</category>
+      
+      
+      <comments>http://www.studeyang.tech/2023/4.html#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>学习分享（第 1 期）之 Redis：巧用 Hash 类型节省内存</title>
+      <link>http://www.studeyang.tech/2023/3.html</link>
+      <guid>http://www.studeyang.tech/2023/3.html</guid>
+      <pubDate>Sun, 05 Feb 2023 01:00:00 GMT</pubDate>
+      
+      <description>&lt;h2 id=&quot;开篇&quot;&gt;&lt;a href=&quot;#开篇&quot; class=&quot;headerlink&quot; title=&quot;开篇&quot;&gt;&lt;/a&gt;开篇&lt;/h2&gt;&lt;p&gt;之前的分享内容都是相对零散的知识点，不成体系。以后的每周分享，我会尽量将每篇文章串连起来，于是我决定做一个专栏，名字就叫《学习分享》。这是该系列的第一篇。&lt;/p&gt;</description>
+      
+      
+      
+      
+      <category domain="http://www.studeyang.tech/categories/technotes/">technotes</category>
+      
+      
+      <category domain="http://www.studeyang.tech/tags/Redis/">Redis</category>
+      
+      
+      <comments>http://www.studeyang.tech/2023/3.html#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>学习分享（第 1 期）之 Redis：巧用 Hash 类型节省内存</title>
+      <link>http://www.studeyang.tech/2023/3.html</link>
+      <guid>http://www.studeyang.tech/2023/3.html</guid>
+      <pubDate>Sun, 05 Feb 2023 01:00:00 GMT</pubDate>
+      
+      <description>&lt;h2 id=&quot;开篇&quot;&gt;&lt;a href=&quot;#开篇&quot; class=&quot;headerlink&quot; title=&quot;开篇&quot;&gt;&lt;/a&gt;开篇&lt;/h2&gt;&lt;p&gt;之前的分享内容都是相对零散的知识点，不成体系。以后的每周分享，我会尽量将每篇文章串连起来，于是我决定做一个专栏，名字就叫《学习分享》。这是该系列的第一篇。&lt;/p&gt;</description>
+      
+      
+      
+      
+      <category domain="http://www.studeyang.tech/categories/technotes/">technotes</category>
+      
+      
+      <category domain="http://www.studeyang.tech/tags/Redis/">Redis</category>
+      
+      
+      <comments>http://www.studeyang.tech/2023/3.html#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>架构师应具备什么能力？</title>
+      <link>http://www.studeyang.tech/2023/1.html</link>
+      <guid>http://www.studeyang.tech/2023/1.html</guid>
+      <pubDate>Sat, 07 Jan 2023 01:00:00 GMT</pubDate>
+      
+      <description>&lt;p&gt;要回答这个问题，我们首先要搞清楚，为什么要做架构设计？不做行不行？&lt;/p&gt;</description>
+      
+      
+      
+      
+      <category domain="http://www.studeyang.tech/categories/technotes/">technotes</category>
+      
+      
+      <category domain="http://www.studeyang.tech/tags/%E6%9E%B6%E6%9E%84/">架构</category>
+      
+      
+      <comments>http://www.studeyang.tech/2023/1.html#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>Redis String类型的内存开销都花在哪儿了？</title>
+      <link>http://www.studeyang.tech/2023/2.html</link>
+      <guid>http://www.studeyang.tech/2023/2.html</guid>
+      <pubDate>Sat, 07 Jan 2023 01:00:00 GMT</pubDate>
+      
+      <description>&lt;h2 id=&quot;1、场景介绍&quot;&gt;&lt;a href=&quot;#1、场景介绍&quot; class=&quot;headerlink&quot; title=&quot;1、场景介绍&quot;&gt;&lt;/a&gt;1、场景介绍&lt;/h2&gt;&lt;p&gt;假设现在我们要开发一个图片存储系统，要求这个系统能够根据图片 ID 快速查找到图片存储对象 ID。图片 ID 和图片存储对象 ID 的样例数据如下：&lt;/p&gt;</description>
+      
+      
+      
+      
+      <category domain="http://www.studeyang.tech/categories/technotes/">technotes</category>
+      
+      
+      <category domain="http://www.studeyang.tech/tags/Redis/">Redis</category>
+      
+      
+      <comments>http://www.studeyang.tech/2023/2.html#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>Redis高可用之 Sentinel 机制实现细节</title>
+      <link>http://www.studeyang.tech/2022/14.html</link>
+      <guid>http://www.studeyang.tech/2022/14.html</guid>
+      <pubDate>Tue, 20 Dec 2022 01:00:00 GMT</pubDate>
+      
+      <description>&lt;p&gt;本文来自我的 technotes [1] Redis篇。&lt;/p&gt;</description>
+      
+      
+      
+      
+      <category domain="http://www.studeyang.tech/categories/technotes/">technotes</category>
+      
+      
+      <category domain="http://www.studeyang.tech/tags/Redis/">Redis</category>
+      
+      
+      <comments>http://www.studeyang.tech/2022/14.html#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>Git如何删除指定commit?如何修改历史提交人信息?</title>
+      <link>http://www.studeyang.tech/2022/16.html</link>
+      <guid>http://www.studeyang.tech/2022/16.html</guid>
+      <pubDate>Tue, 20 Dec 2022 01:00:00 GMT</pubDate>
+      
+      <description>&lt;h2 id=&quot;1、删除指定commit&quot;&gt;&lt;a href=&quot;#1、删除指定commit&quot; class=&quot;headerlink&quot; title=&quot;1、删除指定commit&quot;&gt;&lt;/a&gt;1、删除指定commit&lt;/h2&gt;&lt;p&gt;假如某个项目当中有 3 条提交。&lt;/p&gt;</description>
+      
+      
+      
+      
+      <category domain="http://www.studeyang.tech/categories/technotes/">technotes</category>
+      
+      
+      <category domain="http://www.studeyang.tech/tags/Git/">Git</category>
+      
+      
+      <comments>http://www.studeyang.tech/2022/16.html#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>(byte)1658385462vv16=-40，怎么算的？</title>
+      <link>http://www.studeyang.tech/2022/15.html</link>
+      <guid>http://www.studeyang.tech/2022/15.html</guid>
+      <pubDate>Tue, 20 Dec 2022 01:00:00 GMT</pubDate>
+      
+      <description>&lt;p&gt;在 Github 项目&lt;code&gt;mongo-java-driver&lt;/code&gt;有一个类&lt;code&gt;ObjectId.java&lt;/code&gt;，它的作用是生成唯一 id 的，它的核心实现是下面这样一段代码 [1]：&lt;/p&gt;</description>
+      
+      
+      
+      
+      <category domain="http://www.studeyang.tech/categories/technotes/">technotes</category>
+      
+      
+      <category domain="http://www.studeyang.tech/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">计算机基础</category>
+      
+      
+      <comments>http://www.studeyang.tech/2022/15.html#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>Redis高可用全景一览</title>
+      <link>http://www.studeyang.tech/2022/13.html</link>
+      <guid>http://www.studeyang.tech/2022/13.html</guid>
+      <pubDate>Tue, 06 Dec 2022 01:00:00 GMT</pubDate>
+      
+      <description>&lt;p&gt;对于一项技术的学习，我们要对这项技术有一个全局观，下面是一张 Redis 全景图，画得非常全面。&lt;/p&gt;</description>
+      
+      
+      
+      
+      <category domain="http://www.studeyang.tech/categories/technotes/">technotes</category>
+      
+      
+      <category domain="http://www.studeyang.tech/tags/Redis/">Redis</category>
+      
+      
+      <comments>http://www.studeyang.tech/2022/13.html#disqus_thread</comments>
+      
+    </item>
+    
+  </channel>
+</rss>
