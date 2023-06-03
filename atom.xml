@@ -40,25 +40,6 @@
     <link href="http://www.studeyang.tech/2023/9.html"/>
     <id>http://www.studeyang.tech/2023/9.html</id>
     <published>2023-04-18T01:00:00.000Z</published>
-    <updated>2023-05-23T06:34:16.511Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;这里记录的是学习分享内容，文章维护在 Github：&lt;a href=&quot;https://github.com/studeyang/learning-share&quot;&gt;studeyang&amp;#x2F;leanrning-share&lt;/a&gt;。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="technotes" scheme="http://www.studeyang.tech/categories/technotes/"/>
-    
-    
-    <category term="MySQL" scheme="http://www.studeyang.tech/tags/MySQL/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>06期：使用 OPTIMIZER_TRACE 窥探 MySQL 索引选择的秘密</title>
-    <link href="http://www.studeyang.tech/2023/9.html"/>
-    <id>http://www.studeyang.tech/2023/9.html</id>
-    <published>2023-04-18T01:00:00.000Z</published>
     <updated>2023-06-01T07:54:51.621Z</updated>
     
     
@@ -97,27 +78,6 @@
     <link href="http://www.studeyang.tech/2023/7.html"/>
     <id>http://www.studeyang.tech/2023/7.html</id>
     <published>2023-03-25T01:00:00.000Z</published>
-    <updated>2023-05-23T06:34:16.469Z</updated>
-    
-    
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;简介：传统的消息队列对业务方提出了更高的要求，我们期望提供的是一种以业务为重心的，面向服务的解决方案。&lt;/p&gt;
-&lt;/blockquote&gt;</summary>
-    
-    
-    
-    <category term="technotes" scheme="http://www.studeyang.tech/categories/technotes/"/>
-    
-    
-    <category term="Kafka" scheme="http://www.studeyang.tech/tags/Kafka/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>05期：面向业务的消息服务落地实践</title>
-    <link href="http://www.studeyang.tech/2023/7.html"/>
-    <id>http://www.studeyang.tech/2023/7.html</id>
-    <published>2023-03-25T01:00:00.000Z</published>
     <updated>2023-06-01T07:54:51.619Z</updated>
     
     
@@ -131,25 +91,6 @@
     
     
     <category term="Kafka" scheme="http://www.studeyang.tech/tags/Kafka/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>04期：领域驱动设计与微服务</title>
-    <link href="http://www.studeyang.tech/2023/6.html"/>
-    <id>http://www.studeyang.tech/2023/6.html</id>
-    <published>2023-03-19T01:00:00.000Z</published>
-    <updated>2023-05-23T06:34:16.569Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;这里记录的是学习分享内容，文章维护在 Github：&lt;a href=&quot;https://github.com/studeyang/learning-share&quot;&gt;studeyang&amp;#x2F;leanrning-share&lt;/a&gt;。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="technotes" scheme="http://www.studeyang.tech/categories/technotes/"/>
-    
-    
-    <category term="DDD" scheme="http://www.studeyang.tech/tags/DDD/"/>
     
   </entry>
   
@@ -177,25 +118,6 @@
     <link href="http://www.studeyang.tech/2023/5.html"/>
     <id>http://www.studeyang.tech/2023/5.html</id>
     <published>2023-03-05T01:00:00.000Z</published>
-    <updated>2023-05-23T06:34:16.335Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;本文摘要：浅谈应用架构、业务架构、技术架构。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="technotes" scheme="http://www.studeyang.tech/categories/technotes/"/>
-    
-    
-    <category term="架构" scheme="http://www.studeyang.tech/tags/%E6%9E%B6%E6%9E%84/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>学习分享（第3期）：你所理解的架构是什么？</title>
-    <link href="http://www.studeyang.tech/2023/5.html"/>
-    <id>http://www.studeyang.tech/2023/5.html</id>
-    <published>2023-03-05T01:00:00.000Z</published>
     <updated>2023-06-01T07:54:51.617Z</updated>
     
     
@@ -215,48 +137,10 @@
     <link href="http://www.studeyang.tech/2023/4.html"/>
     <id>http://www.studeyang.tech/2023/4.html</id>
     <published>2023-02-18T01:00:00.000Z</published>
-    <updated>2023-05-23T06:34:16.366Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;这里记录的是学习分享的内容，文章维护在 Github：&lt;a href=&quot;https://github.com/studeyang/learning-share&quot;&gt;studeyang&amp;#x2F;leanrning-share&lt;/a&gt;。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="technotes" scheme="http://www.studeyang.tech/categories/technotes/"/>
-    
-    
-    <category term="Redis" scheme="http://www.studeyang.tech/tags/Redis/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>学习分享（第 2 期）：从源码层面看 Redis 节省内存的设计</title>
-    <link href="http://www.studeyang.tech/2023/4.html"/>
-    <id>http://www.studeyang.tech/2023/4.html</id>
-    <published>2023-02-18T01:00:00.000Z</published>
     <updated>2023-06-01T07:54:51.616Z</updated>
     
     
     <summary type="html">&lt;p&gt;这里记录的是学习分享的内容，文章维护在 Github：&lt;a href=&quot;https://github.com/studeyang/learning-share&quot;&gt;studeyang&amp;#x2F;leanrning-share&lt;/a&gt;。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="technotes" scheme="http://www.studeyang.tech/categories/technotes/"/>
-    
-    
-    <category term="Redis" scheme="http://www.studeyang.tech/tags/Redis/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>学习分享（第 1 期）之 Redis：巧用 Hash 类型节省内存</title>
-    <link href="http://www.studeyang.tech/2023/3.html"/>
-    <id>http://www.studeyang.tech/2023/3.html</id>
-    <published>2023-02-05T01:00:00.000Z</published>
-    <updated>2023-05-23T06:34:16.461Z</updated>
-    
-    
-    <summary type="html">&lt;h2 id=&quot;开篇&quot;&gt;&lt;a href=&quot;#开篇&quot; class=&quot;headerlink&quot; title=&quot;开篇&quot;&gt;&lt;/a&gt;开篇&lt;/h2&gt;&lt;p&gt;之前的分享内容都是相对零散的知识点，不成体系。以后的每周分享，我会尽量将每篇文章串连起来，于是我决定做一个专栏，名字就叫《学习分享》。这是该系列的第一篇。&lt;/p&gt;</summary>
     
     
     
@@ -382,6 +266,25 @@
   </entry>
   
   <entry>
+    <title>XXL-JOB核心源码导读及时间轮原理剖析</title>
+    <link href="http://www.studeyang.tech/2022/12.html"/>
+    <id>http://www.studeyang.tech/2022/12.html</id>
+    <published>2022-12-06T01:00:00.000Z</published>
+    <updated>2023-06-01T07:54:51.578Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;你好，今天我想和你分享一下XXL-JOB的核心实现。如果你是XXL-JOB的用户，那么你肯定思考过它的实现原理；如果你还未接触过这个产品，那么可以通过本文了解一下。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="technotes" scheme="http://www.studeyang.tech/categories/technotes/"/>
+    
+    
+    <category term="XXL-JOB" scheme="http://www.studeyang.tech/tags/XXL-JOB/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Redis高可用全景一览</title>
     <link href="http://www.studeyang.tech/2022/13.html"/>
     <id>http://www.studeyang.tech/2022/13.html</id>
@@ -397,6 +300,102 @@
     
     
     <category term="Redis" scheme="http://www.studeyang.tech/tags/Redis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>spring initializr脚手架搭建详解</title>
+    <link href="http://www.studeyang.tech/2022/11.html"/>
+    <id>http://www.studeyang.tech/2022/11.html</id>
+    <published>2022-11-22T01:00:00.000Z</published>
+    <updated>2023-06-01T07:54:51.577Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;前段时间，我在&lt;a href=&quot;https://mp.weixin.qq.com/s?__biz=MzkwMTI4NTI1NA==&amp;mid=2247483902&amp;idx=1&amp;sn=2e117fec67cdfb9064369835c0af41d8&amp;chksm=c0b65517f7c1dc01be4080f4fd0f86cd534cf8d59244af34b5aed3340c653e5d697154e4742b&amp;token=1554827504&amp;lang=zh_CN#rd&quot;&gt;「基于start.spring.io，我实现了Java脚手架定制」&lt;/a&gt;一文中讲述了敝司的微服务脚手架落地过程中的前世今生，并提到了基于 spring initializr 的搭建了 2.0 版本的脚手架。今天我打算和你分享一下这其中的实现过程与细节，项目已经开源在 Github 上。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="technotes" scheme="http://www.studeyang.tech/categories/technotes/"/>
+    
+    
+    <category term="Java脚手架" scheme="http://www.studeyang.tech/tags/Java%E8%84%9A%E6%89%8B%E6%9E%B6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MySQL查询性能慢，该不该建索引？</title>
+    <link href="http://www.studeyang.tech/2022/10.html"/>
+    <id>http://www.studeyang.tech/2022/10.html</id>
+    <published>2022-11-13T01:00:00.000Z</published>
+    <updated>2023-06-01T07:54:51.576Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;日常工作中，有些同学一遇到查询性能问题，就盲目要求 DBA 给表字段创建索引。今天，我们就来具体看看这背后的细节。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="technotes" scheme="http://www.studeyang.tech/categories/technotes/"/>
+    
+    
+    <category term="MySQL" scheme="http://www.studeyang.tech/tags/MySQL/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Nacos注册中心快速入门</title>
+    <link href="http://www.studeyang.tech/2022/8.html"/>
+    <id>http://www.studeyang.tech/2022/8.html</id>
+    <published>2022-11-08T01:00:00.000Z</published>
+    <updated>2023-06-01T07:54:51.574Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;如果你作为&lt;code&gt;Nacos&lt;/code&gt;的初识者，或者想快速了解&lt;code&gt;Nacos&lt;/code&gt;的上手难度，希望本篇可以帮助到你。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="technotes" scheme="http://www.studeyang.tech/categories/technotes/"/>
+    
+    
+    <category term="Nacos" scheme="http://www.studeyang.tech/tags/Nacos/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>开源：上传 Jar 包至 Maven 中央仓库</title>
+    <link href="http://www.studeyang.tech/2022/9.html"/>
+    <id>http://www.studeyang.tech/2022/9.html</id>
+    <published>2022-11-08T01:00:00.000Z</published>
+    <updated>2023-06-01T07:54:51.575Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;最近我将服务发现组件开源了：&lt;a href=&quot;https://github.com/studeyang/cloud-discovery&quot;&gt;cloud-discovery&lt;/a&gt;，分享一下 Jar 包上传中央仓库过程遇到的问题与总结。需要说明的是，在下面两篇文章中已经将步骤写的非常清楚了，本文主要记录的是我在操作过程中遇到的一些坑，以供参考。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="technotes" scheme="http://www.studeyang.tech/categories/technotes/"/>
+    
+    
+    <category term="Maven" scheme="http://www.studeyang.tech/tags/Maven/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>要不要走索引？MySQL 的成本分析</title>
+    <link href="http://www.studeyang.tech/2022/7.html"/>
+    <id>http://www.studeyang.tech/2022/7.html</id>
+    <published>2022-11-07T01:00:00.000Z</published>
+    <updated>2023-06-01T07:54:51.572Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;谈到索引失效，大家可能都能列举出几个场景，比如：后模糊查询、条件中带函数、索引中断等等。今天我想和你分享另一个场景：索引成本分析。&lt;/p&gt;
+&lt;p&gt;我先用一个具体的例子来描述一下这个场景。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="technotes" scheme="http://www.studeyang.tech/categories/technotes/"/>
+    
+    
+    <category term="MySQL" scheme="http://www.studeyang.tech/tags/MySQL/"/>
     
   </entry>
   
