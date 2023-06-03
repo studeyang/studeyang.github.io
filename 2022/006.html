@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>MySQL的事务隔离及实现原理 - Studeyang&#039;s Blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="Studeyang&#039;s Blog"><meta name="msapplication-TileImage" content="https://technotes.oss-cn-shenzhen.aliyuncs.com/2023/202305212017244.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Studeyang&#039;s Blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="提到事务，你肯定不陌生。在 MySQL中，InnoDB 是支持事务的，事务有4大特性，即 ACID（Atomicity、Consistency、Isolation、Durability，即原子性、一致性、隔离性、持久性）。 今天我们就来说说隔离性。"><meta property="og:type" content="blog"><meta property="og:title" content="MySQL的事务隔离及实现原理"><meta property="og:url" content="https://www.studeyang.tech/2022/006.html"><meta property="og:site_name" content="Studeyang&#039;s Blog"><meta property="og:description" content="提到事务，你肯定不陌生。在 MySQL中，InnoDB 是支持事务的，事务有4大特性，即 ACID（Atomicity、Consistency、Isolation、Durability，即原子性、一致性、隔离性、持久性）。 今天我们就来说说隔离性。"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://technotes.oss-cn-shenzhen.aliyuncs.com/2022/image-20221102122433927.png"><meta property="og:image" content="https://technotes.oss-cn-shenzhen.aliyuncs.com/2022/image-20221102122903974.png"><meta property="og:image" content="https://technotes.oss-cn-shenzhen.aliyuncs.com/2021/images/%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%9A%84%E5%AE%9E%E7%8E%B0.png"><meta property="article:published_time" content="2022-11-02T01:00:00.000Z"><meta property="article:modified_time" content="2023-06-03T09:15:11.476Z"><meta property="article:author" content="studeyang"><meta property="article:tag" content="MySQL"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://technotes.oss-cn-shenzhen.aliyuncs.com/2022/image-20221102122433927.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.studeyang.tech/2022/006.html"},"headline":"MySQL的事务隔离及实现原理","image":["https://technotes.oss-cn-shenzhen.aliyuncs.com/2022/image-20221102122433927.png","https://technotes.oss-cn-shenzhen.aliyuncs.com/2022/image-20221102122903974.png","https://technotes.oss-cn-shenzhen.aliyuncs.com/2021/images/%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%9A%84%E5%AE%9E%E7%8E%B0.png"],"datePublished":"2022-11-02T01:00:00.000Z","dateModified":"2023-06-03T09:15:11.476Z","author":{"@type":"Person","name":"studeyang"},"publisher":{"@type":"Organization","name":"Studeyang's Blog","logo":{"@type":"ImageObject","url":"https://technotes.oss-cn-shenzhen.aliyuncs.com/2023/202305212017244.png"}},"description":"提到事务，你肯定不陌生。在 MySQL中，InnoDB 是支持事务的，事务有4大特性，即 ACID（Atomicity、Consistency、Isolation、Durability，即原子性、一致性、隔离性、持久性）。 今天我们就来说说隔离性。"}</script><link rel="canonical" href="https://www.studeyang.tech/2022/006.html"><link rel="alternate" href="/rss2.xml" title="Studeyang&#039;s Blog" type="application/atom+xml"><link rel="icon" href="https://technotes.oss-cn-shenzhen.aliyuncs.com/2023/202305212017244.png"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><script>var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?63dd71367176b52c6d8aa50635993633";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();</script><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><script src="https://www.googletagmanager.com/gtag/js?id=G-S5KBWPGHG0" async></script><script>window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+    
+        gtag('config', 'G-S5KBWPGHG0');</script><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><meta name="follow.it-verification-code" content="sJJglrwTzTnwgJhRKl2Z"><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="https://technotes.oss-cn-shenzhen.aliyuncs.com/2023/202305212017244.png" alt="Studeyang&#039;s Blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/technotes">学习笔记</a><a class="navbar-item" href="/resume">简历</a><a class="navbar-item" href="/about">留言</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/studeyang/learning-share"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2022-11-02T01:00:00.000Z" title="2022/11/2 09:00:00">2022-11-02</time>发表</span><span class="level-item"><time dateTime="2023-06-03T09:15:11.476Z" title="2023/6/3 17:15:11">2023-06-03</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/technotes/">technotes</a></span><span class="level-item">12 分钟读完 (大约1766个字)</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>次访问</span></div></div><h1 class="title is-3 is-size-4-mobile">MySQL的事务隔离及实现原理</h1><div class="content"><p>提到事务，你肯定不陌生。在 MySQL中，InnoDB 是支持事务的，事务有4大特性，即 ACID（Atomicity、Consistency、Isolation、Durability，即原子性、一致性、隔离性、持久性）。</p>
+<p>今天我们就来说说隔离性。</p>
+<span id="more"></span>
+<h2 id="事务的隔离级别"><a href="#事务的隔离级别" class="headerlink" title="事务的隔离级别"></a>事务的隔离级别</h2><p>当数据库上有多个事务同时执行的时候，就可能出现脏读（dirty read）、不可重复读（non-repeatable read）、幻读（phantom read）的问题，为了解决这些问题，就有了“隔离级别”的概念。 </p>
+<p>MySQL 将隔离级别分为 4 个等级，分别是：</p>
+<ul>
+<li><p>读未提交（read uncommitted）：一个事务还没提交时，它做的变更就能被别的事务看到。</p>
+</li>
+<li><p>读提交（read committed）：一个事务提交之后，它做的变更才会被其他事务看到。</p>
+</li>
+<li><p>可重复读（repeatable read）：一个事务执行过程中看到的数据，总是跟这个事务在启动时看到的数据是一致的。当然在可重复读隔离级别下，未提交变更对其他事务也是不可见的。</p>
+</li>
+<li><p>串行化（serializable ）：顾名思义是对于同一行记录，“写”会加“写锁”，“读”会加“读锁”。当出现读写锁冲突的时候，后访问的事务必须等前一个事务执行完成，才能继续执行。</p>
+</li>
+</ul>
+<p>我用一个例子说明这几种隔离级别。假设数据表 T 中只有一列，其中一行的值为 1。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">create table T(c int) engine=InnoDB;</span><br><span class="line">insert into T(c) values(1);</span><br></pre></td></tr></table></figure>
+
+<p>下面是按照时间顺序执行两个事务的行为。 </p>
+<p><img src="https://technotes.oss-cn-shenzhen.aliyuncs.com/2022/image-20221102122433927.png"></p>
+<p>我们来看看在不同的隔离级别下，事务 A 会有哪些不同的返回结果，也就是图里面 V1、V2、V3 的返回值分别是什么。 </p>
+<ul>
+<li>若隔离级别是“读未提交”， 则 V1 的值就是 2。这时候事务 B 虽然还没有提交，但是结果已经被 A 看到了。因此，V2、V3 也都是 2。 </li>
+<li>若隔离级别是“读提交”，则 V1 是 1，V2 的值是 2。事务 B 的更新在提交后才能被 A看到。所以， V3 的值也是 2。 </li>
+<li>若隔离级别是“可重复读”，则 V1、V2 是 1，V3 是 2。之所以 V2 还是 1，遵循的就是这个要求：事务在执行期间看到的数据前后必须是一致的。 </li>
+<li>若隔离级别是“串行化”，则在事务 B 执行“将 1 改成 2”的时候，会被锁住。直到事务 A 提交后，事务 B 才可以继续执行。所以从 A 的角度看， V1、V2 值是 1，V3 的值是 2。</li>
+</ul>
+<p>这 4 个隔离级别是递增的，你隔离得越严实，出现的问题就越少（问题指的是脏读、不可重复读、幻读），但效率也会越低。因此很多时候，我们都要在二者之间寻找一个平衡点。</p>
+<blockquote>
+<p>注意不同的数据库的隔离级别是不一样的。</p>
+<p>Oracle 数据库的默认隔离级别其实就是读提交，MySQL 默认是可重复读，因此对于一些从 Oracle 迁移到 MySQL 的应用，为保证数据库隔离级别的一致，你得将 MySQL 的隔离级别设置为读提交。</p>
+</blockquote>
+<h2 id="隔离级别的实现原理"><a href="#隔离级别的实现原理" class="headerlink" title="隔离级别的实现原理"></a>隔离级别的实现原理</h2><p>事务隔离在实现上，数据库里面会创建一个视图，访问的时候以视图的逻辑结果为准。回到刚刚隔离级别的例子。</p>
+<p><img src="https://technotes.oss-cn-shenzhen.aliyuncs.com/2022/image-20221102122903974.png"></p>
+<ul>
+<li>在“可重复读”隔离级别下，这个视图是在事务启动时创建的（如图中标识1处），整个事务存在期间都用这个视图；</li>
+<li>在“读提交”隔离级别下，这个视图是在每个 SQL 语句开始执行的时候创建的（如图中标识2处）；</li>
+<li>在“读未提交”隔离级别下，直接返回记录上的最新值，没有视图概念；</li>
+<li>“串行化”隔离级别下直接用加锁的方式来避免并行访问。</li>
+</ul>
+<h2 id="事务隔离的具体实现"><a href="#事务隔离的具体实现" class="headerlink" title="事务隔离的具体实现"></a>事务隔离的具体实现</h2><p>在 MySQL 中，实际上每条记录在更新的时候都会同时记录一条回滚操作。记录上的最新值，通过回滚操作，都可以得到前一个状态的值。 </p>
+<p>假设一个值从 1 被按顺序改成了 2、3、4，在回滚日志里面就会有类似下面的记录 :</p>
+<p><img src="https://technotes.oss-cn-shenzhen.aliyuncs.com/2021/images/%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%9A%84%E5%AE%9E%E7%8E%B0.png"></p>
+<p>当前值是 4，但是在查询这条记录的时候，不同时刻启动的事务会有不同的 read-view。如图中看到的，在视图 A、B、C 里面，这一个记录的值分别是 1、2、4，同一条记录在系统中可以存在多个版本，就是数据库的多版本并发控制（MVCC）。对于 read-view A，要得到 1，就必须将当前值依次执行图中所有的回滚操作得到。 </p>
+<p>你会发现，即使现在有另外一个事务正在将 4 改成 5，这个事务跟 read-view A、B、C 对应的事务是不会冲突的。 </p>
+<p>那回滚日志总不能一直保留吧，什么时候删除呢？</p>
+<p>系统会判断，当没有事务再需要用到这些回滚日志时，也就是当系统里没有比这个回滚日志更早的 read-view 的时候，回滚日志会被删除。 </p>
+<p>因此在使用数据库时，应尽量不要使用长事务。</p>
+<p>长事务意味着系统里面会存在很老的事务视图。由于这些事务随时可能访问数据库里面的任何数据，所以这个事务提交之前，数据库里面它可能用到的回滚记录都必须保留，这就会导致大量占用存储空间。 </p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>本文我们以一个例子回顾了事务的 4 种隔离级别，并介绍了隔离级别的实现原理。最后，介绍了事务的隔离实现是通过数据库多版本并发控制（MVCC）来记录不同版本的记录值的。</p>
+<p>由于同一条记录在系统中存在多个版本，所以在数据库使用过程中，应尽量不要使用长事务。</p>
+<blockquote>
+<p>整理自极客时间《MySQL实战45讲》学习笔记</p>
+</blockquote>
+</div><div class="article-licensing box"><div class="licensing-title"><p>MySQL的事务隔离及实现原理</p><p><a href="https://www.studeyang.tech/2022/006.html">https://www.studeyang.tech/2022/006.html</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>studeyang</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2022-11-02</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2023-06-03</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/MySQL/">MySQL</a></div><div class="sharethis-inline-share-buttons"></div><script src="https://platform-api.sharethis.com/js/sharethis.js#property=6469b4acd8c6d2001a06c2d2&amp;product=inline-share-buttons&amp;source=platform" defer></script></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3><div class="buttons is-centered"><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>支付宝</span><span class="qrcode"><img src="https://technotes.oss-cn-shenzhen.aliyuncs.com/2023/202305211413297.png" alt="支付宝"></span></a><a class="button donate" href="https://www.buymeacoffee.com/studeyang" target="_blank" rel="noopener" data-type="buymeacoffee"><span class="icon is-small"><i class="fas fa-coffee"></i></span><span>送我杯咖啡</span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>微信</span><span class="qrcode"><img src="https://technotes.oss-cn-shenzhen.aliyuncs.com/2023/202305211414563.png" alt="微信"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2022/007.html"><i class="level-item fas fa-chevron-left"></i><span class="level-item">要不要走索引？MySQL 的成本分析</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2022/003.html"><span class="level-item">基于start.spring.io，定制你的Java脚手架</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">评论</h3><div id="comment-container"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script><script>var gitalk = new Gitalk({
+            id: "05009d6ddecc595c7b95f66999feb9d5",
+            repo: "learning-share",
+            owner: "studeyang",
+            clientID: "2335de41843b9fae10fe",
+            clientSecret: "45d7d5cd095cedd0e5443f62b0788e04cdc1f98d",
+            admin: ["studeyang"],
+            createIssueManually: false,
+            distractionFreeMode: false,
+            perPage: 20,
+            pagerDirection: "last",
+            
+            
+            enableHotKey: true,
+            language: "zh-CN",
+        })
+        gitalk.render('comment-container')</script></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1 is-sticky"><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">目录</h3><ul class="menu-list"><li><a class="level is-mobile" href="#事务的隔离级别"><span class="level-left"><span class="level-item">事务的隔离级别</span></span></a></li><li><a class="level is-mobile" href="#隔离级别的实现原理"><span class="level-left"><span class="level-item">隔离级别的实现原理</span></span></a></li><li><a class="level is-mobile" href="#事务隔离的具体实现"><span class="level-left"><span class="level-item">事务隔离的具体实现</span></span></a></li><li><a class="level is-mobile" href="#小结"><span class="level-left"><span class="level-item">小结</span></span></a></li></ul></div></div><script src="/js/toc.js" defer></script></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">follow.it</h3><form action="https://api.follow.it/subscription-form/UE1KZFRLRFg2YlEzZXBFcUVwMEx5cHVRQkhqUVpxeVhPSnpIb3JKVmliQkh5OWRDOGIrNk1YaC9mWFYrbzN3eGc3bTJjNStvYUZobFpOSlNuS1VmRFRiQWkreGdvak5hNlVucW5jYXZoaE1YWjFJaWdNaUlnRmtMQlRhYjVlSlJ8dk1oYjBvSmZJYkY3YStmSXNZWE5CeXVBUVFMVnJVRXNOdGN4NVVKQWRSZz0=/8" method="post" target="_blank"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="https://technotes.oss-cn-shenzhen.aliyuncs.com/2023/202305212017244.png" alt="Studeyang&#039;s Blog" height="28"></a><p class="is-size-7"><span>&copy; 2023 studeyang</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a><br><span id="busuanzi_container_site_uv">共<span id="busuanzi_value_site_uv">0</span>个访客</span></p><p class="is-size-7">© 2023</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>

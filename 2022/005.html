@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>海量数据下，统计用户的签到信息 - Studeyang&#039;s Blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="Studeyang&#039;s Blog"><meta name="msapplication-TileImage" content="https://technotes.oss-cn-shenzhen.aliyuncs.com/2023/202305212017244.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Studeyang&#039;s Blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="在 Web 和移动应用的业务场景中，我们经常需要保存这样一种信息：统计用户在手机 App 上的签到打卡信息。 在签到打卡的场景中，我们只用记录签到（1）或未签到（0），它就是非常典型的二值状态。在签到统计时，每个用户一天的签到用 1 个 bit 位就能表示，一个月（假设是 31 天）的签到情况用 31 个 bit 位就可以，而一年的签到也只需要用 365 个 bit 位。"><meta property="og:type" content="blog"><meta property="og:title" content="海量数据下，统计用户的签到信息"><meta property="og:url" content="https://www.studeyang.tech/2022/005.html"><meta property="og:site_name" content="Studeyang&#039;s Blog"><meta property="og:description" content="在 Web 和移动应用的业务场景中，我们经常需要保存这样一种信息：统计用户在手机 App 上的签到打卡信息。 在签到打卡的场景中，我们只用记录签到（1）或未签到（0），它就是非常典型的二值状态。在签到统计时，每个用户一天的签到用 1 个 bit 位就能表示，一个月（假设是 31 天）的签到情况用 31 个 bit 位就可以，而一年的签到也只需要用 365 个 bit 位。"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://technotes.oss-cn-shenzhen.aliyuncs.com/2022/202210262204757.png"><meta property="article:published_time" content="2022-10-29T01:00:00.000Z"><meta property="article:modified_time" content="2023-06-03T09:15:11.415Z"><meta property="article:author" content="studeyang"><meta property="article:tag" content="Redis"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://technotes.oss-cn-shenzhen.aliyuncs.com/2022/202210262204757.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.studeyang.tech/2022/005.html"},"headline":"海量数据下，统计用户的签到信息","image":["https://technotes.oss-cn-shenzhen.aliyuncs.com/2022/202210262204757.png"],"datePublished":"2022-10-29T01:00:00.000Z","dateModified":"2023-06-03T09:15:11.415Z","author":{"@type":"Person","name":"studeyang"},"publisher":{"@type":"Organization","name":"Studeyang's Blog","logo":{"@type":"ImageObject","url":"https://technotes.oss-cn-shenzhen.aliyuncs.com/2023/202305212017244.png"}},"description":"在 Web 和移动应用的业务场景中，我们经常需要保存这样一种信息：统计用户在手机 App 上的签到打卡信息。 在签到打卡的场景中，我们只用记录签到（1）或未签到（0），它就是非常典型的二值状态。在签到统计时，每个用户一天的签到用 1 个 bit 位就能表示，一个月（假设是 31 天）的签到情况用 31 个 bit 位就可以，而一年的签到也只需要用 365 个 bit 位。"}</script><link rel="canonical" href="https://www.studeyang.tech/2022/005.html"><link rel="alternate" href="/rss2.xml" title="Studeyang&#039;s Blog" type="application/atom+xml"><link rel="icon" href="https://technotes.oss-cn-shenzhen.aliyuncs.com/2023/202305212017244.png"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><script>var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?63dd71367176b52c6d8aa50635993633";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();</script><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><script src="https://www.googletagmanager.com/gtag/js?id=G-S5KBWPGHG0" async></script><script>window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+    
+        gtag('config', 'G-S5KBWPGHG0');</script><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><meta name="follow.it-verification-code" content="sJJglrwTzTnwgJhRKl2Z"><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="https://technotes.oss-cn-shenzhen.aliyuncs.com/2023/202305212017244.png" alt="Studeyang&#039;s Blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/technotes">学习笔记</a><a class="navbar-item" href="/resume">简历</a><a class="navbar-item" href="/about">留言</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/studeyang/learning-share"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2022-10-29T01:00:00.000Z" title="2022/10/29 09:00:00">2022-10-29</time>发表</span><span class="level-item"><time dateTime="2023-06-03T09:15:11.415Z" title="2023/6/3 17:15:11">2023-06-03</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/technotes/">technotes</a></span><span class="level-item">7 分钟读完 (大约975个字)</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>次访问</span></div></div><h1 class="title is-3 is-size-4-mobile">海量数据下，统计用户的签到信息</h1><div class="content"><p>在 Web 和移动应用的业务场景中，我们经常需要保存这样一种信息：统计用户在手机 App 上的签到打卡信息。</p>
+<p>在签到打卡的场景中，我们只用记录签到（1）或未签到（0），它就是非常典型的二值状态。在签到统计时，每个用户一天的签到用 1 个 bit 位就能表示，一个月（假设是 31 天）的签到情况用 31 个 bit 位就可以，而一年的签到也只需要用 365 个 bit 位。</p>
+<span id="more"></span>
+<h2 id="Bitmap-数据类型介绍"><a href="#Bitmap-数据类型介绍" class="headerlink" title="Bitmap 数据类型介绍"></a>Bitmap 数据类型介绍</h2><p>Redis 恰好有这样一种数据结构：Bitmap。Bitmap 本身是用 String 类型作为底层数据结构实现的一种统计二值状态的数据类型。String 类型是会保存为二进制的字节数组，所以，Redis 就把字节数组的每个 bit 位利用起来，用来表示一个元素的二值状态。你可以把 Bitmap 看作是一个 bit 数组。</p>
+<p>那么，具体该怎么用 Bitmap 进行签到统计呢？</p>
+<p>假设我们要统计 ID 3000 的用户在 2022 年 10 月份的签到情况，就可以按照下面的步骤进行操作。</p>
+<p>第一步，执行下面的命令，记录该用户 10 月 1 号已签到（bit 位设置为 1）。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SETBIT uid:sign:3000:202210 0 1</span><br></pre></td></tr></table></figure>
+
+<p>第二步，检查该用户 10 月 1 日是否签到。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GETBIT uid:sign:3000:202210 0</span><br></pre></td></tr></table></figure>
+
+<p>第三步，统计该用户在 10 月份的签到次数（bit 数组中所有“1”的个数）。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BITCOUNT uid:sign:3000:202210</span><br></pre></td></tr></table></figure>
+
+<p>这样，我们就知道该用户在 10 月份的签到情况了。</p>
+<h2 id="Bitmap-的-BITOP-命令"><a href="#Bitmap-的-BITOP-命令" class="headerlink" title="Bitmap 的 BITOP 命令"></a>Bitmap 的 BITOP 命令</h2><p>Bitmap 支持用 BITOP 命令对多个 Bitmap 按位做“与”“或”“异或”的操作，操作的结果会保存到一个新的 Bitmap 中。</p>
+<p>我以按位“与”操作为例来具体解释一下。从下图中，可以看到，三个 Bitmap bm1、bm2 和 bm3，对应 bit 位做“与”操作，结果保存到了一个新的 Bitmap 中（示例中，这个结果 Bitmap 的 key 被设为“resmap”）。</p>
+<p><img src="https://technotes.oss-cn-shenzhen.aliyuncs.com/2022/202210262204757.png"></p>
+<p>回到我们的标题：如果记录了 1 亿个用户 10 天的签到情况，你有办法统计出这 10 天连续签到的用户总数吗？</p>
+<p>在统计 1 亿个用户连续 10 天的签到情况时，你可以把每天的日期作为 key，每个 key 对应一个 1 亿位的 Bitmap，每一个 bit 对应一个用户当天的签到情况。</p>
+<p>接下来，我们对 10 个 Bitmap 做“与”操作，得到的结果也是一个 Bitmap。在这个 Bitmap 中，只有 10 天都签到的用户对应的 bit 位上的值才会是 1。最后，我们可以用 BITCOUNT 统计下 Bitmap 中的 1 的个数，这就是连续签到 10 天的用户总数了。</p>
+<p>现在，我们可以计算一下记录了 10 天签到情况后的内存开销。每天使用 1 个 1 亿位的 Bitmap，大约占 12MB 的内存（10^8&#x2F;8&#x2F;1024&#x2F;1024），10 天的 Bitmap 的内存开销约为 120MB，内存压力不算太大。不过，在实际应用时，最好对 Bitmap 设置过期时间，让 Redis 自动删除不再需要的签到记录，以节省内存开销。</p>
+<p>所以，如果只需要统计数据的二值状态，例如商品有没有、用户在不在等，就可以使用 Bitmap，因为它只用一个 bit 位就能表示 0 或 1。在记录海量数据时，Bitmap 能够有效地节省内存空间。</p>
+<blockquote>
+<p>本篇摘自极客时间《Redis核心技术与实战》（蒋德钧）第12讲。</p>
+</blockquote>
+</div><div class="article-licensing box"><div class="licensing-title"><p>海量数据下，统计用户的签到信息</p><p><a href="https://www.studeyang.tech/2022/005.html">https://www.studeyang.tech/2022/005.html</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>studeyang</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2022-10-29</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2023-06-03</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/Redis/">Redis</a></div><div class="sharethis-inline-share-buttons"></div><script src="https://platform-api.sharethis.com/js/sharethis.js#property=6469b4acd8c6d2001a06c2d2&amp;product=inline-share-buttons&amp;source=platform" defer></script></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3><div class="buttons is-centered"><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>支付宝</span><span class="qrcode"><img src="https://technotes.oss-cn-shenzhen.aliyuncs.com/2023/202305211413297.png" alt="支付宝"></span></a><a class="button donate" href="https://www.buymeacoffee.com/studeyang" target="_blank" rel="noopener" data-type="buymeacoffee"><span class="icon is-small"><i class="fas fa-coffee"></i></span><span>送我杯咖啡</span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>微信</span><span class="qrcode"><img src="https://technotes.oss-cn-shenzhen.aliyuncs.com/2023/202305211414563.png" alt="微信"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2022/004.html"><i class="level-item fas fa-chevron-left"></i><span class="level-item">实战：如何优雅地扩展Log4j配置？</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2022/002.html"><span class="level-item">Nacos配置中心落地与实践</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">评论</h3><div id="comment-container"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script><script>var gitalk = new Gitalk({
+            id: "c627de8c432735b70fdc4c4d8647dbb3",
+            repo: "learning-share",
+            owner: "studeyang",
+            clientID: "2335de41843b9fae10fe",
+            clientSecret: "45d7d5cd095cedd0e5443f62b0788e04cdc1f98d",
+            admin: ["studeyang"],
+            createIssueManually: false,
+            distractionFreeMode: false,
+            perPage: 20,
+            pagerDirection: "last",
+            
+            
+            enableHotKey: true,
+            language: "zh-CN",
+        })
+        gitalk.render('comment-container')</script></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1 is-sticky"><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">目录</h3><ul class="menu-list"><li><a class="level is-mobile" href="#Bitmap-数据类型介绍"><span class="level-left"><span class="level-item">Bitmap 数据类型介绍</span></span></a></li><li><a class="level is-mobile" href="#Bitmap-的-BITOP-命令"><span class="level-left"><span class="level-item">Bitmap 的 BITOP 命令</span></span></a></li></ul></div></div><script src="/js/toc.js" defer></script></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">follow.it</h3><form action="https://api.follow.it/subscription-form/UE1KZFRLRFg2YlEzZXBFcUVwMEx5cHVRQkhqUVpxeVhPSnpIb3JKVmliQkh5OWRDOGIrNk1YaC9mWFYrbzN3eGc3bTJjNStvYUZobFpOSlNuS1VmRFRiQWkreGdvak5hNlVucW5jYXZoaE1YWjFJaWdNaUlnRmtMQlRhYjVlSlJ8dk1oYjBvSmZJYkY3YStmSXNZWE5CeXVBUVFMVnJVRXNOdGN4NVVKQWRSZz0=/8" method="post" target="_blank"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="https://technotes.oss-cn-shenzhen.aliyuncs.com/2023/202305212017244.png" alt="Studeyang&#039;s Blog" height="28"></a><p class="is-size-7"><span>&copy; 2023 studeyang</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a><br><span id="busuanzi_container_site_uv">共<span id="busuanzi_value_site_uv">0</span>个访客</span></p><p class="is-size-7">© 2023</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>
