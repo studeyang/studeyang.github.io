@@ -15,8 +15,29 @@
     <atom:link href="https://www.studeyang.tech/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>分享Java后端技术，包括但不限于：数据库、中间件、微服务等.</description>
-    <pubDate>Wed, 07 Jun 2023 09:42:05 GMT</pubDate>
+    <pubDate>Thu, 08 Jun 2023 16:02:08 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>架构设计应顺应技术的生命周期</title>
+      <link>https://www.studeyang.tech/2023/11.html</link>
+      <guid>https://www.studeyang.tech/2023/11.html</guid>
+      <pubDate>Thu, 08 Jun 2023 01:00:00 GMT</pubDate>
+      
+      <description>我们作为架构师，如果看不清技术的生命周期，那么所设计的架构就没法儿向更有生命力的新技术借力，自己的职业生涯也会受限。</description>
+      
+      
+      
+      
+      <category domain="https://www.studeyang.tech/categories/technotes/">technotes</category>
+      
+      
+      <category domain="https://www.studeyang.tech/tags/%E6%9E%B6%E6%9E%84/">架构</category>
+      
+      
+      <comments>https://www.studeyang.tech/2023/11.html#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>23种设计模式的必备结构图</title>
@@ -416,28 +437,6 @@
       
       
       <comments>https://www.studeyang.tech/2022/9.html#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>要不要走索引？MySQL 的成本分析</title>
-      <link>https://www.studeyang.tech/2022/7.html</link>
-      <guid>https://www.studeyang.tech/2022/7.html</guid>
-      <pubDate>Mon, 07 Nov 2022 01:00:00 GMT</pubDate>
-      
-      <description>&lt;p&gt;谈到索引失效，大家可能都能列举出几个场景，比如：后模糊查询、条件中带函数、索引中断等等。今天我想和你分享另一个场景：索引成本分析。&lt;/p&gt;
-&lt;p&gt;我先用一个具体的例子来描述一下这个场景。&lt;/p&gt;</description>
-      
-      
-      
-      
-      <category domain="https://www.studeyang.tech/categories/technotes/">technotes</category>
-      
-      
-      <category domain="https://www.studeyang.tech/tags/MySQL/">MySQL</category>
-      
-      
-      <comments>https://www.studeyang.tech/2022/7.html#disqus_thread</comments>
       
     </item>
     
