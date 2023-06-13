@@ -235,24 +235,6 @@
         <priority>0.6</priority>
     </url>
     
-    <url>
-        <loc>https://studeyang.tech/resume/index.html</loc>
-        
-        <lastmod>2023-06-03</lastmod>
-        
-        <changefreq>monthly</changefreq>
-        <priority>0.6</priority>
-    </url>
-    
-    <url>
-        <loc>https://studeyang.tech/about/index.html</loc>
-        
-        <lastmod>2023-06-03</lastmod>
-        
-        <changefreq>monthly</changefreq>
-        <priority>0.6</priority>
-    </url>
-    
 
     <url>
         <loc>https://studeyang.tech/</loc>
