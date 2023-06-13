@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>图解CORS - Studeyang&#039;s Blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="Studeyang&#039;s Blog"><meta name="msapplication-TileImage" content="https://technotes.oss-cn-shenzhen.aliyuncs.com/2023/202305212017244.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Studeyang&#039;s Blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="CORS 的全称是 Cross-origin resource sharing，中文名称是跨域资源共享，是一种让受限资源能够被其他域名的页面访问的一种机制。"><meta property="og:type" content="blog"><meta property="og:title" content="图解CORS"><meta property="og:url" content="https://studeyang.tech/2023/12.html"><meta property="og:site_name" content="Studeyang&#039;s Blog"><meta property="og:description" content="CORS 的全称是 Cross-origin resource sharing，中文名称是跨域资源共享，是一种让受限资源能够被其他域名的页面访问的一种机制。"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://technotes.oss-cn-shenzhen.aliyuncs.com/2023/cors.png"><meta property="article:published_time" content="2023-06-14T01:00:00.000Z"><meta property="article:modified_time" content="2023-06-13T08:28:36.481Z"><meta property="article:author" content="studeyang"><meta property="article:tag" content="HTTP"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://technotes.oss-cn-shenzhen.aliyuncs.com/2023/cors.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://studeyang.tech/2023/12.html"},"headline":"图解CORS","image":["https://technotes.oss-cn-shenzhen.aliyuncs.com/2023/cors.png"],"datePublished":"2023-06-14T01:00:00.000Z","dateModified":"2023-06-13T08:28:36.481Z","author":{"@type":"Person","name":"studeyang"},"publisher":{"@type":"Organization","name":"Studeyang's Blog","logo":{"@type":"ImageObject","url":"https://technotes.oss-cn-shenzhen.aliyuncs.com/2023/202305212017244.png"}},"description":"CORS 的全称是 Cross-origin resource sharing，中文名称是跨域资源共享，是一种让受限资源能够被其他域名的页面访问的一种机制。"}</script><link rel="canonical" href="https://studeyang.tech/2023/12.html"><link rel="alternate" href="/rss2.xml" title="Studeyang&#039;s Blog" type="application/atom+xml"><link rel="icon" href="https://technotes.oss-cn-shenzhen.aliyuncs.com/2023/202305212017244.png"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><script>var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?63dd71367176b52c6d8aa50635993633";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();</script><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><script src="https://www.googletagmanager.com/gtag/js?id=G-S5KBWPGHG0" async></script><script>window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+    
+        gtag('config', 'G-S5KBWPGHG0');</script><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><meta name="follow.it-verification-code" content="sJJglrwTzTnwgJhRKl2Z"><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="https://technotes.oss-cn-shenzhen.aliyuncs.com/2023/202305212017244.png" alt="Studeyang&#039;s Blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/technotes">学习笔记</a><a class="navbar-item" href="/resume">简历</a><a class="navbar-item" href="/about">留言</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/studeyang/learning-share"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><div class="card-image"><span class="image is-7by3"><img class="fill" src="https://technotes.oss-cn-shenzhen.aliyuncs.com/2023/cors.png" alt="图解CORS"></span></div><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2023-06-14T01:00:00.000Z" title="2023/6/14 09:00:00">2023-06-14</time>发表</span><span class="level-item"><time dateTime="2023-06-13T08:28:36.481Z" title="2023/6/13 16:28:36">2023-06-13</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/technotes/">technotes</a></span><span class="level-item">7 分钟读完 (大约1048个字)</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>次访问</span></div></div><h1 class="title is-3 is-size-4-mobile">图解CORS</h1><div class="content"><p>CORS 的全称是 Cross-origin resource sharing，中文名称是跨域资源共享，是一种让受限资源能够被其他域名的页面访问的一种机制。</p>
+<span id="more"></span>
+
+<p>下图描述了 CORS 机制。</p>
+<p><img src="https://technotes.oss-cn-shenzhen.aliyuncs.com/2023/cors.png"></p>
+<h2 id="一、源（Origin）的定义"><a href="#一、源（Origin）的定义" class="headerlink" title="一、源（Origin）的定义"></a>一、源（Origin）的定义</h2><p>上图中的 ① 描述了源（Origin）。源（Origin）由 URI 的协议（Protocol）、域名（domain）和端口（Port）组成，如下图所示。</p>
+<p><img src="https://technotes.oss-cn-shenzhen.aliyuncs.com/2023/image-20230609103454720.png"></p>
+<p>不同源的访问请求叫做跨源请求（Cross Origin Requests），通常情况下，这种访问的请求会被浏览器拦截。</p>
+<p><img src="https://technotes.oss-cn-shenzhen.aliyuncs.com/2023/image-20230609103515323.png" alt="image-20230609103515323"></p>
+<h2 id="二、如何进行跨域访问"><a href="#二、如何进行跨域访问" class="headerlink" title="二、如何进行跨域访问"></a>二、如何进行跨域访问</h2><p>可以进行跨域访问的请求有两种，一种是简单的跨域请求（Simple Cross-Origin Request），另一种是预检请求（Pre flight request）。</p>
+<h3 id="2-1-简单的跨域请求（Simple-Cross-Origin-Request）"><a href="#2-1-简单的跨域请求（Simple-Cross-Origin-Request）" class="headerlink" title="2.1 简单的跨域请求（Simple Cross-Origin Request）"></a>2.1 简单的跨域请求（Simple Cross-Origin Request）</h3><p>无需触发预检请求（Pre flight request）的请求，称为简单的跨域请求（Simple Cross-Origin Request）。满足下列条件的请求，可视为简单请求：</p>
+<ul>
+<li>请求方法是 <code>GET</code>、<code>HEAD</code>、<code>POST</code> 其中之一</li>
+<li>请求头 <code>Content-Type</code> 是 <code>text/plain</code>、<code>multipart/formdata</code>、<code>application/x-www-form-urlencoded</code> 其中之一</li>
+</ul>
+<h3 id="2-2-预检请求（Pre-flight-request）"><a href="#2-2-预检请求（Pre-flight-request）" class="headerlink" title="2.2 预检请求（Pre flight request）"></a>2.2 预检请求（Pre flight request）</h3><p>预检请求（Pre flight request）是跨域资源共享（CORS）的一种预检机制。在进行跨域请求时，浏览器首先会发起一个 <code>OPTIONS</code> 请求，该请求称为预检请求，用于检查实际请求是否可以被服务器接受。预检请求中包含了实际请求将会用到的 HTTP 方法、Header 信息、请求 Path 等。</p>
+<p>服务器在接收到预检请求后，会根据请求头中的 Origin 字段和请求内容，判断是否允许当前的跨域请求。如果允许，服务器会在响应头中添加 <code>Access-Control-Allow-Origin</code> 相关信息。</p>
+<p>整个过程如下图所示：</p>
+<p><img src="https://technotes.oss-cn-shenzhen.aliyuncs.com/2023/preflight_correct.png"></p>
+<p>解释一下图中出现的其他 Header 字段：</p>
+<p><strong>1）Access-Control-Allow-Methods</strong></p>
+<p>Access-Control-Allow-Methods 表示服务器允许的跨域请求的 HTTP 方法列表，如 GET、POST、PUT、DELETE 等。</p>
+<p><strong>2）Access-Control-Allow-Headers</strong></p>
+<p>Access-Control-Allow-Headers 表示服务器允许的跨域请求的头信息列表，如 Authorization、Cache-Control、Content-Type 等。</p>
+<p><strong>3）Access-Control-Max-Age</strong></p>
+<p>Access-Control-Max-Age 字段用于指定预检请求的缓存时间，单位为秒。一旦服务器端设置了 Access-Control-Max-Age 字段，浏览器在缓存期内会自动跳过预检请求，直接发起携带身份凭证的实际请求。这样可以降低服务器的压力，提升页面加载速度和用户体验。</p>
+<p>预检请求（Pre flight request）成功后，就可以开始跨域访问了。</p>
+<h3 id="2-3-进行跨域访问"><a href="#2-3-进行跨域访问" class="headerlink" title="2.3 进行跨域访问"></a>2.3 进行跨域访问</h3><p>客户端发起跨域请求，在收到服务端的响应请求后，浏览器会检查响应头中的 <code>Access-Control-Allow-Origin</code> 字段，如果它的值是 <code>messanger.com</code> 或者是 ‘*’，浏览器会执行成功请求的回调，但是如果不匹配的话，则执行失败请求的回调。</p>
+<p><img src="https://technotes.oss-cn-shenzhen.aliyuncs.com/2023/image-20230609103538552.png"></p>
+<h3 id="2-4-跨域发送身份凭证"><a href="#2-4-跨域发送身份凭证" class="headerlink" title="2.4 跨域发送身份凭证"></a>2.4 跨域发送身份凭证</h3><p>当客户端与服务器端进行跨域请求时，如果需要在跨域请求中发送身份凭证（如 cookie 和 HTTP 认证信息），则需要在服务器端设置 <code>Access-Control-Allow-Credentials</code> 字段为 true，才能使客户端发送跨域请求时携带身份凭证。如果服务器端未响应 <code>Access-Control-Allow-Credentials</code> 或设置为 false，则浏览器会丢弃这个请求，从而导致无法进行跨域资源分享。</p>
+<p><img src="https://technotes.oss-cn-shenzhen.aliyuncs.com/2023/image-20230609102314695.png"></p>
+<p>（本文完）</p>
+<blockquote>
+<p>文章首发于 studeyang.tech，原文链接：<a href="https://studeyang.tech/2023/12.html">https://studeyang.tech/2023/12.html</a></p>
+</blockquote>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS">https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS</a></li>
+</ul>
+</div><div class="article-licensing box"><div class="licensing-title"><p>图解CORS</p><p><a href="https://studeyang.tech/2023/12.html">https://studeyang.tech/2023/12.html</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>studeyang</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2023-06-14</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2023-06-13</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/HTTP/">HTTP</a></div><div class="sharethis-inline-share-buttons"></div><script src="https://platform-api.sharethis.com/js/sharethis.js#property=6469b4acd8c6d2001a06c2d2&amp;product=inline-share-buttons&amp;source=platform" defer></script></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3><div class="buttons is-centered"><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>支付宝</span><span class="qrcode"><img src="https://technotes.oss-cn-shenzhen.aliyuncs.com/2023/202305211413297.png" alt="支付宝"></span></a><a class="button donate" href="https://www.buymeacoffee.com/studeyang" target="_blank" rel="noopener" data-type="buymeacoffee"><span class="icon is-small"><i class="fas fa-coffee"></i></span><span>送我杯咖啡</span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>微信</span><span class="qrcode"><img src="https://technotes.oss-cn-shenzhen.aliyuncs.com/2023/202305211414563.png" alt="微信"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2023/11.html"><span class="level-item">架构设计应顺应技术的生命周期</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">评论</h3><div id="comment-container"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script><script>var gitalk = new Gitalk({
+            id: "c2502761175183f55cbfd5f9f3c2674d",
+            repo: "learning-share",
+            owner: "studeyang",
+            clientID: "2335de41843b9fae10fe",
+            clientSecret: "45d7d5cd095cedd0e5443f62b0788e04cdc1f98d",
+            admin: ["studeyang"],
+            createIssueManually: false,
+            distractionFreeMode: false,
+            perPage: 20,
+            pagerDirection: "last",
+            
+            
+            enableHotKey: true,
+            language: "zh-CN",
+        })
+        gitalk.render('comment-container')</script></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1 is-sticky"><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">目录</h3><ul class="menu-list"><li><a class="level is-mobile" href="#一、源（Origin）的定义"><span class="level-left"><span class="level-item">一、源（Origin）的定义</span></span></a></li><li><a class="level is-mobile" href="#二、如何进行跨域访问"><span class="level-left"><span class="level-item">二、如何进行跨域访问</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#2-1-简单的跨域请求（Simple-Cross-Origin-Request）"><span class="level-left"><span class="level-item">2.1 简单的跨域请求（Simple Cross-Origin Request）</span></span></a></li><li><a class="level is-mobile" href="#2-2-预检请求（Pre-flight-request）"><span class="level-left"><span class="level-item">2.2 预检请求（Pre flight request）</span></span></a></li><li><a class="level is-mobile" href="#2-3-进行跨域访问"><span class="level-left"><span class="level-item">2.3 进行跨域访问</span></span></a></li><li><a class="level is-mobile" href="#2-4-跨域发送身份凭证"><span class="level-left"><span class="level-item">2.4 跨域发送身份凭证</span></span></a></li></ul></li><li><a class="level is-mobile" href="#References"><span class="level-left"><span class="level-item">References</span></span></a></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">follow.it</h3><form action="https://api.follow.it/subscription-form/UE1KZFRLRFg2YlEzZXBFcUVwMEx5cHVRQkhqUVpxeVhPSnpIb3JKVmliQkh5OWRDOGIrNk1YaC9mWFYrbzN3eGc3bTJjNStvYUZobFpOSlNuS1VmRFRiQWkreGdvak5hNlVucW5jYXZoaE1YWjFJaWdNaUlnRmtMQlRhYjVlSlJ8dk1oYjBvSmZJYkY3YStmSXNZWE5CeXVBUVFMVnJVRXNOdGN4NVVKQWRSZz0=/8" method="post" target="_blank"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="https://technotes.oss-cn-shenzhen.aliyuncs.com/2023/202305212017244.png" alt="Studeyang&#039;s Blog" height="28"></a><p class="is-size-7"><span>&copy; 2023 studeyang</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a><br><span id="busuanzi_container_site_uv">共<span id="busuanzi_value_site_uv">0</span>个访客</span></p><p class="is-size-7">© 2023</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>

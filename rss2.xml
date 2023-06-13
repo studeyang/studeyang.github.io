@@ -15,8 +15,29 @@
     <atom:link href="https://studeyang.tech/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>分享Java后端技术，包括但不限于：数据库、中间件、微服务等.</description>
-    <pubDate>Fri, 09 Jun 2023 01:40:28 GMT</pubDate>
+    <pubDate>Tue, 13 Jun 2023 08:28:36 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>图解CORS</title>
+      <link>https://studeyang.tech/2023/12.html</link>
+      <guid>https://studeyang.tech/2023/12.html</guid>
+      <pubDate>Wed, 14 Jun 2023 01:00:00 GMT</pubDate>
+      
+      <description>CORS 的全称是 Cross-origin resource sharing，中文名称是跨域资源共享，是一种让受限资源能够被其他域名的页面访问的一种机制。</description>
+      
+      
+      
+      
+      <category domain="https://studeyang.tech/categories/technotes/">technotes</category>
+      
+      
+      <category domain="https://studeyang.tech/tags/HTTP/">HTTP</category>
+      
+      
+      <comments>https://studeyang.tech/2023/12.html#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>架构设计应顺应技术的生命周期</title>
@@ -416,27 +437,6 @@
       
       
       <comments>https://studeyang.tech/2022/8.html#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>开源：上传 Jar 包至 Maven 中央仓库</title>
-      <link>https://studeyang.tech/2022/9.html</link>
-      <guid>https://studeyang.tech/2022/9.html</guid>
-      <pubDate>Tue, 08 Nov 2022 01:00:00 GMT</pubDate>
-      
-      <description>&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;最近我将服务发现组件开源了：&lt;a href=&quot;https://github.com/studeyang/cloud-discovery&quot;&gt;cloud-discovery&lt;/a&gt;，分享一下 Jar 包上传中央仓库过程遇到的问题与总结。需要说明的是，在下面两篇文章中已经将步骤写的非常清楚了，本文主要记录的是我在操作过程中遇到的一些坑，以供参考。&lt;/p&gt;</description>
-      
-      
-      
-      
-      <category domain="https://studeyang.tech/categories/technotes/">technotes</category>
-      
-      
-      <category domain="https://studeyang.tech/tags/Maven/">Maven</category>
-      
-      
-      <comments>https://studeyang.tech/2022/9.html#disqus_thread</comments>
       
     </item>
     

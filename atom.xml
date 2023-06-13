@@ -6,7 +6,7 @@
   <link href="https://studeyang.tech/atom.xml" rel="self"/>
   
   <link href="https://studeyang.tech/"/>
-  <updated>2023-06-09T01:40:28.994Z</updated>
+  <updated>2023-06-13T08:28:36.481Z</updated>
   <id>https://studeyang.tech/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>图解CORS</title>
+    <link href="https://studeyang.tech/2023/12.html"/>
+    <id>https://studeyang.tech/2023/12.html</id>
+    <published>2023-06-14T01:00:00.000Z</published>
+    <updated>2023-06-13T08:28:36.481Z</updated>
+    
+    
+    <summary type="html">CORS 的全称是 Cross-origin resource sharing，中文名称是跨域资源共享，是一种让受限资源能够被其他域名的页面访问的一种机制。</summary>
+    
+    
+    
+    <category term="technotes" scheme="https://studeyang.tech/categories/technotes/"/>
+    
+    
+    <category term="HTTP" scheme="https://studeyang.tech/tags/HTTP/"/>
+    
+  </entry>
   
   <entry>
     <title>架构设计应顺应技术的生命周期</title>
@@ -376,25 +395,6 @@
     
     
     <category term="Nacos" scheme="https://studeyang.tech/tags/Nacos/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>开源：上传 Jar 包至 Maven 中央仓库</title>
-    <link href="https://studeyang.tech/2022/9.html"/>
-    <id>https://studeyang.tech/2022/9.html</id>
-    <published>2022-11-08T01:00:00.000Z</published>
-    <updated>2023-06-07T09:42:05.792Z</updated>
-    
-    
-    <summary type="html">&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;最近我将服务发现组件开源了：&lt;a href=&quot;https://github.com/studeyang/cloud-discovery&quot;&gt;cloud-discovery&lt;/a&gt;，分享一下 Jar 包上传中央仓库过程遇到的问题与总结。需要说明的是，在下面两篇文章中已经将步骤写的非常清楚了，本文主要记录的是我在操作过程中遇到的一些坑，以供参考。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="technotes" scheme="https://studeyang.tech/categories/technotes/"/>
-    
-    
-    <category term="Maven" scheme="https://studeyang.tech/tags/Maven/"/>
     
   </entry>
   
