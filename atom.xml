@@ -6,7 +6,7 @@
   <link href="https://studeyang.tech/atom.xml" rel="self"/>
   
   <link href="https://studeyang.tech/"/>
-  <updated>2023-06-13T08:28:36.481Z</updated>
+  <updated>2023-06-13T15:40:29.504Z</updated>
   <id>https://studeyang.tech/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://studeyang.tech/2023/12.html"/>
     <id>https://studeyang.tech/2023/12.html</id>
     <published>2023-06-14T01:00:00.000Z</published>
-    <updated>2023-06-13T08:28:36.481Z</updated>
+    <updated>2023-06-13T15:40:29.504Z</updated>
     
     
     <summary type="html">CORS 的全称是 Cross-origin resource sharing，中文名称是跨域资源共享，是一种让受限资源能够被其他域名的页面访问的一种机制。</summary>
@@ -40,7 +40,7 @@
     <link href="https://studeyang.tech/2023/11.html"/>
     <id>https://studeyang.tech/2023/11.html</id>
     <published>2023-06-08T01:00:00.000Z</published>
-    <updated>2023-06-09T01:40:28.994Z</updated>
+    <updated>2023-06-08T16:02:08.012Z</updated>
     
     
     <summary type="html">我们作为架构师，如果看不清技术的生命周期，那么所设计的架构就没法儿向更有生命力的新技术借力，自己的职业生涯也会受限。</summary>
@@ -59,7 +59,7 @@
     <link href="https://studeyang.tech/2023/10.html"/>
     <id>https://studeyang.tech/2023/10.html</id>
     <published>2023-05-13T01:00:00.000Z</published>
-    <updated>2023-06-07T09:42:05.851Z</updated>
+    <updated>2023-06-04T14:39:41.840Z</updated>
     
     
     <summary type="html">&lt;p&gt;这里总结了23种设计模式的结构图及定义，样例代码在 Github：&lt;a href=&quot;https://github.com/studeyang/design-pattern&quot;&gt;studeyang&amp;#x2F;design-pattern&lt;/a&gt;。&lt;/p&gt;</summary>
@@ -78,7 +78,7 @@
     <link href="https://studeyang.tech/2023/9.html"/>
     <id>https://studeyang.tech/2023/9.html</id>
     <published>2023-04-18T01:00:00.000Z</published>
-    <updated>2023-06-07T09:42:05.848Z</updated>
+    <updated>2023-06-04T14:39:41.822Z</updated>
     
     
     <summary type="html">&lt;p&gt;这里记录的是学习分享内容，文章维护在 Github：&lt;a href=&quot;https://github.com/studeyang/learning-share&quot;&gt;studeyang&amp;#x2F;leanrning-share&lt;/a&gt;。&lt;/p&gt;</summary>
@@ -97,7 +97,7 @@
     <link href="https://studeyang.tech/2023/8.html"/>
     <id>https://studeyang.tech/2023/8.html</id>
     <published>2023-04-16T01:00:00.000Z</published>
-    <updated>2023-06-07T09:42:05.846Z</updated>
+    <updated>2023-06-04T14:39:41.800Z</updated>
     
     
     <summary type="html">&lt;p&gt;索引是 MySQL 数据库中优化查询性能的重要工具，通过对查询条件和表数据的索引，MySQL可以快速定位数据，提高查询效率。但是，在实际的数据库开发和维护中，我们经常会遇到一些情况，导致索引失效，从而使得查询变得非常缓慢，甚至无法使用索引来优化查询，这会严重影响系统的性能。那么，是什么原因导致了索引失效呢？&lt;/p&gt;</summary>
@@ -116,7 +116,7 @@
     <link href="https://studeyang.tech/2023/7.html"/>
     <id>https://studeyang.tech/2023/7.html</id>
     <published>2023-03-25T01:00:00.000Z</published>
-    <updated>2023-06-07T09:42:05.843Z</updated>
+    <updated>2023-06-04T14:39:41.791Z</updated>
     
     
     <summary type="html">&lt;blockquote&gt;
@@ -137,7 +137,7 @@
     <link href="https://studeyang.tech/2023/6.html"/>
     <id>https://studeyang.tech/2023/6.html</id>
     <published>2023-03-19T01:00:00.000Z</published>
-    <updated>2023-06-07T09:42:05.840Z</updated>
+    <updated>2023-06-04T14:39:41.828Z</updated>
     
     
     <summary type="html">&lt;p&gt;这里记录的是学习分享内容，文章维护在 Github：&lt;a href=&quot;https://github.com/studeyang/learning-share&quot;&gt;studeyang&amp;#x2F;leanrning-share&lt;/a&gt;。&lt;/p&gt;</summary>
@@ -156,7 +156,7 @@
     <link href="https://studeyang.tech/2023/5.html"/>
     <id>https://studeyang.tech/2023/5.html</id>
     <published>2023-03-05T01:00:00.000Z</published>
-    <updated>2023-06-07T09:42:05.835Z</updated>
+    <updated>2023-06-04T14:39:41.853Z</updated>
     
     
     <summary type="html">&lt;p&gt;本文摘要：浅谈应用架构、业务架构、技术架构。&lt;/p&gt;</summary>
@@ -175,7 +175,7 @@
     <link href="https://studeyang.tech/2023/4.html"/>
     <id>https://studeyang.tech/2023/4.html</id>
     <published>2023-02-18T01:00:00.000Z</published>
-    <updated>2023-06-07T09:42:05.831Z</updated>
+    <updated>2023-06-04T14:39:41.816Z</updated>
     
     
     <summary type="html">&lt;p&gt;这里记录的是学习分享的内容，文章维护在 Github：&lt;a href=&quot;https://github.com/studeyang/learning-share&quot;&gt;studeyang&amp;#x2F;leanrning-share&lt;/a&gt;。&lt;/p&gt;</summary>
@@ -194,7 +194,7 @@
     <link href="https://studeyang.tech/2023/3.html"/>
     <id>https://studeyang.tech/2023/3.html</id>
     <published>2023-02-05T01:00:00.000Z</published>
-    <updated>2023-06-07T09:42:05.814Z</updated>
+    <updated>2023-06-04T14:39:41.812Z</updated>
     
     
     <summary type="html">&lt;h2 id=&quot;开篇&quot;&gt;&lt;a href=&quot;#开篇&quot; class=&quot;headerlink&quot; title=&quot;开篇&quot;&gt;&lt;/a&gt;开篇&lt;/h2&gt;&lt;p&gt;之前的分享内容都是相对零散的知识点，不成体系。以后的每周分享，我会尽量将每篇文章串连起来，于是我决定做一个专栏，名字就叫《学习分享》。这是该系列的第一篇。&lt;/p&gt;</summary>
@@ -213,7 +213,7 @@
     <link href="https://studeyang.tech/2023/1.html"/>
     <id>https://studeyang.tech/2023/1.html</id>
     <published>2023-01-07T01:00:00.000Z</published>
-    <updated>2023-06-07T09:42:05.810Z</updated>
+    <updated>2023-06-04T14:39:41.819Z</updated>
     
     
     <summary type="html">&lt;p&gt;要回答这个问题，我们首先要搞清楚，为什么要做架构设计？不做行不行？&lt;/p&gt;</summary>
@@ -232,7 +232,7 @@
     <link href="https://studeyang.tech/2023/2.html"/>
     <id>https://studeyang.tech/2023/2.html</id>
     <published>2023-01-07T01:00:00.000Z</published>
-    <updated>2023-06-07T09:42:05.812Z</updated>
+    <updated>2023-06-04T14:39:41.809Z</updated>
     
     
     <summary type="html">&lt;h2 id=&quot;1、场景介绍&quot;&gt;&lt;a href=&quot;#1、场景介绍&quot; class=&quot;headerlink&quot; title=&quot;1、场景介绍&quot;&gt;&lt;/a&gt;1、场景介绍&lt;/h2&gt;&lt;p&gt;假设现在我们要开发一个图片存储系统，要求这个系统能够根据图片 ID 快速查找到图片存储对象 ID。图片 ID 和图片存储对象 ID 的样例数据如下：&lt;/p&gt;</summary>
@@ -251,7 +251,7 @@
     <link href="https://studeyang.tech/2022/14.html"/>
     <id>https://studeyang.tech/2022/14.html</id>
     <published>2022-12-20T01:00:00.000Z</published>
-    <updated>2023-06-07T09:42:05.804Z</updated>
+    <updated>2023-06-04T14:39:41.785Z</updated>
     
     
     <summary type="html">&lt;p&gt;本文来自我的 technotes [1] Redis篇。&lt;/p&gt;</summary>
@@ -270,7 +270,7 @@
     <link href="https://studeyang.tech/2022/15.html"/>
     <id>https://studeyang.tech/2022/15.html</id>
     <published>2022-12-20T01:00:00.000Z</published>
-    <updated>2023-06-07T09:42:05.806Z</updated>
+    <updated>2023-06-04T14:39:41.780Z</updated>
     
     
     <summary type="html">&lt;p&gt;在 Github 项目&lt;code&gt;mongo-java-driver&lt;/code&gt;有一个类&lt;code&gt;ObjectId.java&lt;/code&gt;，它的作用是生成唯一 id 的，它的核心实现是下面这样一段代码 [1]：&lt;/p&gt;</summary>
@@ -289,7 +289,7 @@
     <link href="https://studeyang.tech/2022/16.html"/>
     <id>https://studeyang.tech/2022/16.html</id>
     <published>2022-12-20T01:00:00.000Z</published>
-    <updated>2023-06-07T09:42:05.808Z</updated>
+    <updated>2023-06-04T14:39:41.797Z</updated>
     
     
     <summary type="html">&lt;h2 id=&quot;1、删除指定commit&quot;&gt;&lt;a href=&quot;#1、删除指定commit&quot; class=&quot;headerlink&quot; title=&quot;1、删除指定commit&quot;&gt;&lt;/a&gt;1、删除指定commit&lt;/h2&gt;&lt;p&gt;假如某个项目当中有 3 条提交。&lt;/p&gt;</summary>
@@ -308,7 +308,7 @@
     <link href="https://studeyang.tech/2022/12.html"/>
     <id>https://studeyang.tech/2022/12.html</id>
     <published>2022-12-06T01:00:00.000Z</published>
-    <updated>2023-06-07T09:42:05.799Z</updated>
+    <updated>2023-06-04T14:39:41.834Z</updated>
     
     
     <summary type="html">&lt;p&gt;你好，今天我想和你分享一下XXL-JOB的核心实现。如果你是XXL-JOB的用户，那么你肯定思考过它的实现原理；如果你还未接触过这个产品，那么可以通过本文了解一下。&lt;/p&gt;</summary>
@@ -327,7 +327,7 @@
     <link href="https://studeyang.tech/2022/13.html"/>
     <id>https://studeyang.tech/2022/13.html</id>
     <published>2022-12-06T01:00:00.000Z</published>
-    <updated>2023-06-07T09:42:05.801Z</updated>
+    <updated>2023-06-04T14:39:41.837Z</updated>
     
     
     <summary type="html">&lt;p&gt;对于一项技术的学习，我们要对这项技术有一个全局观，下面是一张 Redis 全景图，画得非常全面。&lt;/p&gt;</summary>
@@ -346,7 +346,7 @@
     <link href="https://studeyang.tech/2022/11.html"/>
     <id>https://studeyang.tech/2022/11.html</id>
     <published>2022-11-22T01:00:00.000Z</published>
-    <updated>2023-06-07T09:42:05.796Z</updated>
+    <updated>2023-06-04T14:39:41.845Z</updated>
     
     
     <summary type="html">&lt;p&gt;前段时间，我在&lt;a href=&quot;https://mp.weixin.qq.com/s?__biz=MzkwMTI4NTI1NA==&amp;mid=2247483902&amp;idx=1&amp;sn=2e117fec67cdfb9064369835c0af41d8&amp;chksm=c0b65517f7c1dc01be4080f4fd0f86cd534cf8d59244af34b5aed3340c653e5d697154e4742b&amp;token=1554827504&amp;lang=zh_CN#rd&quot;&gt;「基于start.spring.io，我实现了Java脚手架定制」&lt;/a&gt;一文中讲述了敝司的微服务脚手架落地过程中的前世今生，并提到了基于 spring initializr 的搭建了 2.0 版本的脚手架。今天我打算和你分享一下这其中的实现过程与细节，项目已经开源在 Github 上。&lt;/p&gt;</summary>
@@ -365,7 +365,7 @@
     <link href="https://studeyang.tech/2022/10.html"/>
     <id>https://studeyang.tech/2022/10.html</id>
     <published>2022-11-13T01:00:00.000Z</published>
-    <updated>2023-06-07T09:42:05.794Z</updated>
+    <updated>2023-06-04T14:39:41.806Z</updated>
     
     
     <summary type="html">&lt;p&gt;日常工作中，有些同学一遇到查询性能问题，就盲目要求 DBA 给表字段创建索引。今天，我们就来具体看看这背后的细节。&lt;/p&gt;</summary>
@@ -384,7 +384,7 @@
     <link href="https://studeyang.tech/2022/8.html"/>
     <id>https://studeyang.tech/2022/8.html</id>
     <published>2022-11-08T01:00:00.000Z</published>
-    <updated>2023-06-07T09:42:05.784Z</updated>
+    <updated>2023-06-04T14:39:41.848Z</updated>
     
     
     <summary type="html">&lt;p&gt;如果你作为&lt;code&gt;Nacos&lt;/code&gt;的初识者，或者想快速了解&lt;code&gt;Nacos&lt;/code&gt;的上手难度，希望本篇可以帮助到你。&lt;/p&gt;</summary>
