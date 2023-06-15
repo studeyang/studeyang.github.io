@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Studeyang&#39;s Blog</title>
+  <title>笛途 - Studeyang.tech</title>
   <icon>https://technotes.oss-cn-shenzhen.aliyuncs.com/2023/202305212017244.png</icon>
-  <subtitle>杨同学technotes</subtitle>
+  <subtitle>“笛”:创造力，“途”:道路且长</subtitle>
   <link href="https://studeyang.tech/atom.xml" rel="self"/>
   
   <link href="https://studeyang.tech/"/>
@@ -10,7 +10,7 @@
   <id>https://studeyang.tech/</id>
   
   <author>
-    <name>studeyang</name>
+    <name>Studeyang</name>
     
   </author>
   
