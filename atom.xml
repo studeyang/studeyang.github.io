@@ -6,7 +6,7 @@
   <link href="https://studeyang.tech/atom.xml" rel="self"/>
   
   <link href="https://studeyang.tech/"/>
-  <updated>2023-06-13T08:28:36.481Z</updated>
+  <updated>2023-06-16T06:41:37.446Z</updated>
   <id>https://studeyang.tech/</id>
   
   <author>
@@ -17,11 +17,30 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Git如何修改历史的Commit信息</title>
+    <link href="https://studeyang.tech/2023/13.html"/>
+    <id>https://studeyang.tech/2023/13.html</id>
+    <published>2023-06-19T01:00:00.000Z</published>
+    <updated>2023-06-16T06:41:37.446Z</updated>
+    
+    
+    <summary type="html">最近由于一行单元测试代码没有写 Assert 断言，导致了项目在 CI 过程中没有通过，于是遭到了某位同事的吐槽，在修改我的代码后写上了一句提交信息。我想，做为技术人，修改这条 Commit 信息还是可以的，于是我通过本文介绍的技巧完成了修改。</summary>
+    
+    
+    
+    <category term="technotes" scheme="https://studeyang.tech/categories/technotes/"/>
+    
+    
+    <category term="Git" scheme="https://studeyang.tech/tags/Git/"/>
+    
+  </entry>
+  
+  <entry>
     <title>图解CORS</title>
     <link href="https://studeyang.tech/2023/12.html"/>
     <id>https://studeyang.tech/2023/12.html</id>
     <published>2023-06-14T01:00:00.000Z</published>
-    <updated>2023-06-13T08:28:36.481Z</updated>
+    <updated>2023-06-16T09:42:22.129Z</updated>
     
     
     <summary type="html">CORS 的全称是 Cross-origin resource sharing，中文名称是跨域资源共享，是一种让受限资源能够被其他域名的页面访问的一种机制。</summary>
@@ -376,25 +395,6 @@
     
     
     <category term="MySQL" scheme="https://studeyang.tech/tags/MySQL/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Nacos注册中心快速入门</title>
-    <link href="https://studeyang.tech/2022/8.html"/>
-    <id>https://studeyang.tech/2022/8.html</id>
-    <published>2022-11-08T01:00:00.000Z</published>
-    <updated>2023-06-07T09:42:05.784Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;如果你作为&lt;code&gt;Nacos&lt;/code&gt;的初识者，或者想快速了解&lt;code&gt;Nacos&lt;/code&gt;的上手难度，希望本篇可以帮助到你。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="technotes" scheme="https://studeyang.tech/categories/technotes/"/>
-    
-    
-    <category term="Nacos" scheme="https://studeyang.tech/tags/Nacos/"/>
     
   </entry>
   

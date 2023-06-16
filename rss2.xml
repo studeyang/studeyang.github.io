@@ -15,8 +15,29 @@
     <atom:link href="https://studeyang.tech/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>愿你出走半生，归来仍是少年</description>
-    <pubDate>Tue, 13 Jun 2023 08:28:36 GMT</pubDate>
+    <pubDate>Fri, 16 Jun 2023 06:41:37 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>Git如何修改历史的Commit信息</title>
+      <link>https://studeyang.tech/2023/13.html</link>
+      <guid>https://studeyang.tech/2023/13.html</guid>
+      <pubDate>Mon, 19 Jun 2023 01:00:00 GMT</pubDate>
+      
+      <description>最近由于一行单元测试代码没有写 Assert 断言，导致了项目在 CI 过程中没有通过，于是遭到了某位同事的吐槽，在修改我的代码后写上了一句提交信息。我想，做为技术人，修改这条 Commit 信息还是可以的，于是我通过本文介绍的技巧完成了修改。</description>
+      
+      
+      
+      
+      <category domain="https://studeyang.tech/categories/technotes/">technotes</category>
+      
+      
+      <category domain="https://studeyang.tech/tags/Git/">Git</category>
+      
+      
+      <comments>https://studeyang.tech/2023/13.html#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>图解CORS</title>
@@ -416,27 +437,6 @@
       
       
       <comments>https://studeyang.tech/2022/10.html#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>Nacos注册中心快速入门</title>
-      <link>https://studeyang.tech/2022/8.html</link>
-      <guid>https://studeyang.tech/2022/8.html</guid>
-      <pubDate>Tue, 08 Nov 2022 01:00:00 GMT</pubDate>
-      
-      <description>&lt;p&gt;如果你作为&lt;code&gt;Nacos&lt;/code&gt;的初识者，或者想快速了解&lt;code&gt;Nacos&lt;/code&gt;的上手难度，希望本篇可以帮助到你。&lt;/p&gt;</description>
-      
-      
-      
-      
-      <category domain="https://studeyang.tech/categories/technotes/">technotes</category>
-      
-      
-      <category domain="https://studeyang.tech/tags/Nacos/">Nacos</category>
-      
-      
-      <comments>https://studeyang.tech/2022/8.html#disqus_thread</comments>
       
     </item>
     
