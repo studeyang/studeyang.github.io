@@ -3,19 +3,19 @@
   xmlns:atom="http://www.w3.org/2005/Atom"
   xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>笛途 - Studeyang.tech</title>
+    <title>吾途 - Studeyang.tech</title>
     <link>https://studeyang.tech/</link>
     
     <image>
       <url>https://technotes.oss-cn-shenzhen.aliyuncs.com/2023/202305212017244.png</url>
-      <title>笛途 - Studeyang.tech</title>
+      <title>吾途 - Studeyang.tech</title>
       <link>https://studeyang.tech/</link>
     </image>
     
     <atom:link href="https://studeyang.tech/rss2.xml" rel="self" type="application/rss+xml"/>
     
-    <description>在技术领域持续不断地前进，去开拓新的知识之路，并分享给他人</description>
-    <pubDate>Tue, 13 Jun 2023 15:40:29 GMT</pubDate>
+    <description>愿你出走半生，归来仍是少年</description>
+    <pubDate>Tue, 13 Jun 2023 08:28:36 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
