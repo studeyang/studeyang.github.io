@@ -15,7 +15,7 @@
     <atom:link href="https://studeyang.tech/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>愿你出走半生，归来仍是少年</description>
-    <pubDate>Fri, 16 Jun 2023 06:41:37 GMT</pubDate>
+    <pubDate>Sat, 17 Jun 2023 01:09:14 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
@@ -24,7 +24,7 @@
       <guid>https://studeyang.tech/2023/13.html</guid>
       <pubDate>Mon, 19 Jun 2023 01:00:00 GMT</pubDate>
       
-      <description>最近由于一行单元测试代码没有写 Assert 断言，导致了项目在 CI 过程中没有通过，于是遭到了某位同事的吐槽，在修改我的代码后写上了一句提交信息。我想，做为技术人，修改这条 Commit 信息还是可以的，于是我通过本文介绍的技巧完成了修改。</description>
+      <description>最近由于一行单元测试代码没有写 Assert 断言，导致了项目在 CI 过程中没有通过，于是遭到了某位同事的吐槽，在修改我的代码后写上了一句提交信息。我想，做为技术人，修改这条 Commit 信息还是不难的，于是我通过本文介绍的技巧完成了修改。</description>
       
       
       
@@ -87,7 +87,7 @@
       <guid>https://studeyang.tech/2023/10.html</guid>
       <pubDate>Sat, 13 May 2023 01:00:00 GMT</pubDate>
       
-      <description>&lt;p&gt;这里总结了23种设计模式的结构图及定义，样例代码在 Github：&lt;a href=&quot;https://github.com/studeyang/design-pattern&quot;&gt;studeyang&amp;#x2F;design-pattern&lt;/a&gt;。&lt;/p&gt;</description>
+      <description>这里总结了23种设计模式的结构图及定义。</description>
       
       
       
@@ -108,7 +108,7 @@
       <guid>https://studeyang.tech/2023/9.html</guid>
       <pubDate>Tue, 18 Apr 2023 01:00:00 GMT</pubDate>
       
-      <description>&lt;p&gt;这里记录的是学习分享内容，文章维护在 Github：&lt;a href=&quot;https://github.com/studeyang/learning-share&quot;&gt;studeyang&amp;#x2F;leanrning-share&lt;/a&gt;。&lt;/p&gt;</description>
+      <description>优化查询语句的性能是 MySQL 数据库管理中的一个重要方面。在优化查询性能时，选择正确的索引对于减少查询的响应时间和提高系统性能至关重要。但是，如何确定 MySQL 的索引选择策略？MySQL 的优化器是如何选择索引的？</description>
       
       
       
@@ -129,7 +129,7 @@
       <guid>https://studeyang.tech/2023/8.html</guid>
       <pubDate>Sun, 16 Apr 2023 01:00:00 GMT</pubDate>
       
-      <description>&lt;p&gt;索引是 MySQL 数据库中优化查询性能的重要工具，通过对查询条件和表数据的索引，MySQL可以快速定位数据，提高查询效率。但是，在实际的数据库开发和维护中，我们经常会遇到一些情况，导致索引失效，从而使得查询变得非常缓慢，甚至无法使用索引来优化查询，这会严重影响系统的性能。那么，是什么原因导致了索引失效呢？&lt;/p&gt;</description>
+      <description>索引是 MySQL 数据库中优化查询性能的重要工具，通过对查询条件和表数据的索引，MySQL可以快速定位数据，提高查询效率。但是，在实际的数据库开发和维护中，我们经常会遇到一些情况，导致索引失效，从而使得查询变得非常缓慢，甚至无法使用索引来优化查询，这会严重影响系统的性能。那么，是什么原因导致了索引失效呢？</description>
       
       
       
@@ -150,9 +150,7 @@
       <guid>https://studeyang.tech/2023/7.html</guid>
       <pubDate>Sat, 25 Mar 2023 01:00:00 GMT</pubDate>
       
-      <description>&lt;blockquote&gt;
-&lt;p&gt;简介：传统的消息队列对业务方提出了更高的要求，我们期望提供的是一种以业务为重心的，面向服务的解决方案。&lt;/p&gt;
-&lt;/blockquote&gt;</description>
+      <description>传统的消息队列对业务方提出了更高的要求，我们期望提供的是一种以业务为重心的，面向服务的解决方案。</description>
       
       
       
@@ -173,7 +171,7 @@
       <guid>https://studeyang.tech/2023/6.html</guid>
       <pubDate>Sun, 19 Mar 2023 01:00:00 GMT</pubDate>
       
-      <description>&lt;p&gt;这里记录的是学习分享内容，文章维护在 Github：&lt;a href=&quot;https://github.com/studeyang/learning-share&quot;&gt;studeyang&amp;#x2F;leanrning-share&lt;/a&gt;。&lt;/p&gt;</description>
+      <description>随着微服务的兴起，你一定听说过领域驱动设计 DDD（domain-driven design），但是如果把它当成一个术语来看，似乎有点抽象。这到底是个什么玩意？</description>
       
       
       
@@ -194,7 +192,7 @@
       <guid>https://studeyang.tech/2023/5.html</guid>
       <pubDate>Sun, 05 Mar 2023 01:00:00 GMT</pubDate>
       
-      <description>&lt;p&gt;本文摘要：浅谈应用架构、业务架构、技术架构。&lt;/p&gt;</description>
+      <description>浅谈应用架构、业务架构、技术架构。</description>
       
       
       
@@ -215,7 +213,7 @@
       <guid>https://studeyang.tech/2023/4.html</guid>
       <pubDate>Sat, 18 Feb 2023 01:00:00 GMT</pubDate>
       
-      <description>&lt;p&gt;这里记录的是学习分享的内容，文章维护在 Github：&lt;a href=&quot;https://github.com/studeyang/learning-share&quot;&gt;studeyang&amp;#x2F;leanrning-share&lt;/a&gt;。&lt;/p&gt;</description>
+      <description>虽然我们在使用 String 类型后，占用了较多内存，但其实 Redis 是对 SDS 做了节省内存设计的。除此之外，Redis 在其他方面也都考虑了内存开销，今天我们就从源码层面来看看都做了哪些节省内存的设计。</description>
       
       
       
@@ -236,7 +234,7 @@
       <guid>https://studeyang.tech/2023/3.html</guid>
       <pubDate>Sun, 05 Feb 2023 01:00:00 GMT</pubDate>
       
-      <description>&lt;h2 id=&quot;开篇&quot;&gt;&lt;a href=&quot;#开篇&quot; class=&quot;headerlink&quot; title=&quot;开篇&quot;&gt;&lt;/a&gt;开篇&lt;/h2&gt;&lt;p&gt;之前的分享内容都是相对零散的知识点，不成体系。以后的每周分享，我会尽量将每篇文章串连起来，于是我决定做一个专栏，名字就叫《学习分享》。这是该系列的第一篇。&lt;/p&gt;</description>
+      <description>既然 String 类型这么占内存，那么你有好的方案来节省内存吗？</description>
       
       
       
@@ -257,7 +255,7 @@
       <guid>https://studeyang.tech/2023/1.html</guid>
       <pubDate>Sat, 07 Jan 2023 01:00:00 GMT</pubDate>
       
-      <description>&lt;p&gt;要回答这个问题，我们首先要搞清楚，为什么要做架构设计？不做行不行？&lt;/p&gt;</description>
+      <description>软件技术其实就是与“复杂度”作斗争的，架构的出现也不例外。简而言之，架构也是为了应对软件系统复杂度而提出的一个解决方案，通过回顾架构产生的历史背景和原因，我们可以基本推导出答案：架构设计的主要目的是为了解决软件系统复杂度带来的问题。</description>
       
       
       
@@ -278,7 +276,7 @@
       <guid>https://studeyang.tech/2023/2.html</guid>
       <pubDate>Sat, 07 Jan 2023 01:00:00 GMT</pubDate>
       
-      <description>&lt;h2 id=&quot;1、场景介绍&quot;&gt;&lt;a href=&quot;#1、场景介绍&quot; class=&quot;headerlink&quot; title=&quot;1、场景介绍&quot;&gt;&lt;/a&gt;1、场景介绍&lt;/h2&gt;&lt;p&gt;假设现在我们要开发一个图片存储系统，要求这个系统能够根据图片 ID 快速查找到图片存储对象 ID。图片 ID 和图片存储对象 ID 的样例数据如下：&lt;/p&gt;</description>
+      <description>Redis String类型存储了很多元数据信息，这些信息会提高该数据类型整体内存占用。</description>
       
       
       
