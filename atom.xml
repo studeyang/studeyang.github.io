@@ -6,7 +6,7 @@
   <link href="https://studeyang.tech/atom.xml" rel="self"/>
   
   <link href="https://studeyang.tech/"/>
-  <updated>2023-06-18T14:39:46.690Z</updated>
+  <updated>2023-07-05T14:21:14.517Z</updated>
   <id>https://studeyang.tech/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>谈代码粗放与精益</title>
+    <link href="https://studeyang.tech/2023/14.html"/>
+    <id>https://studeyang.tech/2023/14.html</id>
+    <published>2023-07-06T01:00:00.000Z</published>
+    <updated>2023-07-05T14:21:14.517Z</updated>
+    
+    
+    <summary type="html">几年前，我给团队负责的整个系统写过一些公共库，有一次同事发现这个库里存在一个 Bug，并告诉了我出错的现象。然后我便去修复这个 Bug，最终只修改了一行代码，但发现一上午就这么过去了。我认真地思考了这个问题，开始认识到我的编程方式和习惯在那几年已经慢慢发生了变化，形成了明显的两个阶段的转变。</summary>
+    
+    
+    
+    <category term="编程" scheme="https://studeyang.tech/categories/%E7%BC%96%E7%A8%8B/"/>
+    
+    
+    <category term="编程" scheme="https://studeyang.tech/tags/%E7%BC%96%E7%A8%8B/"/>
+    
+  </entry>
   
   <entry>
     <title>Git如何修改历史的Commit信息</title>
@@ -374,25 +393,6 @@
     
     
     <category term="Java脚手架" scheme="https://studeyang.tech/tags/Java%E8%84%9A%E6%89%8B%E6%9E%B6/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MySQL查询性能慢，该不该建索引？</title>
-    <link href="https://studeyang.tech/2022/10.html"/>
-    <id>https://studeyang.tech/2022/10.html</id>
-    <published>2022-11-13T01:00:00.000Z</published>
-    <updated>2023-06-04T14:39:41.806Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;日常工作中，有些同学一遇到查询性能问题，就盲目要求 DBA 给表字段创建索引。今天，我们就来具体看看这背后的细节。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="technotes" scheme="https://studeyang.tech/categories/technotes/"/>
-    
-    
-    <category term="MySQL" scheme="https://studeyang.tech/tags/MySQL/"/>
     
   </entry>
   
