@@ -6,7 +6,7 @@
   <link href="https://studeyang.tech/atom.xml" rel="self"/>
   
   <link href="https://studeyang.tech/"/>
-  <updated>2023-07-05T14:31:15.101Z</updated>
+  <updated>2023-07-12T01:13:21.538Z</updated>
   <id>https://studeyang.tech/</id>
   
   <author>
@@ -17,18 +17,56 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>今日算法01-数组中重复的数字</title>
+    <link href="https://studeyang.tech/2023/0712.html"/>
+    <id>https://studeyang.tech/2023/0712.html</id>
+    <published>2023-07-12T01:00:00.000Z</published>
+    <updated>2023-07-12T01:13:21.538Z</updated>
+    
+    
+    <summary type="html">在一个长度为 n 的数组 nums 里的所有数字都在 0～n-1 的范围内。数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次。请找出数组中任意一个重复的数字。</summary>
+    
+    
+    
+    <category term="今日算法" scheme="https://studeyang.tech/categories/%E4%BB%8A%E6%97%A5%E7%AE%97%E6%B3%95/"/>
+    
+    
+    <category term="LeetCode" scheme="https://studeyang.tech/tags/LeetCode/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MySQL如何清理数据并释放磁盘空间</title>
+    <link href="https://studeyang.tech/2023/15.html"/>
+    <id>https://studeyang.tech/2023/15.html</id>
+    <published>2023-07-11T01:00:00.000Z</published>
+    <updated>2023-07-12T01:13:21.533Z</updated>
+    
+    
+    <summary type="html">在我们的生产环境中有一张表：courier_consume_fail_message，是存放消息消费失败的数据的，设计之初，这张表的数据量评估在万级别以下，因此没有建立索引。但目前发现，该表的数据量已经达到百万级别，原因产生了大量的重试消费，这导致了该表的慢查询。</summary>
+    
+    
+    
+    <category term="technotes" scheme="https://studeyang.tech/categories/technotes/"/>
+    
+    
+    <category term="MySQL" scheme="https://studeyang.tech/tags/MySQL/"/>
+    
+  </entry>
+  
+  <entry>
     <title>谈代码的粗放与精益</title>
     <link href="https://studeyang.tech/2023/14.html"/>
     <id>https://studeyang.tech/2023/14.html</id>
     <published>2023-07-06T01:00:00.000Z</published>
-    <updated>2023-07-05T14:31:15.101Z</updated>
+    <updated>2023-07-10T07:15:27.834Z</updated>
     
     
     <summary type="html">几年前，我给团队负责的整个系统写过一些公共库，有一次同事发现这个库里存在一个 Bug，并告诉了我出错的现象。然后我便去修复这个 Bug，最终只修改了一行代码，但发现一上午就这么过去了。我认真地思考了这个问题，开始认识到我的编程方式和习惯在那几年已经慢慢发生了变化，形成了明显的两个阶段的转变。</summary>
     
     
     
-    <category term="编程" scheme="https://studeyang.tech/categories/%E7%BC%96%E7%A8%8B/"/>
+    <category term="technotes" scheme="https://studeyang.tech/categories/technotes/"/>
     
     
     <category term="编程" scheme="https://studeyang.tech/tags/%E7%BC%96%E7%A8%8B/"/>
@@ -40,7 +78,7 @@
     <link href="https://studeyang.tech/2023/13.html"/>
     <id>https://studeyang.tech/2023/13.html</id>
     <published>2023-06-19T01:00:00.000Z</published>
-    <updated>2023-06-18T14:39:46.690Z</updated>
+    <updated>2023-07-10T07:01:59.451Z</updated>
     
     
     <summary type="html">最近由于一行单元测试代码没有写 Assert 断言，导致了项目在 CI 过程中没有通过，于是遭到了某位同事的吐槽，在修改我的代码后写上了一句提交信息。我想，做为技术人，修改这条 Commit 信息还是不难的，于是我通过本文介绍的技巧完成了修改。</summary>
@@ -59,7 +97,7 @@
     <link href="https://studeyang.tech/2023/12.html"/>
     <id>https://studeyang.tech/2023/12.html</id>
     <published>2023-06-14T01:00:00.000Z</published>
-    <updated>2023-06-17T15:25:37.989Z</updated>
+    <updated>2023-07-10T07:01:59.446Z</updated>
     
     
     <summary type="html">CORS 的全称是 Cross-origin resource sharing，中文名称是跨域资源共享，是一种让受限资源能够被其他域名的页面访问的一种机制。</summary>
@@ -78,7 +116,7 @@
     <link href="https://studeyang.tech/2023/11.html"/>
     <id>https://studeyang.tech/2023/11.html</id>
     <published>2023-06-08T01:00:00.000Z</published>
-    <updated>2023-06-17T14:41:20.549Z</updated>
+    <updated>2023-06-17T01:26:43.991Z</updated>
     
     
     <summary type="html">我们作为架构师，如果看不清技术的生命周期，那么所设计的架构就没法儿向更有生命力的新技术借力，自己的职业生涯也会受限。</summary>
@@ -97,7 +135,7 @@
     <link href="https://studeyang.tech/2023/10.html"/>
     <id>https://studeyang.tech/2023/10.html</id>
     <published>2023-05-13T01:00:00.000Z</published>
-    <updated>2023-06-17T14:41:20.548Z</updated>
+    <updated>2023-06-17T01:16:34.536Z</updated>
     
     
     <summary type="html">这里总结了23种设计模式的结构图及定义。</summary>
@@ -116,7 +154,7 @@
     <link href="https://studeyang.tech/2023/9.html"/>
     <id>https://studeyang.tech/2023/9.html</id>
     <published>2023-04-18T01:00:00.000Z</published>
-    <updated>2023-06-17T14:41:20.548Z</updated>
+    <updated>2023-06-17T01:17:30.682Z</updated>
     
     
     <summary type="html">优化查询语句的性能是 MySQL 数据库管理中的一个重要方面。在优化查询性能时，选择正确的索引对于减少查询的响应时间和提高系统性能至关重要。但是，如何确定 MySQL 的索引选择策略？MySQL 的优化器是如何选择索引的？</summary>
@@ -135,7 +173,7 @@
     <link href="https://studeyang.tech/2023/8.html"/>
     <id>https://studeyang.tech/2023/8.html</id>
     <published>2023-04-16T01:00:00.000Z</published>
-    <updated>2023-06-17T14:41:20.547Z</updated>
+    <updated>2023-06-17T01:18:04.762Z</updated>
     
     
     <summary type="html">索引是 MySQL 数据库中优化查询性能的重要工具，通过对查询条件和表数据的索引，MySQL可以快速定位数据，提高查询效率。但是，在实际的数据库开发和维护中，我们经常会遇到一些情况，导致索引失效，从而使得查询变得非常缓慢，甚至无法使用索引来优化查询，这会严重影响系统的性能。那么，是什么原因导致了索引失效呢？</summary>
@@ -154,7 +192,7 @@
     <link href="https://studeyang.tech/2023/7.html"/>
     <id>https://studeyang.tech/2023/7.html</id>
     <published>2023-03-25T01:00:00.000Z</published>
-    <updated>2023-06-17T14:41:20.547Z</updated>
+    <updated>2023-06-17T01:18:47.651Z</updated>
     
     
     <summary type="html">传统的消息队列对业务方提出了更高的要求，我们期望提供的是一种以业务为重心的，面向服务的解决方案。</summary>
@@ -173,7 +211,7 @@
     <link href="https://studeyang.tech/2023/6.html"/>
     <id>https://studeyang.tech/2023/6.html</id>
     <published>2023-03-19T01:00:00.000Z</published>
-    <updated>2023-06-17T14:41:20.547Z</updated>
+    <updated>2023-06-17T01:19:49.522Z</updated>
     
     
     <summary type="html">随着微服务的兴起，你一定听说过领域驱动设计 DDD（domain-driven design），但是如果把它当成一个术语来看，似乎有点抽象。这到底是个什么玩意？</summary>
@@ -192,7 +230,7 @@
     <link href="https://studeyang.tech/2023/5.html"/>
     <id>https://studeyang.tech/2023/5.html</id>
     <published>2023-03-05T01:00:00.000Z</published>
-    <updated>2023-06-17T14:41:20.546Z</updated>
+    <updated>2023-06-17T01:20:23.757Z</updated>
     
     
     <summary type="html">浅谈应用架构、业务架构、技术架构。</summary>
@@ -211,7 +249,7 @@
     <link href="https://studeyang.tech/2023/4.html"/>
     <id>https://studeyang.tech/2023/4.html</id>
     <published>2023-02-18T01:00:00.000Z</published>
-    <updated>2023-06-17T14:41:20.546Z</updated>
+    <updated>2023-06-17T01:21:25.308Z</updated>
     
     
     <summary type="html">虽然我们在使用 String 类型后，占用了较多内存，但其实 Redis 是对 SDS 做了节省内存设计的。除此之外，Redis 在其他方面也都考虑了内存开销，今天我们就从源码层面来看看都做了哪些节省内存的设计。</summary>
@@ -230,7 +268,7 @@
     <link href="https://studeyang.tech/2023/3.html"/>
     <id>https://studeyang.tech/2023/3.html</id>
     <published>2023-02-05T01:00:00.000Z</published>
-    <updated>2023-06-17T14:41:20.545Z</updated>
+    <updated>2023-06-17T01:22:30.042Z</updated>
     
     
     <summary type="html">既然 String 类型这么占内存，那么你有好的方案来节省内存吗？</summary>
@@ -249,7 +287,7 @@
     <link href="https://studeyang.tech/2023/1.html"/>
     <id>https://studeyang.tech/2023/1.html</id>
     <published>2023-01-07T01:00:00.000Z</published>
-    <updated>2023-06-17T14:41:20.544Z</updated>
+    <updated>2023-06-17T01:25:31.363Z</updated>
     
     
     <summary type="html">软件技术其实就是与“复杂度”作斗争的，架构的出现也不例外。简而言之，架构也是为了应对软件系统复杂度而提出的一个解决方案，通过回顾架构产生的历史背景和原因，我们可以基本推导出答案：架构设计的主要目的是为了解决软件系统复杂度带来的问题。</summary>
@@ -268,7 +306,7 @@
     <link href="https://studeyang.tech/2023/2.html"/>
     <id>https://studeyang.tech/2023/2.html</id>
     <published>2023-01-07T01:00:00.000Z</published>
-    <updated>2023-06-17T14:41:20.544Z</updated>
+    <updated>2023-06-17T01:25:03.439Z</updated>
     
     
     <summary type="html">Redis String类型存储了很多元数据信息，这些信息会提高该数据类型整体内存占用。</summary>
@@ -287,7 +325,7 @@
     <link href="https://studeyang.tech/2022/14.html"/>
     <id>https://studeyang.tech/2022/14.html</id>
     <published>2022-12-20T01:00:00.000Z</published>
-    <updated>2023-06-04T14:39:41.785Z</updated>
+    <updated>2023-06-07T09:42:05.804Z</updated>
     
     
     <summary type="html">&lt;p&gt;本文来自我的 technotes [1] Redis篇。&lt;/p&gt;</summary>
@@ -306,7 +344,7 @@
     <link href="https://studeyang.tech/2022/15.html"/>
     <id>https://studeyang.tech/2022/15.html</id>
     <published>2022-12-20T01:00:00.000Z</published>
-    <updated>2023-06-04T14:39:41.780Z</updated>
+    <updated>2023-06-07T09:42:05.806Z</updated>
     
     
     <summary type="html">&lt;p&gt;在 Github 项目&lt;code&gt;mongo-java-driver&lt;/code&gt;有一个类&lt;code&gt;ObjectId.java&lt;/code&gt;，它的作用是生成唯一 id 的，它的核心实现是下面这样一段代码 [1]：&lt;/p&gt;</summary>
@@ -325,7 +363,7 @@
     <link href="https://studeyang.tech/2022/16.html"/>
     <id>https://studeyang.tech/2022/16.html</id>
     <published>2022-12-20T01:00:00.000Z</published>
-    <updated>2023-06-04T14:39:41.797Z</updated>
+    <updated>2023-06-07T09:42:05.808Z</updated>
     
     
     <summary type="html">&lt;h2 id=&quot;1、删除指定commit&quot;&gt;&lt;a href=&quot;#1、删除指定commit&quot; class=&quot;headerlink&quot; title=&quot;1、删除指定commit&quot;&gt;&lt;/a&gt;1、删除指定commit&lt;/h2&gt;&lt;p&gt;假如某个项目当中有 3 条提交。&lt;/p&gt;</summary>
@@ -344,7 +382,7 @@
     <link href="https://studeyang.tech/2022/12.html"/>
     <id>https://studeyang.tech/2022/12.html</id>
     <published>2022-12-06T01:00:00.000Z</published>
-    <updated>2023-06-04T14:39:41.834Z</updated>
+    <updated>2023-06-07T09:42:05.799Z</updated>
     
     
     <summary type="html">&lt;p&gt;你好，今天我想和你分享一下XXL-JOB的核心实现。如果你是XXL-JOB的用户，那么你肯定思考过它的实现原理；如果你还未接触过这个产品，那么可以通过本文了解一下。&lt;/p&gt;</summary>
@@ -355,44 +393,6 @@
     
     
     <category term="XXL-JOB" scheme="https://studeyang.tech/tags/XXL-JOB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Redis高可用全景一览</title>
-    <link href="https://studeyang.tech/2022/13.html"/>
-    <id>https://studeyang.tech/2022/13.html</id>
-    <published>2022-12-06T01:00:00.000Z</published>
-    <updated>2023-06-04T14:39:41.837Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;对于一项技术的学习，我们要对这项技术有一个全局观，下面是一张 Redis 全景图，画得非常全面。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="technotes" scheme="https://studeyang.tech/categories/technotes/"/>
-    
-    
-    <category term="Redis" scheme="https://studeyang.tech/tags/Redis/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>spring initializr脚手架搭建详解</title>
-    <link href="https://studeyang.tech/2022/11.html"/>
-    <id>https://studeyang.tech/2022/11.html</id>
-    <published>2022-11-22T01:00:00.000Z</published>
-    <updated>2023-06-04T14:39:41.845Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;前段时间，我在&lt;a href=&quot;https://mp.weixin.qq.com/s?__biz=MzkwMTI4NTI1NA==&amp;mid=2247483902&amp;idx=1&amp;sn=2e117fec67cdfb9064369835c0af41d8&amp;chksm=c0b65517f7c1dc01be4080f4fd0f86cd534cf8d59244af34b5aed3340c653e5d697154e4742b&amp;token=1554827504&amp;lang=zh_CN#rd&quot;&gt;「基于start.spring.io，我实现了Java脚手架定制」&lt;/a&gt;一文中讲述了敝司的微服务脚手架落地过程中的前世今生，并提到了基于 spring initializr 的搭建了 2.0 版本的脚手架。今天我打算和你分享一下这其中的实现过程与细节，项目已经开源在 Github 上。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="technotes" scheme="https://studeyang.tech/categories/technotes/"/>
-    
-    
-    <category term="Java脚手架" scheme="https://studeyang.tech/tags/Java%E8%84%9A%E6%89%8B%E6%9E%B6/"/>
     
   </entry>
   

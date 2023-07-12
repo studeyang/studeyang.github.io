@@ -15,8 +15,50 @@
     <atom:link href="https://studeyang.tech/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>愿你出走半生，归来仍是少年</description>
-    <pubDate>Wed, 05 Jul 2023 14:31:15 GMT</pubDate>
+    <pubDate>Wed, 12 Jul 2023 01:13:21 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>今日算法01-数组中重复的数字</title>
+      <link>https://studeyang.tech/2023/0712.html</link>
+      <guid>https://studeyang.tech/2023/0712.html</guid>
+      <pubDate>Wed, 12 Jul 2023 01:00:00 GMT</pubDate>
+      
+      <description>在一个长度为 n 的数组 nums 里的所有数字都在 0～n-1 的范围内。数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次。请找出数组中任意一个重复的数字。</description>
+      
+      
+      
+      
+      <category domain="https://studeyang.tech/categories/%E4%BB%8A%E6%97%A5%E7%AE%97%E6%B3%95/">今日算法</category>
+      
+      
+      <category domain="https://studeyang.tech/tags/LeetCode/">LeetCode</category>
+      
+      
+      <comments>https://studeyang.tech/2023/0712.html#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>MySQL如何清理数据并释放磁盘空间</title>
+      <link>https://studeyang.tech/2023/15.html</link>
+      <guid>https://studeyang.tech/2023/15.html</guid>
+      <pubDate>Tue, 11 Jul 2023 01:00:00 GMT</pubDate>
+      
+      <description>在我们的生产环境中有一张表：courier_consume_fail_message，是存放消息消费失败的数据的，设计之初，这张表的数据量评估在万级别以下，因此没有建立索引。但目前发现，该表的数据量已经达到百万级别，原因产生了大量的重试消费，这导致了该表的慢查询。</description>
+      
+      
+      
+      
+      <category domain="https://studeyang.tech/categories/technotes/">technotes</category>
+      
+      
+      <category domain="https://studeyang.tech/tags/MySQL/">MySQL</category>
+      
+      
+      <comments>https://studeyang.tech/2023/15.html#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>谈代码的粗放与精益</title>
@@ -29,7 +71,7 @@
       
       
       
-      <category domain="https://studeyang.tech/categories/%E7%BC%96%E7%A8%8B/">编程</category>
+      <category domain="https://studeyang.tech/categories/technotes/">technotes</category>
       
       
       <category domain="https://studeyang.tech/tags/%E7%BC%96%E7%A8%8B/">编程</category>
@@ -393,48 +435,6 @@
       
       
       <comments>https://studeyang.tech/2022/12.html#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>Redis高可用全景一览</title>
-      <link>https://studeyang.tech/2022/13.html</link>
-      <guid>https://studeyang.tech/2022/13.html</guid>
-      <pubDate>Tue, 06 Dec 2022 01:00:00 GMT</pubDate>
-      
-      <description>&lt;p&gt;对于一项技术的学习，我们要对这项技术有一个全局观，下面是一张 Redis 全景图，画得非常全面。&lt;/p&gt;</description>
-      
-      
-      
-      
-      <category domain="https://studeyang.tech/categories/technotes/">technotes</category>
-      
-      
-      <category domain="https://studeyang.tech/tags/Redis/">Redis</category>
-      
-      
-      <comments>https://studeyang.tech/2022/13.html#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>spring initializr脚手架搭建详解</title>
-      <link>https://studeyang.tech/2022/11.html</link>
-      <guid>https://studeyang.tech/2022/11.html</guid>
-      <pubDate>Tue, 22 Nov 2022 01:00:00 GMT</pubDate>
-      
-      <description>&lt;p&gt;前段时间，我在&lt;a href=&quot;https://mp.weixin.qq.com/s?__biz=MzkwMTI4NTI1NA==&amp;mid=2247483902&amp;idx=1&amp;sn=2e117fec67cdfb9064369835c0af41d8&amp;chksm=c0b65517f7c1dc01be4080f4fd0f86cd534cf8d59244af34b5aed3340c653e5d697154e4742b&amp;token=1554827504&amp;lang=zh_CN#rd&quot;&gt;「基于start.spring.io，我实现了Java脚手架定制」&lt;/a&gt;一文中讲述了敝司的微服务脚手架落地过程中的前世今生，并提到了基于 spring initializr 的搭建了 2.0 版本的脚手架。今天我打算和你分享一下这其中的实现过程与细节，项目已经开源在 Github 上。&lt;/p&gt;</description>
-      
-      
-      
-      
-      <category domain="https://studeyang.tech/categories/technotes/">technotes</category>
-      
-      
-      <category domain="https://studeyang.tech/tags/Java%E8%84%9A%E6%89%8B%E6%9E%B6/">Java脚手架</category>
-      
-      
-      <comments>https://studeyang.tech/2022/11.html#disqus_thread</comments>
       
     </item>
     
