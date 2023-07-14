@@ -15,8 +15,50 @@
     <atom:link href="https://studeyang.tech/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>愿你出走半生，归来仍是少年</description>
-    <pubDate>Wed, 12 Jul 2023 15:04:00 GMT</pubDate>
+    <pubDate>Fri, 14 Jul 2023 01:47:11 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>今日算法03-替换空格</title>
+      <link>https://studeyang.tech/2023/0717.html</link>
+      <guid>https://studeyang.tech/2023/0717.html</guid>
+      <pubDate>Mon, 17 Jul 2023 01:00:00 GMT</pubDate>
+      
+      <description>将一个字符串中的空格替换成 &quot;%20&quot;。</description>
+      
+      
+      
+      
+      <category domain="https://studeyang.tech/categories/%E4%BB%8A%E6%97%A5%E7%AE%97%E6%B3%95/">今日算法</category>
+      
+      
+      <category domain="https://studeyang.tech/tags/LeetCode/">LeetCode</category>
+      
+      
+      <comments>https://studeyang.tech/2023/0717.html#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>今日算法02-二维数组中的查找</title>
+      <link>https://studeyang.tech/2023/0714.html</link>
+      <guid>https://studeyang.tech/2023/0714.html</guid>
+      <pubDate>Fri, 14 Jul 2023 01:00:00 GMT</pubDate>
+      
+      <description>在一个 n * m 的二维数组中，每一行都按照从左到右递增排序，每一列也按照从上到下递增排序。给定一个数，判断这个数是否在该二维数组中。</description>
+      
+      
+      
+      
+      <category domain="https://studeyang.tech/categories/%E4%BB%8A%E6%97%A5%E7%AE%97%E6%B3%95/">今日算法</category>
+      
+      
+      <category domain="https://studeyang.tech/tags/LeetCode/">LeetCode</category>
+      
+      
+      <comments>https://studeyang.tech/2023/0714.html#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>今日算法01-数组中重复的数字</title>
@@ -393,48 +435,6 @@
       
       
       <comments>https://studeyang.tech/2022/15.html#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>Git如何删除指定commit?如何修改历史提交人信息?</title>
-      <link>https://studeyang.tech/2022/16.html</link>
-      <guid>https://studeyang.tech/2022/16.html</guid>
-      <pubDate>Tue, 20 Dec 2022 01:00:00 GMT</pubDate>
-      
-      <description>&lt;h2 id=&quot;1、删除指定commit&quot;&gt;&lt;a href=&quot;#1、删除指定commit&quot; class=&quot;headerlink&quot; title=&quot;1、删除指定commit&quot;&gt;&lt;/a&gt;1、删除指定commit&lt;/h2&gt;&lt;p&gt;假如某个项目当中有 3 条提交。&lt;/p&gt;</description>
-      
-      
-      
-      
-      <category domain="https://studeyang.tech/categories/technotes/">technotes</category>
-      
-      
-      <category domain="https://studeyang.tech/tags/Git/">Git</category>
-      
-      
-      <comments>https://studeyang.tech/2022/16.html#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>XXL-JOB核心源码导读及时间轮原理剖析</title>
-      <link>https://studeyang.tech/2022/12.html</link>
-      <guid>https://studeyang.tech/2022/12.html</guid>
-      <pubDate>Tue, 06 Dec 2022 01:00:00 GMT</pubDate>
-      
-      <description>&lt;p&gt;你好，今天我想和你分享一下XXL-JOB的核心实现。如果你是XXL-JOB的用户，那么你肯定思考过它的实现原理；如果你还未接触过这个产品，那么可以通过本文了解一下。&lt;/p&gt;</description>
-      
-      
-      
-      
-      <category domain="https://studeyang.tech/categories/technotes/">technotes</category>
-      
-      
-      <category domain="https://studeyang.tech/tags/XXL-JOB/">XXL-JOB</category>
-      
-      
-      <comments>https://studeyang.tech/2022/12.html#disqus_thread</comments>
       
     </item>
     
