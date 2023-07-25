@@ -15,8 +15,71 @@
     <atom:link href="https://studeyang.tech/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>愿你出走半生，归来仍是少年</description>
-    <pubDate>Tue, 18 Jul 2023 15:31:34 GMT</pubDate>
+    <pubDate>Tue, 25 Jul 2023 03:21:01 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>今日算法09-青蛙跳台阶问题</title>
+      <link>https://studeyang.tech/2023/0725.html</link>
+      <guid>https://studeyang.tech/2023/0725.html</guid>
+      <pubDate>Tue, 25 Jul 2023 01:00:00 GMT</pubDate>
+      
+      <description>一只青蛙一次可以跳上1级台阶，也可以跳上2级台阶。求该青蛙跳上一个 n 级的台阶总共有多少种跳法。</description>
+      
+      
+      
+      
+      <category domain="https://studeyang.tech/categories/%E4%BB%8A%E6%97%A5%E7%AE%97%E6%B3%95/">今日算法</category>
+      
+      
+      <category domain="https://studeyang.tech/tags/LeetCode/">LeetCode</category>
+      
+      
+      <comments>https://studeyang.tech/2023/0725.html#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>今日算法08-矩形覆盖</title>
+      <link>https://studeyang.tech/2023/0724.html</link>
+      <guid>https://studeyang.tech/2023/0724.html</guid>
+      <pubDate>Mon, 24 Jul 2023 01:00:00 GMT</pubDate>
+      
+      <description>我们可以用 2*1 的小矩形横着或者竖着去覆盖更大的矩形。请问用 n 个 2*1 的小矩形无重叠地覆盖一个 2*n 的大矩形，总共有多少种方法？</description>
+      
+      
+      
+      
+      <category domain="https://studeyang.tech/categories/%E4%BB%8A%E6%97%A5%E7%AE%97%E6%B3%95/">今日算法</category>
+      
+      
+      <category domain="https://studeyang.tech/tags/LeetCode/">LeetCode</category>
+      
+      
+      <comments>https://studeyang.tech/2023/0724.html#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>今日算法07-斐波那契数列</title>
+      <link>https://studeyang.tech/2023/0721.html</link>
+      <guid>https://studeyang.tech/2023/0721.html</guid>
+      <pubDate>Fri, 21 Jul 2023 01:00:00 GMT</pubDate>
+      
+      <description>写一个函数，输入 n ，求斐波那契（Fibonacci）数列的第 n 项（即 F(N)）。</description>
+      
+      
+      
+      
+      <category domain="https://studeyang.tech/categories/%E4%BB%8A%E6%97%A5%E7%AE%97%E6%B3%95/">今日算法</category>
+      
+      
+      <category domain="https://studeyang.tech/tags/LeetCode/">LeetCode</category>
+      
+      
+      <comments>https://studeyang.tech/2023/0721.html#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>今日算法06-用两个栈实现队列</title>
@@ -372,69 +435,6 @@
       
       
       <comments>https://studeyang.tech/2023/5.html#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>学习分享（第 2 期）：从源码层面看 Redis 节省内存的设计</title>
-      <link>https://studeyang.tech/2023/4.html</link>
-      <guid>https://studeyang.tech/2023/4.html</guid>
-      <pubDate>Sat, 18 Feb 2023 01:00:00 GMT</pubDate>
-      
-      <description>虽然我们在使用 String 类型后，占用了较多内存，但其实 Redis 是对 SDS 做了节省内存设计的。除此之外，Redis 在其他方面也都考虑了内存开销，今天我们就从源码层面来看看都做了哪些节省内存的设计。</description>
-      
-      
-      
-      
-      <category domain="https://studeyang.tech/categories/technotes/">technotes</category>
-      
-      
-      <category domain="https://studeyang.tech/tags/Redis/">Redis</category>
-      
-      
-      <comments>https://studeyang.tech/2023/4.html#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>学习分享（第 1 期）之 Redis：巧用 Hash 类型节省内存</title>
-      <link>https://studeyang.tech/2023/3.html</link>
-      <guid>https://studeyang.tech/2023/3.html</guid>
-      <pubDate>Sun, 05 Feb 2023 01:00:00 GMT</pubDate>
-      
-      <description>既然 String 类型这么占内存，那么你有好的方案来节省内存吗？</description>
-      
-      
-      
-      
-      <category domain="https://studeyang.tech/categories/technotes/">technotes</category>
-      
-      
-      <category domain="https://studeyang.tech/tags/Redis/">Redis</category>
-      
-      
-      <comments>https://studeyang.tech/2023/3.html#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>架构师应具备什么能力？</title>
-      <link>https://studeyang.tech/2023/1.html</link>
-      <guid>https://studeyang.tech/2023/1.html</guid>
-      <pubDate>Sat, 07 Jan 2023 01:00:00 GMT</pubDate>
-      
-      <description>软件技术其实就是与“复杂度”作斗争的，架构的出现也不例外。简而言之，架构也是为了应对软件系统复杂度而提出的一个解决方案，通过回顾架构产生的历史背景和原因，我们可以基本推导出答案：架构设计的主要目的是为了解决软件系统复杂度带来的问题。</description>
-      
-      
-      
-      
-      <category domain="https://studeyang.tech/categories/technotes/">technotes</category>
-      
-      
-      <category domain="https://studeyang.tech/tags/%E6%9E%B6%E6%9E%84/">架构</category>
-      
-      
-      <comments>https://studeyang.tech/2023/1.html#disqus_thread</comments>
       
     </item>
     
