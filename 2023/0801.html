@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>今日算法11-旋转数组的最小数字 - 吾途 - Studeyang.tech</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="吾途 - Studeyang.tech"><meta name="msapplication-TileImage" content="https://technotes.oss-cn-shenzhen.aliyuncs.com/2023/202306152245106.gif"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="吾途 - Studeyang.tech"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="给你一个可能存在重复元素值的数组 numbers ，它原来是一个升序排列的数组，并按上述情形进行了一次旋转。请返回旋转数组的最小元素。例如，数组 [3,4,5,1,2] 为 [1,2,3,4,5] 的一次旋转，该数组的最小值为 1。"><meta property="og:type" content="blog"><meta property="og:title" content="今日算法11-旋转数组的最小数字"><meta property="og:url" content="https://studeyang.tech/2023/0801.html"><meta property="og:site_name" content="吾途 - Studeyang.tech"><meta property="og:description" content="给你一个可能存在重复元素值的数组 numbers ，它原来是一个升序排列的数组，并按上述情形进行了一次旋转。请返回旋转数组的最小元素。例如，数组 [3,4,5,1,2] 为 [1,2,3,4,5] 的一次旋转，该数组的最小值为 1。"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://technotes.oss-cn-shenzhen.aliyuncs.com/2023/202307302209840.png"><meta property="article:published_time" content="2023-08-01T01:00:00.000Z"><meta property="article:modified_time" content="2023-07-30T14:35:03.996Z"><meta property="article:author" content="Studeyang"><meta property="article:tag" content="LeetCode"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://technotes.oss-cn-shenzhen.aliyuncs.com/2023/202307302209840.png"><meta property="twitter:creator" content="@studeyang"><meta property="twitter:site" content="studeyang"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://studeyang.tech/2023/0801.html"},"headline":"今日算法11-旋转数组的最小数字","image":["https://technotes.oss-cn-shenzhen.aliyuncs.com/2023/202307302209840.png"],"datePublished":"2023-08-01T01:00:00.000Z","dateModified":"2023-07-30T14:35:03.996Z","author":{"@type":"Person","name":"Studeyang"},"publisher":{"@type":"Organization","name":"吾途 - Studeyang.tech","logo":{"@type":"ImageObject","url":"https://technotes.oss-cn-shenzhen.aliyuncs.com/2023/202306152245106.gif"}},"description":"给你一个可能存在重复元素值的数组 numbers ，它原来是一个升序排列的数组，并按上述情形进行了一次旋转。请返回旋转数组的最小元素。例如，数组 [3,4,5,1,2] 为 [1,2,3,4,5] 的一次旋转，该数组的最小值为 1。"}</script><link rel="canonical" href="https://studeyang.tech/2023/0801.html"><link rel="alternate" href="/rss2.xml" title="吾途 - Studeyang.tech" type="application/atom+xml"><link rel="icon" href="https://technotes.oss-cn-shenzhen.aliyuncs.com/2023/202306152245106.gif"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><script>var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?63dd71367176b52c6d8aa50635993633";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();</script><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><script src="https://www.googletagmanager.com/gtag/js?id=G-S5KBWPGHG0" async></script><script>window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+    
+        gtag('config', 'G-S5KBWPGHG0');</script><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="https://technotes.oss-cn-shenzhen.aliyuncs.com/2023/202306152245106.gif" alt="吾途 - Studeyang.tech" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/technotes">学习笔记</a><a class="navbar-item" href="/about">关于我</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/studeyang/learning-share"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><div class="card-image"><span class="image is-7by3"><img class="fill" src="https://technotes.oss-cn-shenzhen.aliyuncs.com/2023/202307302209840.png" alt="今日算法11-旋转数组的最小数字"></span></div><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2023-08-01T01:00:00.000Z" title="8/1/2023, 9:00:00 AM">2023-08-01</time>发表</span><span class="level-item"><time dateTime="2023-07-30T14:35:03.996Z" title="7/30/2023, 10:35:03 PM">2023-07-30</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E4%BB%8A%E6%97%A5%E7%AE%97%E6%B3%95/">今日算法</a></span><span class="level-item">5 分钟读完 (大约698个字)</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>次访问</span></div></div><h1 class="title is-3 is-size-4-mobile">今日算法11-旋转数组的最小数字</h1><div class="content"><h2 id="一、题目描述"><a href="#一、题目描述" class="headerlink" title="一、题目描述"></a>一、题目描述</h2><blockquote>
+<p>题目链接：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/xuan-zhuan-shu-zu-de-zui-xiao-shu-zi-lcof">https://leetcode.cn/problems/xuan-zhuan-shu-zu-de-zui-xiao-shu-zi-lcof</a></p>
+<p>难易程度：简单</p>
+</blockquote>
+<p>把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。</p>
+<p>给你一个可能存在 重复 元素值的数组 numbers ，它原来是一个升序排列的数组，并按上述情形进行了一次旋转。请返回旋转数组的最小元素。例如，数组 [3,4,5,1,2] 为 [1,2,3,4,5] 的一次旋转，该数组的最小值为 1。</p>
+<p>注意，数组 [a[0], a[1], a[2], …, a[n-1]] 旋转一次 的结果为数组 [a[n-1], a[0], a[1], a[2], …, a[n-2]] 。</p>
+<div align="center"> <img src="https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/0038204c-4b8a-42a5-921d-080f6674f989.png" width="210px"> </div>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">示例1：</span><br><span class="line">输入：numbers = [3,4,5,1,2]</span><br><span class="line">输出：1</span><br><span class="line"></span><br><span class="line">示例2：</span><br><span class="line">输入：numbers = [2,2,2,0,1]</span><br><span class="line">输出：0</span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+<h2 id="二、解题思路"><a href="#二、解题思路" class="headerlink" title="二、解题思路"></a>二、解题思路</h2><h3 id="二分法"><a href="#二分法" class="headerlink" title="二分法"></a>二分法</h3><p>如下图所示，寻找旋转数组的最小元素即为寻找 <strong>右排序数组</strong> 的首个元素 numbers[x] ，称 x 为 <strong>旋转点</strong> 。</p>
+<p><img src="https://technotes.oss-cn-shenzhen.aliyuncs.com/2023/202307302216054.png"></p>
+<p>排序数组的查找问题首先考虑使用 <strong>二分法</strong> 解决，其可将 <strong>遍历法</strong> 的 <strong>线性级别</strong> 时间复杂度降低至 <strong>对数级别</strong> 。</p>
+<p>1、声明 i, j 双指针分别指向 numbers 数组左右两端，设 m&#x3D;(i+j)&#x2F;2 为每次二分的中点；</p>
+<p><img src="https://technotes.oss-cn-shenzhen.aliyuncs.com/2023/image-20230405204830938.png"></p>
+<p>2、当 numbers[m] &gt; numbers[j]，执行 i &#x3D; m + 1，同时更新 m 的位置；</p>
+<p><img src="https://technotes.oss-cn-shenzhen.aliyuncs.com/2023/image-20230405205034652.png"></p>
+<p>3、当 numbers[m] &lt; numbers[j]，执行 j &#x3D; m，同时更新 m 的位置；</p>
+<p><img src="https://technotes.oss-cn-shenzhen.aliyuncs.com/2023/image-20230405205042435.png"></p>
+<p>4、当 i &#x3D;&#x3D; j，跳出循环返回 numbers[i]；</p>
+<p><img src="https://technotes.oss-cn-shenzhen.aliyuncs.com/2023/image-20230405205057883.png"></p>
+<h5 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h5><p>时间复杂度 O(log<sub>2</sub> N) ： 在特例情况下（例如 [1,1,1,1]），会退化到 O(N)。</p>
+<p>空间复杂度 O(1) ： i , j , m 变量使用常数大小的额外空间。</p>
+<h2 id="三、代码实现"><a href="#三、代码实现" class="headerlink" title="三、代码实现"></a>三、代码实现</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">minNumberInRotateArray</span><span class="params">(<span class="type">int</span> [] array)</span> &#123;</span><br><span class="line">        <span class="comment">// 特殊情况判断</span></span><br><span class="line">        <span class="keyword">if</span> (array.length == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 左右指针i j</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>, j = array.length - <span class="number">1</span>;</span><br><span class="line">        <span class="comment">// 循环</span></span><br><span class="line">        <span class="keyword">while</span> (i &lt; j) &#123;</span><br><span class="line">            <span class="comment">// 找到数组的中点 m</span></span><br><span class="line">            <span class="type">int</span> <span class="variable">m</span> <span class="operator">=</span> (i + j) / <span class="number">2</span>;</span><br><span class="line">            <span class="comment">// m在左排序数组中，旋转点在 [m+1, j] 中</span></span><br><span class="line">            <span class="keyword">if</span> (array[m] &gt; array[j]) i = m + <span class="number">1</span>;</span><br><span class="line">            <span class="comment">// m 在右排序数组中，旋转点在 [i, m]中</span></span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (array[m] &lt; array[j]) j = m;</span><br><span class="line">            <span class="comment">// 缩小范围继续判断</span></span><br><span class="line">            <span class="keyword">else</span> j--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 返回旋转点</span></span><br><span class="line">        <span class="keyword">return</span> array[i];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://technotes.oss-cn-shenzhen.aliyuncs.com/2023/202303052135542.gif"></p>
+<h2 id="推荐阅读"><a href="#推荐阅读" class="headerlink" title="推荐阅读"></a>推荐阅读</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzkwMTI4NTI1NA==&mid=2247484870&idx=1&sn=20716d8de856026401301c8fcba56756&chksm=c0b6512ff7c1d839b78aa3f1e851a05afa8fe95e5f8f33d3015ac218722d1c6e3e0c6009858a&scene=178&cur_album_id=3011486700382224386#rd">今日算法02-二维数组中的查找</a></li>
+</ul>
+<h2 id="封面"><a href="#封面" class="headerlink" title="封面"></a>封面</h2><p><img src="https://technotes.oss-cn-shenzhen.aliyuncs.com/2023/202307302209840.png"></p>
+<blockquote>
+<p>今日算法系列，题解更新地址：<a href="https://studeyang.tech/2023/0801.html">https://studeyang.tech/2023/0801.html</a></p>
+</blockquote>
+</div><div class="article-licensing box"><div class="licensing-title"><p>今日算法11-旋转数组的最小数字</p><p><a href="https://studeyang.tech/2023/0801.html">https://studeyang.tech/2023/0801.html</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>Studeyang</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2023-08-01</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2023-07-30</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/LeetCode/">LeetCode</a></div><div class="sharethis-inline-share-buttons"></div><script src="https://platform-api.sharethis.com/js/sharethis.js#property=6469b4acd8c6d2001a06c2d2&amp;product=inline-share-buttons&amp;source=platform" defer></script></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3><div class="buttons is-centered"><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>支付宝</span><span class="qrcode"><img src="https://technotes.oss-cn-shenzhen.aliyuncs.com/2023/202305211413297.png" alt="支付宝"></span></a><a class="button donate" href="https://www.buymeacoffee.com/studeyang" target="_blank" rel="noopener" data-type="buymeacoffee"><span class="icon is-small"><i class="fas fa-coffee"></i></span><span>送我杯咖啡</span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>微信</span><span class="qrcode"><img src="https://technotes.oss-cn-shenzhen.aliyuncs.com/2023/202305211414563.png" alt="微信"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2023/0802.html"><i class="level-item fas fa-chevron-left"></i><span class="level-item">今日算法12-矩阵中的路径</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2023/0731.html"><span class="level-item">今日算法10-变态跳台阶</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">评论</h3><div id="comment-container"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script><script>var gitalk = new Gitalk({
+            id: "f3985c50be45fb6a51cad368b85aac6d",
+            repo: "learning-share",
+            owner: "studeyang",
+            clientID: "2335de41843b9fae10fe",
+            clientSecret: "45d7d5cd095cedd0e5443f62b0788e04cdc1f98d",
+            admin: ["studeyang"],
+            createIssueManually: false,
+            distractionFreeMode: false,
+            perPage: 20,
+            pagerDirection: "last",
+            
+            
+            enableHotKey: true,
+            language: "zh-CN",
+        })
+        gitalk.render('comment-container')</script></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1 is-sticky"><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">目录</h3><ul class="menu-list"><li><a class="level is-mobile" href="#一、题目描述"><span class="level-left"><span class="level-item">一、题目描述</span></span></a></li><li><a class="level is-mobile" href="#二、解题思路"><span class="level-left"><span class="level-item">二、解题思路</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#二分法"><span class="level-left"><span class="level-item">二分法</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#复杂度分析"><span class="level-left"><span class="level-item">复杂度分析</span></span></a></li></ul></li></ul></li><li><a class="level is-mobile" href="#三、代码实现"><span class="level-left"><span class="level-item">三、代码实现</span></span></a></li><li><a class="level is-mobile" href="#推荐阅读"><span class="level-left"><span class="level-item">推荐阅读</span></span></a></li><li><a class="level is-mobile" href="#封面"><span class="level-left"><span class="level-item">封面</span></span></a></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="https://technotes.oss-cn-shenzhen.aliyuncs.com/2023/202306152245106.gif" alt="吾途 - Studeyang.tech" height="28"></a><p class="is-size-7"><span>&copy; 2023 Studeyang</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a><br><span id="busuanzi_container_site_uv">共<span id="busuanzi_value_site_uv">0</span>个访客</span></p><p class="is-size-7">© 2023</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>
