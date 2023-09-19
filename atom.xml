@@ -6,7 +6,7 @@
   <link href="https://studeyang.tech/atom.xml" rel="self"/>
   
   <link href="https://studeyang.tech/"/>
-  <updated>2023-08-02T15:40:10.087Z</updated>
+  <updated>2023-09-19T16:02:57.815Z</updated>
   <id>https://studeyang.tech/</id>
   
   <author>
@@ -15,6 +15,44 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Spring Security入门：保护Web应用</title>
+    <link href="https://studeyang.tech/2023/0912.html"/>
+    <id>https://studeyang.tech/2023/0912.html</id>
+    <published>2023-09-12T01:00:00.000Z</published>
+    <updated>2023-09-19T16:02:57.815Z</updated>
+    
+    
+    <summary type="html">本文我们将构建一个简单但完整的小型 Web 应用程序，以演示 Spring Security 的入门教程。系统大致逻辑是：当合法用户成功登录系统之后，浏览器会跳转到一个系统主页，并展示一些个人健康档案（HealthRecord）数据。</summary>
+    
+    
+    
+    <category term="technotes" scheme="https://studeyang.tech/categories/technotes/"/>
+    
+    
+    <category term="Spring Security" scheme="https://studeyang.tech/tags/Spring-Security/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>今日算法13-剪绳子</title>
+    <link href="https://studeyang.tech/2023/0911.html"/>
+    <id>https://studeyang.tech/2023/0911.html</id>
+    <published>2023-09-11T01:00:00.000Z</published>
+    <updated>2023-09-10T13:49:16.952Z</updated>
+    
+    
+    <summary type="html">给你一根长度为 n 的绳子，请把绳子剪成整数长度的 m 段，每段绳子的长度记为 k[0],k[1]...k[m-1] 。请问 `k[0]*k[1]*...*k[m-1]` 可能的最大乘积是多少？</summary>
+    
+    
+    
+    <category term="今日算法" scheme="https://studeyang.tech/categories/%E4%BB%8A%E6%97%A5%E7%AE%97%E6%B3%95/"/>
+    
+    
+    <category term="LeetCode" scheme="https://studeyang.tech/tags/LeetCode/"/>
+    
+  </entry>
   
   <entry>
     <title>程序员的修炼-知识与体系</title>
@@ -355,44 +393,6 @@
     
     
     <category term="架构" scheme="https://studeyang.tech/tags/%E6%9E%B6%E6%9E%84/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>23种设计模式的必备结构图</title>
-    <link href="https://studeyang.tech/2023/10.html"/>
-    <id>https://studeyang.tech/2023/10.html</id>
-    <published>2023-05-13T01:00:00.000Z</published>
-    <updated>2023-06-17T14:41:20.548Z</updated>
-    
-    
-    <summary type="html">这里总结了23种设计模式的结构图及定义。</summary>
-    
-    
-    
-    <category term="technotes" scheme="https://studeyang.tech/categories/technotes/"/>
-    
-    
-    <category term="设计模式" scheme="https://studeyang.tech/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>06期：使用 OPTIMIZER_TRACE 窥探 MySQL 索引选择的秘密</title>
-    <link href="https://studeyang.tech/2023/9.html"/>
-    <id>https://studeyang.tech/2023/9.html</id>
-    <published>2023-04-18T01:00:00.000Z</published>
-    <updated>2023-06-17T14:41:20.548Z</updated>
-    
-    
-    <summary type="html">优化查询语句的性能是 MySQL 数据库管理中的一个重要方面。在优化查询性能时，选择正确的索引对于减少查询的响应时间和提高系统性能至关重要。但是，如何确定 MySQL 的索引选择策略？MySQL 的优化器是如何选择索引的？</summary>
-    
-    
-    
-    <category term="technotes" scheme="https://studeyang.tech/categories/technotes/"/>
-    
-    
-    <category term="MySQL" scheme="https://studeyang.tech/tags/MySQL/"/>
     
   </entry>
   
