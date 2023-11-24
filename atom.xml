@@ -6,7 +6,7 @@
   <link href="https://studeyang.tech/atom.xml" rel="self"/>
   
   <link href="https://studeyang.tech/"/>
-  <updated>2023-09-19T16:02:57.815Z</updated>
+  <updated>2023-11-24T02:25:08.162Z</updated>
   <id>https://studeyang.tech/</id>
   
   <author>
@@ -17,11 +17,30 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Kafka 位移提交的正确姿势</title>
+    <link href="https://studeyang.tech/2023/1124.html"/>
+    <id>https://studeyang.tech/2023/1124.html</id>
+    <published>2023-11-24T01:00:00.000Z</published>
+    <updated>2023-11-24T02:25:08.162Z</updated>
+    
+    
+    <summary type="html">你说你 Kafka 用了很多年了，但是位移提交的这些细节你未必清楚。</summary>
+    
+    
+    
+    <category term="technotes" scheme="https://studeyang.tech/categories/technotes/"/>
+    
+    
+    <category term="Kafka" scheme="https://studeyang.tech/tags/Kafka/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Spring Security入门：保护Web应用</title>
     <link href="https://studeyang.tech/2023/0912.html"/>
     <id>https://studeyang.tech/2023/0912.html</id>
     <published>2023-09-12T01:00:00.000Z</published>
-    <updated>2023-09-19T16:02:57.815Z</updated>
+    <updated>2023-11-21T02:15:58.059Z</updated>
     
     
     <summary type="html">本文我们将构建一个简单但完整的小型 Web 应用程序，以演示 Spring Security 的入门教程。系统大致逻辑是：当合法用户成功登录系统之后，浏览器会跳转到一个系统主页，并展示一些个人健康档案（HealthRecord）数据。</summary>
@@ -40,7 +59,7 @@
     <link href="https://studeyang.tech/2023/0911.html"/>
     <id>https://studeyang.tech/2023/0911.html</id>
     <published>2023-09-11T01:00:00.000Z</published>
-    <updated>2023-09-10T13:49:16.952Z</updated>
+    <updated>2023-09-16T03:18:59.487Z</updated>
     
     
     <summary type="html">给你一根长度为 n 的绳子，请把绳子剪成整数长度的 m 段，每段绳子的长度记为 k[0],k[1]...k[m-1] 。请问 `k[0]*k[1]*...*k[m-1]` 可能的最大乘积是多少？</summary>
@@ -59,7 +78,7 @@
     <link href="https://studeyang.tech/2023/0803.html"/>
     <id>https://studeyang.tech/2023/0803.html</id>
     <published>2023-08-03T01:00:00.000Z</published>
-    <updated>2023-08-02T15:40:10.087Z</updated>
+    <updated>2023-09-11T08:07:46.184Z</updated>
     
     
     <summary type="html">今年年初，我学习了梁宁的《产品思维》课，其中有一篇叫《点线面体的战略选择》，我觉得特别有感触。虽然是讲产品，但假如把个人的成长当成产品演进一样来发展，会有一种异曲同工、殊途同归之感。</summary>
@@ -78,7 +97,7 @@
     <link href="https://studeyang.tech/2023/0802.html"/>
     <id>https://studeyang.tech/2023/0802.html</id>
     <published>2023-08-02T01:00:00.000Z</published>
-    <updated>2023-07-30T14:52:14.878Z</updated>
+    <updated>2023-07-31T03:13:00.393Z</updated>
     
     
     <summary type="html">给定一个 m x n 二维字符网格 board 和一个字符串单词 word 。如果 word 存在于网格中，返回 true ；否则，返回 false 。</summary>
@@ -97,7 +116,7 @@
     <link href="https://studeyang.tech/2023/0801.html"/>
     <id>https://studeyang.tech/2023/0801.html</id>
     <published>2023-08-01T01:00:00.000Z</published>
-    <updated>2023-07-30T14:35:03.996Z</updated>
+    <updated>2023-07-31T03:13:00.387Z</updated>
     
     
     <summary type="html">给你一个可能存在重复元素值的数组 numbers ，它原来是一个升序排列的数组，并按上述情形进行了一次旋转。请返回旋转数组的最小元素。例如，数组 [3,4,5,1,2] 为 [1,2,3,4,5] 的一次旋转，该数组的最小值为 1。</summary>
@@ -116,7 +135,7 @@
     <link href="https://studeyang.tech/2023/0731.html"/>
     <id>https://studeyang.tech/2023/0731.html</id>
     <published>2023-07-31T01:00:00.000Z</published>
-    <updated>2023-07-30T14:39:56.631Z</updated>
+    <updated>2023-07-31T03:13:00.381Z</updated>
     
     
     <summary type="html">一只青蛙一次可以跳上 1 级台阶，也可以跳上 2 级... 它也可以跳上 n 级。求该青蛙跳上一个 n 级的台阶总共有多少种跳法。</summary>
@@ -135,7 +154,7 @@
     <link href="https://studeyang.tech/2023/0725.html"/>
     <id>https://studeyang.tech/2023/0725.html</id>
     <published>2023-07-25T01:00:00.000Z</published>
-    <updated>2023-07-30T13:36:24.073Z</updated>
+    <updated>2023-07-25T03:21:01.139Z</updated>
     
     
     <summary type="html">一只青蛙一次可以跳上1级台阶，也可以跳上2级台阶。求该青蛙跳上一个 n 级的台阶总共有多少种跳法。</summary>
@@ -154,7 +173,7 @@
     <link href="https://studeyang.tech/2023/0724.html"/>
     <id>https://studeyang.tech/2023/0724.html</id>
     <published>2023-07-24T01:00:00.000Z</published>
-    <updated>2023-07-23T15:17:28.891Z</updated>
+    <updated>2023-07-25T03:17:35.384Z</updated>
     
     
     <summary type="html">我们可以用 2*1 的小矩形横着或者竖着去覆盖更大的矩形。请问用 n 个 2*1 的小矩形无重叠地覆盖一个 2*n 的大矩形，总共有多少种方法？</summary>
@@ -173,7 +192,7 @@
     <link href="https://studeyang.tech/2023/0721.html"/>
     <id>https://studeyang.tech/2023/0721.html</id>
     <published>2023-07-21T01:00:00.000Z</published>
-    <updated>2023-07-20T15:40:09.152Z</updated>
+    <updated>2023-07-25T03:17:35.379Z</updated>
     
     
     <summary type="html">写一个函数，输入 n ，求斐波那契（Fibonacci）数列的第 n 项（即 F(N)）。</summary>
@@ -192,7 +211,7 @@
     <link href="https://studeyang.tech/2023/0720.html"/>
     <id>https://studeyang.tech/2023/0720.html</id>
     <published>2023-07-20T01:00:00.000Z</published>
-    <updated>2023-07-18T15:31:34.033Z</updated>
+    <updated>2023-07-19T06:38:06.695Z</updated>
     
     
     <summary type="html">用两个栈来实现一个队列，完成队列的 Push 和 Pop 操作。</summary>
@@ -211,7 +230,7 @@
     <link href="https://studeyang.tech/2023/0719.html"/>
     <id>https://studeyang.tech/2023/0719.html</id>
     <published>2023-07-19T01:00:00.000Z</published>
-    <updated>2023-07-18T15:00:10.280Z</updated>
+    <updated>2023-07-19T06:38:06.690Z</updated>
     
     
     <summary type="html">给定一个二叉树和其中的一个结点，请找出中序遍历顺序的下一个结点并且返回 。注意，树中的结点不仅包含左右子结点，同时包含指向父结点的指针。</summary>
@@ -230,7 +249,7 @@
     <link href="https://studeyang.tech/2023/0718.html"/>
     <id>https://studeyang.tech/2023/0718.html</id>
     <published>2023-07-18T01:00:00.000Z</published>
-    <updated>2023-07-17T15:10:02.991Z</updated>
+    <updated>2023-07-19T06:38:06.685Z</updated>
     
     
     <summary type="html">输入某二叉树的前序遍历和中序遍历的结果，请构建该二叉树并返回其根节点。</summary>
@@ -249,7 +268,7 @@
     <link href="https://studeyang.tech/2023/0717.html"/>
     <id>https://studeyang.tech/2023/0717.html</id>
     <published>2023-07-17T01:00:00.000Z</published>
-    <updated>2023-07-13T14:04:05.266Z</updated>
+    <updated>2023-07-14T01:47:11.662Z</updated>
     
     
     <summary type="html">将一个字符串中的空格替换成 &quot;%20&quot;。</summary>
@@ -268,7 +287,7 @@
     <link href="https://studeyang.tech/2023/0714.html"/>
     <id>https://studeyang.tech/2023/0714.html</id>
     <published>2023-07-14T01:00:00.000Z</published>
-    <updated>2023-07-13T13:22:40.666Z</updated>
+    <updated>2023-07-14T01:47:11.658Z</updated>
     
     
     <summary type="html">在一个 n * m 的二维数组中，每一行都按照从左到右递增排序，每一列也按照从上到下递增排序。给定一个数，判断这个数是否在该二维数组中。</summary>
@@ -287,7 +306,7 @@
     <link href="https://studeyang.tech/2023/0712.html"/>
     <id>https://studeyang.tech/2023/0712.html</id>
     <published>2023-07-12T01:00:00.000Z</published>
-    <updated>2023-07-12T15:06:05.891Z</updated>
+    <updated>2023-07-14T01:47:11.657Z</updated>
     
     
     <summary type="html">在一个长度为 n 的数组 nums 里的所有数字都在 0～n-1 的范围内。数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次。请找出数组中任意一个重复的数字。</summary>
@@ -306,7 +325,7 @@
     <link href="https://studeyang.tech/2023/15.html"/>
     <id>https://studeyang.tech/2023/15.html</id>
     <published>2023-07-11T01:00:00.000Z</published>
-    <updated>2023-07-11T15:51:24.361Z</updated>
+    <updated>2023-07-12T01:13:21.533Z</updated>
     
     
     <summary type="html">在我们的生产环境中有一张表：courier_consume_fail_message，是存放消息消费失败的数据的，设计之初，这张表的数据量评估在万级别以下，因此没有建立索引。但目前发现，该表的数据量已经达到百万级别，原因产生了大量的重试消费，这导致了该表的慢查询。</summary>
@@ -325,7 +344,7 @@
     <link href="https://studeyang.tech/2023/14.html"/>
     <id>https://studeyang.tech/2023/14.html</id>
     <published>2023-07-06T01:00:00.000Z</published>
-    <updated>2023-07-11T15:04:20.829Z</updated>
+    <updated>2023-07-10T07:15:27.834Z</updated>
     
     
     <summary type="html">几年前，我给团队负责的整个系统写过一些公共库，有一次同事发现这个库里存在一个 Bug，并告诉了我出错的现象。然后我便去修复这个 Bug，最终只修改了一行代码，但发现一上午就这么过去了。我认真地思考了这个问题，开始认识到我的编程方式和习惯在那几年已经慢慢发生了变化，形成了明显的两个阶段的转变。</summary>
@@ -344,7 +363,7 @@
     <link href="https://studeyang.tech/2023/13.html"/>
     <id>https://studeyang.tech/2023/13.html</id>
     <published>2023-06-19T01:00:00.000Z</published>
-    <updated>2023-06-18T14:39:46.690Z</updated>
+    <updated>2023-07-10T07:01:59.451Z</updated>
     
     
     <summary type="html">最近由于一行单元测试代码没有写 Assert 断言，导致了项目在 CI 过程中没有通过，于是遭到了某位同事的吐槽，在修改我的代码后写上了一句提交信息。我想，做为技术人，修改这条 Commit 信息还是不难的，于是我通过本文介绍的技巧完成了修改。</summary>
@@ -363,7 +382,7 @@
     <link href="https://studeyang.tech/2023/12.html"/>
     <id>https://studeyang.tech/2023/12.html</id>
     <published>2023-06-14T01:00:00.000Z</published>
-    <updated>2023-06-17T15:25:37.989Z</updated>
+    <updated>2023-07-10T07:01:59.446Z</updated>
     
     
     <summary type="html">CORS 的全称是 Cross-origin resource sharing，中文名称是跨域资源共享，是一种让受限资源能够被其他域名的页面访问的一种机制。</summary>
@@ -374,25 +393,6 @@
     
     
     <category term="HTTP" scheme="https://studeyang.tech/tags/HTTP/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>架构设计应顺应技术的生命周期</title>
-    <link href="https://studeyang.tech/2023/11.html"/>
-    <id>https://studeyang.tech/2023/11.html</id>
-    <published>2023-06-08T01:00:00.000Z</published>
-    <updated>2023-06-17T14:41:20.549Z</updated>
-    
-    
-    <summary type="html">我们作为架构师，如果看不清技术的生命周期，那么所设计的架构就没法儿向更有生命力的新技术借力，自己的职业生涯也会受限。</summary>
-    
-    
-    
-    <category term="technotes" scheme="https://studeyang.tech/categories/technotes/"/>
-    
-    
-    <category term="架构" scheme="https://studeyang.tech/tags/%E6%9E%B6%E6%9E%84/"/>
     
   </entry>
   

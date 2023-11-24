@@ -15,8 +15,29 @@
     <atom:link href="https://studeyang.tech/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>愿你出走半生，归来仍是少年</description>
-    <pubDate>Tue, 19 Sep 2023 16:02:57 GMT</pubDate>
+    <pubDate>Fri, 24 Nov 2023 02:25:08 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>Kafka 位移提交的正确姿势</title>
+      <link>https://studeyang.tech/2023/1124.html</link>
+      <guid>https://studeyang.tech/2023/1124.html</guid>
+      <pubDate>Fri, 24 Nov 2023 01:00:00 GMT</pubDate>
+      
+      <description>你说你 Kafka 用了很多年了，但是位移提交的这些细节你未必清楚。</description>
+      
+      
+      
+      
+      <category domain="https://studeyang.tech/categories/technotes/">technotes</category>
+      
+      
+      <category domain="https://studeyang.tech/tags/Kafka/">Kafka</category>
+      
+      
+      <comments>https://studeyang.tech/2023/1124.html#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>Spring Security入门：保护Web应用</title>
@@ -414,27 +435,6 @@
       
       
       <comments>https://studeyang.tech/2023/12.html#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>架构设计应顺应技术的生命周期</title>
-      <link>https://studeyang.tech/2023/11.html</link>
-      <guid>https://studeyang.tech/2023/11.html</guid>
-      <pubDate>Thu, 08 Jun 2023 01:00:00 GMT</pubDate>
-      
-      <description>我们作为架构师，如果看不清技术的生命周期，那么所设计的架构就没法儿向更有生命力的新技术借力，自己的职业生涯也会受限。</description>
-      
-      
-      
-      
-      <category domain="https://studeyang.tech/categories/technotes/">technotes</category>
-      
-      
-      <category domain="https://studeyang.tech/tags/%E6%9E%B6%E6%9E%84/">架构</category>
-      
-      
-      <comments>https://studeyang.tech/2023/11.html#disqus_thread</comments>
       
     </item>
     
