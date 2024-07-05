@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     
     <url>
+        <loc>https://studeyang.tech/2024/0705.html</loc>
+        
+        <lastmod>2024-07-05</lastmod>
+        
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    
+    <url>
         <loc>https://studeyang.tech/2023/1124.html</loc>
         
         <lastmod>2023-11-24</lastmod>
@@ -83,7 +92,7 @@
     </url>
     
     <url>
-        <loc>https://studeyang.tech/2023/0721.html</loc>
+        <loc>https://studeyang.tech/2023/0720.html</loc>
         
         <lastmod>2023-07-20</lastmod>
         
@@ -92,9 +101,9 @@
     </url>
     
     <url>
-        <loc>https://studeyang.tech/2023/0720.html</loc>
+        <loc>https://studeyang.tech/2023/0721.html</loc>
         
-        <lastmod>2023-07-18</lastmod>
+        <lastmod>2023-07-20</lastmod>
         
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
@@ -418,7 +427,7 @@
 
     <url>
         <loc>https://studeyang.tech/</loc>
-        <lastmod>2023-11-24</lastmod>
+        <lastmod>2024-07-05</lastmod>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
     </url>

@@ -15,8 +15,29 @@
     <atom:link href="https://studeyang.tech/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>愿你出走半生，归来仍是少年</description>
-    <pubDate>Fri, 24 Nov 2023 14:10:37 GMT</pubDate>
+    <pubDate>Fri, 05 Jul 2024 15:20:00 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>MyBatis拦截器在实际项目中的应用</title>
+      <link>https://studeyang.tech/2024/0705.html</link>
+      <guid>https://studeyang.tech/2024/0705.html</guid>
+      <pubDate>Fri, 05 Jul 2024 01:00:00 GMT</pubDate>
+      
+      <description>本文将探讨 MyBatis 拦截器在实际项目中的应用场景和具体实现方法。</description>
+      
+      
+      
+      
+      <category domain="https://studeyang.tech/categories/technotes/">technotes</category>
+      
+      
+      <category domain="https://studeyang.tech/tags/MyBatis/">MyBatis</category>
+      
+      
+      <comments>https://studeyang.tech/2024/0705.html#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>Kafka 位移提交的正确姿势</title>
@@ -414,27 +435,6 @@
       
       
       <comments>https://studeyang.tech/2023/13.html#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>图解CORS</title>
-      <link>https://studeyang.tech/2023/12.html</link>
-      <guid>https://studeyang.tech/2023/12.html</guid>
-      <pubDate>Wed, 14 Jun 2023 01:00:00 GMT</pubDate>
-      
-      <description>CORS 的全称是 Cross-origin resource sharing，中文名称是跨域资源共享，是一种让受限资源能够被其他域名的页面访问的一种机制。</description>
-      
-      
-      
-      
-      <category domain="https://studeyang.tech/categories/technotes/">technotes</category>
-      
-      
-      <category domain="https://studeyang.tech/tags/HTTP/">HTTP</category>
-      
-      
-      <comments>https://studeyang.tech/2023/12.html#disqus_thread</comments>
       
     </item>
     

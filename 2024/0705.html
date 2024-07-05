@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>MyBatis拦截器在实际项目中的应用 - 吾途 - Studeyang.tech</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="吾途 - Studeyang.tech"><meta name="msapplication-TileImage" content="https://technotes.oss-cn-shenzhen.aliyuncs.com/2023/202306152245106.gif"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="吾途 - Studeyang.tech"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="本文将探讨 MyBatis 拦截器在实际项目中的应用场景和具体实现方法。"><meta property="og:type" content="blog"><meta property="og:title" content="MyBatis拦截器在实际项目中的应用"><meta property="og:url" content="https://studeyang.tech/2024/0705.html"><meta property="og:site_name" content="吾途 - Studeyang.tech"><meta property="og:description" content="本文将探讨 MyBatis 拦截器在实际项目中的应用场景和具体实现方法。"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://technotes.oss-cn-shenzhen.aliyuncs.com/2024/202407052309418.png"><meta property="article:published_time" content="2024-07-05T01:00:00.000Z"><meta property="article:modified_time" content="2024-07-05T15:20:00.655Z"><meta property="article:author" content="Studeyang"><meta property="article:tag" content="MyBatis"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://technotes.oss-cn-shenzhen.aliyuncs.com/2024/202407052309418.png"><meta property="twitter:creator" content="@studeyang"><meta property="twitter:site" content="studeyang"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://studeyang.tech/2024/0705.html"},"headline":"MyBatis拦截器在实际项目中的应用","image":["https://technotes.oss-cn-shenzhen.aliyuncs.com/2024/202407052309418.png"],"datePublished":"2024-07-05T01:00:00.000Z","dateModified":"2024-07-05T15:20:00.655Z","author":{"@type":"Person","name":"Studeyang"},"publisher":{"@type":"Organization","name":"吾途 - Studeyang.tech","logo":{"@type":"ImageObject","url":"https://technotes.oss-cn-shenzhen.aliyuncs.com/2023/202306152245106.gif"}},"description":"本文将探讨 MyBatis 拦截器在实际项目中的应用场景和具体实现方法。"}</script><link rel="canonical" href="https://studeyang.tech/2024/0705.html"><link rel="alternate" href="/rss2.xml" title="吾途 - Studeyang.tech" type="application/atom+xml"><link rel="icon" href="https://technotes.oss-cn-shenzhen.aliyuncs.com/2023/202306152245106.gif"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><script>var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?63dd71367176b52c6d8aa50635993633";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();</script><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><script src="https://www.googletagmanager.com/gtag/js?id=G-S5KBWPGHG0" async></script><script>window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+    
+        gtag('config', 'G-S5KBWPGHG0');</script><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="https://technotes.oss-cn-shenzhen.aliyuncs.com/2023/202306152245106.gif" alt="吾途 - Studeyang.tech" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/technotes">学习笔记</a><a class="navbar-item" href="/about">关于我</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/studeyang/studeyang.tech"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><div class="card-image"><span class="image is-7by3"><img class="fill" src="https://technotes.oss-cn-shenzhen.aliyuncs.com/2024/202407052309418.png" alt="MyBatis拦截器在实际项目中的应用"></span></div><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2024-07-05T01:00:00.000Z" title="2024/7/5 上午9:00:00">2024-07-05</time>发表</span><span class="level-item"><time dateTime="2024-07-05T15:20:00.655Z" title="2024/7/5 下午11:20:00">2024-07-05</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/technotes/">technotes</a></span><span class="level-item">13 分钟读完 (大约1881个字)</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>次访问</span></div></div><h1 class="title is-3 is-size-4-mobile">MyBatis拦截器在实际项目中的应用</h1><div class="content"><p>MyBatis 是一个流行的 Java 持久层框架，它简化了数据库访问的复杂性，为开发者提供了强大的功能。其中，MyBatis 拦截器是一个非常有用的特性，可以帮助开发者灵活地解决各种问题。</p>
+<p>本文将探讨 MyBatis 拦截器在实际项目中的应用场景和具体实现方法。</p>
+<blockquote>
+<p>文中代码：<a target="_blank" rel="noopener" href="https://github.com/studeyang/mybatis-interceptor-demo">https://github.com/studeyang/mybatis-interceptor-demo</a></p>
+</blockquote>
+<span id="more"></span>
+
+<p>首先我们需要认识 MyBatis 拦截器。</p>
+<h2 id="一、MyBatis-拦截器"><a href="#一、MyBatis-拦截器" class="headerlink" title="一、MyBatis 拦截器"></a>一、MyBatis 拦截器</h2><h3 id="1-1-从执行-SQL-语句的核心流程说起"><a href="#1-1-从执行-SQL-语句的核心流程说起" class="headerlink" title="1.1 从执行 SQL 语句的核心流程说起"></a>1.1 从执行 SQL 语句的核心流程说起</h3><p>在 MyBatis 中，要执行一条 SQL 语句，会涉及非常多的组件，比较核心的有：Executor、StatementHandler、ParameterHandler 和 ResultSetHandler。下图展示了 MyBatis 执行一条 SQL 语句的核心过程：</p>
+<img src="https://technotes.oss-cn-shenzhen.aliyuncs.com/2022/202206152128946.png" alt="image-20220615212854829" style="zoom:67%;" />
+
+<p>SQL 语句执行时，首先到达 Executor，Executor 会调用事务管理模块实现事务的相关控制。真正执行将会由 StatementHandler 实现，StatementHandler 会先依赖 ParameterHandler 进行 SQL 模板的实参绑定，然后由 java.sql.Statement 对象将 SQL 语句以及绑定好的实参传到数据库执行。</p>
+<p>数据库执行后，从中拿到 ResultSet，最后，由 ResultSetHandler 将 ResultSet 映射成 Java 对象返回给调用方，这就是 SQL 执行模块的核心。</p>
+<p>MyBatis 允许开发者拦截这些核心组件的关键方法，从而实现对 SQL 执行过程的自定义控制。</p>
+<h3 id="1-2-MyBatis-拦截器"><a href="#1-2-MyBatis-拦截器" class="headerlink" title="1.2 MyBatis 拦截器"></a>1.2 MyBatis 拦截器</h3><p>MyBatis 允许我们自定义 Interceptor，拦截 SQL 语句执行过程中的某些关键逻辑，允许拦截的方法有：</p>
+<ul>
+<li>Executor 类中的 update()、query()、flushStatements()、commit()、rollback()、getTransaction()、close()、isClosed() 方法；</li>
+<li>ParameterHandler 中的 setParameters()、getParameterObject() 方法；</li>
+<li>ResultSetHandler中的 handleOutputParameters()、handleResultSets() 方法；</li>
+<li>StatementHandler 中的 parameterize()、prepare()、batch()、update()、query() 方法。</li>
+</ul>
+<p>下面，我们就从实际出发，看看 MyBatis 拦截器的具体使用场景。</p>
+<h2 id="二、使用场景"><a href="#二、使用场景" class="headerlink" title="二、使用场景"></a>二、使用场景</h2><h3 id="2-1-数据加密"><a href="#2-1-数据加密" class="headerlink" title="2.1 数据加密"></a>2.1 数据加密</h3><p>多数公司出于信息安全等考虑，会将个人信息等敏感数据在存储时进行加密，在数据读取时进行解密。这种场景就适合使用 MyBatis 拦截器实现了，具体来说：</p>
+<p>写入数据时，拦截 insert 和 update 语句，通过自定义注解获取到加密字段，并对其进行加密后再写入数据库。</p>
+<p>读取数据时，拦截 select 语句，通过自定义注解获取到加密字段，对密文进行解密，然后返回给上层调用。</p>
+<p>这样就能够在不修改业务代码的情况下，自动完成数据的加解密处理了。我们来看具体的代码实现。</p>
+<p>在实体属性上添加<code>@EncryptField</code>注解：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserEntity</span> &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 身份证</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@EncryptField</span></span><br><span class="line">    <span class="keyword">private</span> String idCard;</span><br><span class="line">    <span class="comment">//其它属性 包括get, set方法</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>接着执行下面插入操作：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RunWith(SpringRunner.class)</span></span><br><span class="line"><span class="meta">@SpringBootTest</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserMapperTest</span> <span class="keyword">extends</span> <span class="title class_">TestCase</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> UserMapper userMapper;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">insert</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">UserEntity</span> <span class="variable">user</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">UserEntity</span>();</span><br><span class="line">        user.setName(<span class="string">&quot;张三&quot;</span>);</span><br><span class="line">        user.setIdCard(<span class="string">&quot;442222111233322210&quot;</span>);</span><br><span class="line">        user.setSex(<span class="string">&quot;男&quot;</span>);</span><br><span class="line">        user.setAge(<span class="number">0</span>);</span><br><span class="line">        user.setCreateTime(<span class="keyword">new</span> <span class="title class_">Date</span>());</span><br><span class="line">        user.setUpdateTime(<span class="keyword">new</span> <span class="title class_">Date</span>());</span><br><span class="line">        user.setStatus(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">        userMapper.insert(user);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>数据库里<code>id_card</code>就是密文了。</p>
+<p><img src="https://technotes.oss-cn-shenzhen.aliyuncs.com/2024/202407052207128.png"></p>
+<p>在读取数据时，执行下面查询操作：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RunWith(SpringRunner.class)</span></span><br><span class="line"><span class="meta">@SpringBootTest</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserMapperTest</span> <span class="keyword">extends</span> <span class="title class_">TestCase</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> UserMapper userMapper;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">selectByPrimaryKey</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">UserEntity</span> <span class="variable">user</span> <span class="operator">=</span> userMapper.selectByPrimaryKey(<span class="number">682230480968224768L</span>);</span><br><span class="line">        System.out.println(user);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>返回结果如下：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> <span class="number">682230480968224768</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;张三&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;idCard&quot;</span><span class="punctuation">:</span> <span class="string">&quot;442222111233322210&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;sex&quot;</span><span class="punctuation">:</span> <span class="string">&quot;男&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;age&quot;</span><span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;createTime&quot;</span><span class="punctuation">:</span> <span class="string">&quot;2024-07-05 10:16:56&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;updateTime&quot;</span><span class="punctuation">:</span> <span class="string">&quot;2024-07-05 10:16:56&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;status&quot;</span><span class="punctuation">:</span> <span class="number">0</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>可以看到，拦截器实现了对数据自动解密。拦截器的具体实现请点击：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/studeyang/mybatis-interceptor-demo/blob/master/src/main/java/com/oujiong/plugin/encrypt/WriteEncryptInterceptor.java">读拦截器</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/studeyang/mybatis-interceptor-demo/blob/master/src/main/java/com/oujiong/plugin/encrypt/ReadEncryptInterceptor.java">写拦截器</a></li>
+</ul>
+<p>接着我们来看第二个场景的应用。</p>
+<h3 id="2-2-生成ID主键"><a href="#2-2-生成ID主键" class="headerlink" title="2.2 生成ID主键"></a>2.2 生成ID主键</h3><p>在生成表主键 ID 时，我们通常会考虑主键自增或者 UUID，但它们都有很明显的缺点。</p>
+<ul>
+<li>对于自增 ID 来说，第一，容易被爬虫遍历数据；第二，分表分库会有 ID 冲突。</li>
+<li>对于 UUID 来说，数据太长，且有索引碎片、过多占用索引空间的问题。</li>
+</ul>
+<p>雪花算法就很适合在分布式场景下生成唯一 ID，它既可以保证唯一又可以保证有序。通过 MyBatis 拦截器，我们可以实现在插入数据时自动生成全局唯一且有序的雪花 ID。</p>
+<p>具体做法是：拦截 insert 语句，通过自定义注解获取主键字段，然后为其赋值雪花 ID 后再写入数据库。我们来看具体的代码实现。</p>
+<p>在主键的属性上添加<code>@AutoId</code>注解。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserEntity</span> &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * id(添加自定义注解)</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@AutoId</span></span><br><span class="line">    <span class="keyword">private</span> Long id;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 姓名</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="comment">//其它属性 包括get，set方法</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>执行插入操作后，数据库里就已经有雪花ID了。</p>
+<p><img src="https://technotes.oss-cn-shenzhen.aliyuncs.com/2024/202407052207128.png"></p>
+<p>如果在正式环境中，由于只要涉及到插入数据的操作都被该插件拦截，并发量会很大。所以该插件代码既要保证线程安全又要保证高性能。</p>
+<p><strong>1、线程安全</strong></p>
+<p>产生雪花 ID 的时候必须是线程安全的，不能出现同一台服务器同一时刻出现了相同的雪花 ID，可以通过：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">单例模式 + synchronized</span><br></pre></td></tr></table></figure>
+
+<p>来实现。</p>
+<p><strong>2、高性能</strong></p>
+<p>性能消耗比较大可能会出现在两个地方：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1）雪花算法生成雪花ID的过程。</span><br><span class="line">2）通过类的反射机制找到哪些属性带有@AutoId注解的过程。</span><br></pre></td></tr></table></figure>
+
+<p>第一，生成雪花ID。简单测试过，生成20万条数据，大约在1.7秒，能满足我们实际开发中的需要。</p>
+<p>第二，反射查找。可以在插件中添加缓存。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * key值为Class对象 value可以理解成是该类带有AutoId注解的属性</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">private</span> Map&lt;Class, List&lt;Handler&gt;&gt; handlerMap = <span class="keyword">new</span> <span class="title class_">ConcurrentHashMap</span>&lt;&gt;();</span><br></pre></td></tr></table></figure>
+
+<p>插件部分源码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">AutoIdInterceptor</span> <span class="keyword">implements</span> <span class="title class_">Interceptor</span> &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 处理器缓存</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> Map&lt;Class, List&lt;Handler&gt;&gt; handlerMap = <span class="keyword">new</span> <span class="title class_">ConcurrentHashMap</span>&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">process</span><span class="params">(Object object)</span> <span class="keyword">throws</span> Throwable &#123;</span><br><span class="line">        <span class="type">Class</span> <span class="variable">handlerKey</span> <span class="operator">=</span> object.getClass();</span><br><span class="line">        List&lt;Handler&gt; handlerList = handlerMap.get(handlerKey);</span><br><span class="line">        <span class="comment">//先判断handlerMap是否已存在该class，不存在先找到该class有哪些属性带有@AutoId</span></span><br><span class="line">        <span class="keyword">if</span> (handlerList == <span class="literal">null</span>) &#123;</span><br><span class="line">            handlerMap.put(handlerKey, handlerList = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;());</span><br><span class="line">            <span class="comment">// 通过反射 获取带有AutoId注解的所有属性字段,并放入到handlerMap中</span></span><br><span class="line">        &#125;</span><br><span class="line">         <span class="comment">//为带有@AutoId赋值ID</span></span><br><span class="line">        <span class="keyword">for</span> (Handler handler : handlerList) &#123;</span><br><span class="line">            handler.accept(object);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="三、小结"><a href="#三、小结" class="headerlink" title="三、小结"></a>三、小结</h2><p>MyBatis 拦截器是一个非常值得开发者深入学习和应用的技术。相信通过本文的介绍，您已经对 MyBatis 拦截器有了更加具体的认识。如果您还有任何疑问，欢迎与我交流探讨。</p>
+<p><img src="https://technotes.oss-cn-shenzhen.aliyuncs.com/2023/202303052135542.gif"></p>
+<h2 id="封面"><a href="#封面" class="headerlink" title="封面"></a>封面</h2><p><img src="https://technotes.oss-cn-shenzhen.aliyuncs.com/2024/202407052309418.png"></p>
+<h2 id="更多文章"><a href="#更多文章" class="headerlink" title="更多文章"></a>更多文章</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzkwMTI4NTI1NA==&mid=2247485021&idx=1&sn=f8c8c38477afca017f023a788c1d485e&chksm=c0b652b4f7c1dba2cb568ce4c92fa69ff2e10ae2c628bf89baca2ea98a8b00cfe3d8c82a32d7&cur_album_id=2632990196359430146&scene=189#wechat_redirect">Kafka 位移提交的正确姿势</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzkwMTI4NTI1NA==&mid=2247484703&idx=1&sn=d08dbd2acd1213934df3c9ac74b5303d&chksm=c0b651f6f7c1d8e005494b36132d1e20ff4ee163af37722bacdefe16cc8dc405b29101c3bc22&cur_album_id=2632990196359430146&scene=190#rd">23种设计模式的必备结构图</a></li>
+</ul>
+</div><div class="article-licensing box"><div class="licensing-title"><p>MyBatis拦截器在实际项目中的应用</p><p><a href="https://studeyang.tech/2024/0705.html">https://studeyang.tech/2024/0705.html</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>Studeyang</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2024-07-05</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2024-07-05</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/MyBatis/">MyBatis</a></div><div class="sharethis-inline-share-buttons"></div><script src="https://platform-api.sharethis.com/js/sharethis.js#property=6469b4acd8c6d2001a06c2d2&amp;product=inline-share-buttons&amp;source=platform" defer></script></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3><div class="buttons is-centered"><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>支付宝</span><span class="qrcode"><img src="https://technotes.oss-cn-shenzhen.aliyuncs.com/2023/202305211413297.png" alt="支付宝"></span></a><a class="button donate" href="https://www.buymeacoffee.com/studeyang" target="_blank" rel="noopener" data-type="buymeacoffee"><span class="icon is-small"><i class="fas fa-coffee"></i></span><span>送我杯咖啡</span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>微信</span><span class="qrcode"><img src="https://technotes.oss-cn-shenzhen.aliyuncs.com/2023/202305211414563.png" alt="微信"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2023/1124.html"><span class="level-item">Kafka 位移提交的正确姿势</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">评论</h3><div id="comment-container"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script><script>var gitalk = new Gitalk({
+            id: "c9b86537500e3f76101ddf12de8935c2",
+            repo: "studeyang.tech",
+            owner: "studeyang",
+            clientID: "2335de41843b9fae10fe",
+            clientSecret: "45d7d5cd095cedd0e5443f62b0788e04cdc1f98d",
+            admin: ["studeyang"],
+            createIssueManually: false,
+            distractionFreeMode: false,
+            perPage: 20,
+            pagerDirection: "last",
+            
+            
+            enableHotKey: true,
+            language: "zh-CN",
+        })
+        gitalk.render('comment-container')</script></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1 is-sticky"><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">目录</h3><ul class="menu-list"><li><a class="level is-mobile" href="#一、MyBatis-拦截器"><span class="level-left"><span class="level-item">一、MyBatis 拦截器</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#1-1-从执行-SQL-语句的核心流程说起"><span class="level-left"><span class="level-item">1.1 从执行 SQL 语句的核心流程说起</span></span></a></li><li><a class="level is-mobile" href="#1-2-MyBatis-拦截器"><span class="level-left"><span class="level-item">1.2 MyBatis 拦截器</span></span></a></li></ul></li><li><a class="level is-mobile" href="#二、使用场景"><span class="level-left"><span class="level-item">二、使用场景</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#2-1-数据加密"><span class="level-left"><span class="level-item">2.1 数据加密</span></span></a></li><li><a class="level is-mobile" href="#2-2-生成ID主键"><span class="level-left"><span class="level-item">2.2 生成ID主键</span></span></a></li></ul></li><li><a class="level is-mobile" href="#三、小结"><span class="level-left"><span class="level-item">三、小结</span></span></a></li><li><a class="level is-mobile" href="#封面"><span class="level-left"><span class="level-item">封面</span></span></a></li><li><a class="level is-mobile" href="#更多文章"><span class="level-left"><span class="level-item">更多文章</span></span></a></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="https://technotes.oss-cn-shenzhen.aliyuncs.com/2023/202306152245106.gif" alt="吾途 - Studeyang.tech" height="28"></a><p class="is-size-7"><span>&copy; 2024 Studeyang</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a><br><span id="busuanzi_container_site_uv">共<span id="busuanzi_value_site_uv">0</span>个访客</span></p><p class="is-size-7">© 2023</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>

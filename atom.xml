@@ -6,7 +6,7 @@
   <link href="https://studeyang.tech/atom.xml" rel="self"/>
   
   <link href="https://studeyang.tech/"/>
-  <updated>2023-11-24T14:10:37.947Z</updated>
+  <updated>2024-07-05T15:20:00.655Z</updated>
   <id>https://studeyang.tech/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>MyBatis拦截器在实际项目中的应用</title>
+    <link href="https://studeyang.tech/2024/0705.html"/>
+    <id>https://studeyang.tech/2024/0705.html</id>
+    <published>2024-07-05T01:00:00.000Z</published>
+    <updated>2024-07-05T15:20:00.655Z</updated>
+    
+    
+    <summary type="html">本文将探讨 MyBatis 拦截器在实际项目中的应用场景和具体实现方法。</summary>
+    
+    
+    
+    <category term="technotes" scheme="https://studeyang.tech/categories/technotes/"/>
+    
+    
+    <category term="MyBatis" scheme="https://studeyang.tech/tags/MyBatis/"/>
+    
+  </entry>
   
   <entry>
     <title>Kafka 位移提交的正确姿势</title>
@@ -211,7 +230,7 @@
     <link href="https://studeyang.tech/2023/0720.html"/>
     <id>https://studeyang.tech/2023/0720.html</id>
     <published>2023-07-20T01:00:00.000Z</published>
-    <updated>2023-07-18T15:31:34.033Z</updated>
+    <updated>2023-07-20T15:41:34.062Z</updated>
     
     
     <summary type="html">用两个栈来实现一个队列，完成队列的 Push 和 Pop 操作。</summary>
@@ -374,25 +393,6 @@
     
     
     <category term="Git" scheme="https://studeyang.tech/tags/Git/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>图解CORS</title>
-    <link href="https://studeyang.tech/2023/12.html"/>
-    <id>https://studeyang.tech/2023/12.html</id>
-    <published>2023-06-14T01:00:00.000Z</published>
-    <updated>2023-06-17T15:25:37.989Z</updated>
-    
-    
-    <summary type="html">CORS 的全称是 Cross-origin resource sharing，中文名称是跨域资源共享，是一种让受限资源能够被其他域名的页面访问的一种机制。</summary>
-    
-    
-    
-    <category term="technotes" scheme="https://studeyang.tech/categories/technotes/"/>
-    
-    
-    <category term="HTTP" scheme="https://studeyang.tech/tags/HTTP/"/>
     
   </entry>
   
