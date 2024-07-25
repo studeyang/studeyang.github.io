@@ -6,7 +6,7 @@
   <link href="https://studeyang.tech/atom.xml" rel="self"/>
   
   <link href="https://studeyang.tech/"/>
-  <updated>2024-07-05T15:20:00.655Z</updated>
+  <updated>2024-07-25T14:49:16.497Z</updated>
   <id>https://studeyang.tech/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>MySQL 是如何给表加字段的？</title>
+    <link href="https://studeyang.tech/2024/0725.html"/>
+    <id>https://studeyang.tech/2024/0725.html</id>
+    <published>2024-07-25T14:00:00.000Z</published>
+    <updated>2024-07-25T14:49:16.497Z</updated>
+    
+    
+    <summary type="html">在我最近的项目中，经常会有给大表加字段的需求，这个过程非常耗时，900 万数据量的一张表，加一个字段就需要 3 个小时。</summary>
+    
+    
+    
+    <category term="technotes" scheme="https://studeyang.tech/categories/technotes/"/>
+    
+    
+    <category term="MySQL" scheme="https://studeyang.tech/tags/MySQL/"/>
+    
+  </entry>
   
   <entry>
     <title>MyBatis拦截器在实际项目中的应用</title>
@@ -374,25 +393,6 @@
     
     
     <category term="编程" scheme="https://studeyang.tech/tags/%E7%BC%96%E7%A8%8B/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Git如何修改历史的Commit信息</title>
-    <link href="https://studeyang.tech/2023/13.html"/>
-    <id>https://studeyang.tech/2023/13.html</id>
-    <published>2023-06-19T01:00:00.000Z</published>
-    <updated>2023-06-18T14:39:46.690Z</updated>
-    
-    
-    <summary type="html">最近由于一行单元测试代码没有写 Assert 断言，导致了项目在 CI 过程中没有通过，于是遭到了某位同事的吐槽，在修改我的代码后写上了一句提交信息。我想，做为技术人，修改这条 Commit 信息还是不难的，于是我通过本文介绍的技巧完成了修改。</summary>
-    
-    
-    
-    <category term="technotes" scheme="https://studeyang.tech/categories/technotes/"/>
-    
-    
-    <category term="Git" scheme="https://studeyang.tech/tags/Git/"/>
     
   </entry>
   

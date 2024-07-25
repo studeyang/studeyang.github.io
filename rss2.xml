@@ -15,8 +15,29 @@
     <atom:link href="https://studeyang.tech/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>愿你出走半生，归来仍是少年</description>
-    <pubDate>Fri, 05 Jul 2024 15:20:00 GMT</pubDate>
+    <pubDate>Thu, 25 Jul 2024 14:49:16 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>MySQL 是如何给表加字段的？</title>
+      <link>https://studeyang.tech/2024/0725.html</link>
+      <guid>https://studeyang.tech/2024/0725.html</guid>
+      <pubDate>Thu, 25 Jul 2024 14:00:00 GMT</pubDate>
+      
+      <description>在我最近的项目中，经常会有给大表加字段的需求，这个过程非常耗时，900 万数据量的一张表，加一个字段就需要 3 个小时。</description>
+      
+      
+      
+      
+      <category domain="https://studeyang.tech/categories/technotes/">technotes</category>
+      
+      
+      <category domain="https://studeyang.tech/tags/MySQL/">MySQL</category>
+      
+      
+      <comments>https://studeyang.tech/2024/0725.html#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>MyBatis拦截器在实际项目中的应用</title>
@@ -414,27 +435,6 @@
       
       
       <comments>https://studeyang.tech/2023/14.html#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>Git如何修改历史的Commit信息</title>
-      <link>https://studeyang.tech/2023/13.html</link>
-      <guid>https://studeyang.tech/2023/13.html</guid>
-      <pubDate>Mon, 19 Jun 2023 01:00:00 GMT</pubDate>
-      
-      <description>最近由于一行单元测试代码没有写 Assert 断言，导致了项目在 CI 过程中没有通过，于是遭到了某位同事的吐槽，在修改我的代码后写上了一句提交信息。我想，做为技术人，修改这条 Commit 信息还是不难的，于是我通过本文介绍的技巧完成了修改。</description>
-      
-      
-      
-      
-      <category domain="https://studeyang.tech/categories/technotes/">technotes</category>
-      
-      
-      <category domain="https://studeyang.tech/tags/Git/">Git</category>
-      
-      
-      <comments>https://studeyang.tech/2023/13.html#disqus_thread</comments>
       
     </item>
     
