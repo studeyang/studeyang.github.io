@@ -15,11 +15,32 @@
     <atom:link href="https://studeyang.tech/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>愿你出走半生，归来仍是少年</description>
-    <pubDate>Thu, 25 Jul 2024 14:49:16 GMT</pubDate>
+    <pubDate>Fri, 02 Aug 2024 14:46:23 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
-      <title>MySQL 是如何给表加字段的？</title>
+      <title>【译】Apache Shiro介绍</title>
+      <link>https://studeyang.tech/2024/0803.html</link>
+      <guid>https://studeyang.tech/2024/0803.html</guid>
+      <pubDate>Sat, 03 Aug 2024 01:00:00 GMT</pubDate>
+      
+      <description>Apache Shiro 是一个功能强大且易于使用的 Java 安全框架，表现在身份认证、授权、加密和会话管理，可用于保护任何应用程序，小到命令行应用程序、移动应用程序，大到 Web 和企业应用程序。</description>
+      
+      
+      
+      
+      <category domain="https://studeyang.tech/categories/technotes/">technotes</category>
+      
+      
+      <category domain="https://studeyang.tech/tags/Shiro/">Shiro</category>
+      
+      
+      <comments>https://studeyang.tech/2024/0803.html#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>MySQL是如何给表加字段的？</title>
       <link>https://studeyang.tech/2024/0725.html</link>
       <guid>https://studeyang.tech/2024/0725.html</guid>
       <pubDate>Thu, 25 Jul 2024 14:00:00 GMT</pubDate>
@@ -414,27 +435,6 @@
       
       
       <comments>https://studeyang.tech/2023/15.html#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>谈代码的粗放与精益</title>
-      <link>https://studeyang.tech/2023/14.html</link>
-      <guid>https://studeyang.tech/2023/14.html</guid>
-      <pubDate>Thu, 06 Jul 2023 01:00:00 GMT</pubDate>
-      
-      <description>几年前，我给团队负责的整个系统写过一些公共库，有一次同事发现这个库里存在一个 Bug，并告诉了我出错的现象。然后我便去修复这个 Bug，最终只修改了一行代码，但发现一上午就这么过去了。我认真地思考了这个问题，开始认识到我的编程方式和习惯在那几年已经慢慢发生了变化，形成了明显的两个阶段的转变。</description>
-      
-      
-      
-      
-      <category domain="https://studeyang.tech/categories/technotes/">technotes</category>
-      
-      
-      <category domain="https://studeyang.tech/tags/%E7%BC%96%E7%A8%8B/">编程</category>
-      
-      
-      <comments>https://studeyang.tech/2023/14.html#disqus_thread</comments>
       
     </item>
     
