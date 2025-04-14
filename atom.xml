@@ -6,7 +6,7 @@
   <link href="https://studeyang.tech/atom.xml" rel="self"/>
   
   <link href="https://studeyang.tech/"/>
-  <updated>2025-04-14T15:00:53.769Z</updated>
+  <updated>2025-04-14T15:17:37.094Z</updated>
   <id>https://studeyang.tech/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://studeyang.tech/2025/0414.html"/>
     <id>https://studeyang.tech/2025/0414.html</id>
     <published>2025-04-14T04:00:00.000Z</published>
-    <updated>2025-04-14T15:00:53.769Z</updated>
+    <updated>2025-04-14T15:17:37.094Z</updated>
     
     
     <summary type="html">在实际项目中，我们经常会用到本地缓存，但是应用程序往往缺少对缓存使用情况的观测。今天推荐一种用法，让你更优雅地使用本地缓存。</summary>
