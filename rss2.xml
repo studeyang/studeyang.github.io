@@ -15,8 +15,29 @@
     <atom:link href="https://studeyang.tech/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>愿你出走半生，归来仍是少年</description>
-    <pubDate>Fri, 02 Aug 2024 14:46:23 GMT</pubDate>
+    <pubDate>Mon, 14 Apr 2025 15:00:53 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>如何优雅地使用本地缓存？</title>
+      <link>https://studeyang.tech/2025/0414.html</link>
+      <guid>https://studeyang.tech/2025/0414.html</guid>
+      <pubDate>Mon, 14 Apr 2025 04:00:00 GMT</pubDate>
+      
+      <description>在实际项目中，我们经常会用到本地缓存，但是应用程序往往缺少对缓存使用情况的观测。今天推荐一种用法，让你更优雅地使用本地缓存。</description>
+      
+      
+      
+      
+      <category domain="https://studeyang.tech/categories/technotes/">technotes</category>
+      
+      
+      <category domain="https://studeyang.tech/tags/Guava/">Guava</category>
+      
+      
+      <comments>https://studeyang.tech/2025/0414.html#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>【译】Apache Shiro介绍</title>
@@ -158,7 +179,7 @@
       <category domain="https://studeyang.tech/categories/technotes/">technotes</category>
       
       
-      <category domain="https://studeyang.tech/tags/%E7%A8%8B%E5%BA%8F%E4%B9%8B%E9%81%93/">程序之道</category>
+      <category domain="https://studeyang.tech/tags/%E7%BC%96%E7%A8%8B/">编程</category>
       
       
       <comments>https://studeyang.tech/2023/0803.html#disqus_thread</comments>
@@ -414,27 +435,6 @@
       
       
       <comments>https://studeyang.tech/2023/0712.html#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>MySQL如何清理数据并释放磁盘空间</title>
-      <link>https://studeyang.tech/2023/15.html</link>
-      <guid>https://studeyang.tech/2023/15.html</guid>
-      <pubDate>Tue, 11 Jul 2023 01:00:00 GMT</pubDate>
-      
-      <description>在我们的生产环境中有一张表：courier_consume_fail_message，是存放消息消费失败的数据的，设计之初，这张表的数据量评估在万级别以下，因此没有建立索引。但目前发现，该表的数据量已经达到百万级别，原因产生了大量的重试消费，这导致了该表的慢查询。</description>
-      
-      
-      
-      
-      <category domain="https://studeyang.tech/categories/technotes/">technotes</category>
-      
-      
-      <category domain="https://studeyang.tech/tags/MySQL/">MySQL</category>
-      
-      
-      <comments>https://studeyang.tech/2023/15.html#disqus_thread</comments>
       
     </item>
     

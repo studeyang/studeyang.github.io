@@ -6,7 +6,7 @@
   <link href="https://studeyang.tech/atom.xml" rel="self"/>
   
   <link href="https://studeyang.tech/"/>
-  <updated>2024-08-02T14:46:23.598Z</updated>
+  <updated>2025-04-14T15:00:53.769Z</updated>
   <id>https://studeyang.tech/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>如何优雅地使用本地缓存？</title>
+    <link href="https://studeyang.tech/2025/0414.html"/>
+    <id>https://studeyang.tech/2025/0414.html</id>
+    <published>2025-04-14T04:00:00.000Z</published>
+    <updated>2025-04-14T15:00:53.769Z</updated>
+    
+    
+    <summary type="html">在实际项目中，我们经常会用到本地缓存，但是应用程序往往缺少对缓存使用情况的观测。今天推荐一种用法，让你更优雅地使用本地缓存。</summary>
+    
+    
+    
+    <category term="technotes" scheme="https://studeyang.tech/categories/technotes/"/>
+    
+    
+    <category term="Guava" scheme="https://studeyang.tech/tags/Guava/"/>
+    
+  </entry>
   
   <entry>
     <title>【译】Apache Shiro介绍</title>
@@ -135,7 +154,7 @@
     <link href="https://studeyang.tech/2023/0803.html"/>
     <id>https://studeyang.tech/2023/0803.html</id>
     <published>2023-08-03T01:00:00.000Z</published>
-    <updated>2023-08-02T15:40:10.087Z</updated>
+    <updated>2025-04-14T15:00:53.769Z</updated>
     
     
     <summary type="html">今年年初，我学习了梁宁的《产品思维》课，其中有一篇叫《点线面体的战略选择》，我觉得特别有感触。虽然是讲产品，但假如把个人的成长当成产品演进一样来发展，会有一种异曲同工、殊途同归之感。</summary>
@@ -145,7 +164,7 @@
     <category term="technotes" scheme="https://studeyang.tech/categories/technotes/"/>
     
     
-    <category term="程序之道" scheme="https://studeyang.tech/tags/%E7%A8%8B%E5%BA%8F%E4%B9%8B%E9%81%93/"/>
+    <category term="编程" scheme="https://studeyang.tech/tags/%E7%BC%96%E7%A8%8B/"/>
     
   </entry>
   
@@ -374,25 +393,6 @@
     
     
     <category term="LeetCode" scheme="https://studeyang.tech/tags/LeetCode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MySQL如何清理数据并释放磁盘空间</title>
-    <link href="https://studeyang.tech/2023/15.html"/>
-    <id>https://studeyang.tech/2023/15.html</id>
-    <published>2023-07-11T01:00:00.000Z</published>
-    <updated>2023-07-11T15:51:24.361Z</updated>
-    
-    
-    <summary type="html">在我们的生产环境中有一张表：courier_consume_fail_message，是存放消息消费失败的数据的，设计之初，这张表的数据量评估在万级别以下，因此没有建立索引。但目前发现，该表的数据量已经达到百万级别，原因产生了大量的重试消费，这导致了该表的慢查询。</summary>
-    
-    
-    
-    <category term="technotes" scheme="https://studeyang.tech/categories/technotes/"/>
-    
-    
-    <category term="MySQL" scheme="https://studeyang.tech/tags/MySQL/"/>
     
   </entry>
   
