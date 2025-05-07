@@ -15,8 +15,29 @@
     <atom:link href="https://studeyang.tech/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>愿你出走半生，归来仍是少年</description>
-    <pubDate>Tue, 15 Apr 2025 14:37:11 GMT</pubDate>
+    <pubDate>Wed, 07 May 2025 15:02:10 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>深入Spring Kafka：消费者是如何创建的？</title>
+      <link>https://studeyang.tech/2025/0507.html</link>
+      <guid>https://studeyang.tech/2025/0507.html</guid>
+      <pubDate>Wed, 07 May 2025 15:00:00 GMT</pubDate>
+      
+      <description>Spring Kafka 在原生客户端基础上进行了深度封装，通过声明式注解显著简化了开发流程。这种简洁的语法背后，Spring Kafka 实际上构建了一套完整的消费者（Consumer）管理机制。那么问题来了：Spring Kafka 是如何创建这些消费者的呢？</description>
+      
+      
+      
+      
+      <category domain="https://studeyang.tech/categories/technotes/">technotes</category>
+      
+      
+      <category domain="https://studeyang.tech/tags/Kafka/">Kafka</category>
+      
+      
+      <comments>https://studeyang.tech/2025/0507.html#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>如何优雅地使用本地缓存？</title>
@@ -414,27 +435,6 @@
       
       
       <comments>https://studeyang.tech/2023/0714.html#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>今日算法01-数组中重复的数字</title>
-      <link>https://studeyang.tech/2023/0712.html</link>
-      <guid>https://studeyang.tech/2023/0712.html</guid>
-      <pubDate>Wed, 12 Jul 2023 01:00:00 GMT</pubDate>
-      
-      <description>在一个长度为 n 的数组 nums 里的所有数字都在 0～n-1 的范围内。数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次。请找出数组中任意一个重复的数字。</description>
-      
-      
-      
-      
-      <category domain="https://studeyang.tech/categories/%E4%BB%8A%E6%97%A5%E7%AE%97%E6%B3%95/">今日算法</category>
-      
-      
-      <category domain="https://studeyang.tech/tags/LeetCode/">LeetCode</category>
-      
-      
-      <comments>https://studeyang.tech/2023/0712.html#disqus_thread</comments>
       
     </item>
     
