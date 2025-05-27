@@ -6,7 +6,7 @@
   <link href="https://studeyang.tech/atom.xml" rel="self"/>
   
   <link href="https://studeyang.tech/"/>
-  <updated>2025-05-07T15:02:10.125Z</updated>
+  <updated>2025-05-27T14:17:59.760Z</updated>
   <id>https://studeyang.tech/</id>
   
   <author>
@@ -17,11 +17,30 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>EasyKafka：让消息收发更简单</title>
+    <link href="https://studeyang.tech/2025/0508.html"/>
+    <id>https://studeyang.tech/2025/0508.html</id>
+    <published>2025-05-08T15:00:00.000Z</published>
+    <updated>2025-05-27T14:17:59.760Z</updated>
+    
+    
+    <summary type="html">Make kafka easier to use.（基于 Spring Kafka 增强，让消息收发更简单）</summary>
+    
+    
+    
+    <category term="technotes" scheme="https://studeyang.tech/categories/technotes/"/>
+    
+    
+    <category term="Kafka" scheme="https://studeyang.tech/tags/Kafka/"/>
+    
+  </entry>
+  
+  <entry>
     <title>深入Spring Kafka：消费者是如何创建的？</title>
     <link href="https://studeyang.tech/2025/0507.html"/>
     <id>https://studeyang.tech/2025/0507.html</id>
     <published>2025-05-07T15:00:00.000Z</published>
-    <updated>2025-05-07T15:02:10.125Z</updated>
+    <updated>2025-05-27T14:17:59.760Z</updated>
     
     
     <summary type="html">Spring Kafka 在原生客户端基础上进行了深度封装，通过声明式注解显著简化了开发流程。这种简洁的语法背后，Spring Kafka 实际上构建了一套完整的消费者（Consumer）管理机制。那么问题来了：Spring Kafka 是如何创建这些消费者的呢？</summary>
@@ -367,25 +386,6 @@
     
     
     <summary type="html">将一个字符串中的空格替换成 &quot;%20&quot;。</summary>
-    
-    
-    
-    <category term="今日算法" scheme="https://studeyang.tech/categories/%E4%BB%8A%E6%97%A5%E7%AE%97%E6%B3%95/"/>
-    
-    
-    <category term="LeetCode" scheme="https://studeyang.tech/tags/LeetCode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>今日算法02-二维数组中的查找</title>
-    <link href="https://studeyang.tech/2023/0714.html"/>
-    <id>https://studeyang.tech/2023/0714.html</id>
-    <published>2023-07-14T01:00:00.000Z</published>
-    <updated>2023-07-13T13:22:40.666Z</updated>
-    
-    
-    <summary type="html">在一个 n * m 的二维数组中，每一行都按照从左到右递增排序，每一列也按照从上到下递增排序。给定一个数，判断这个数是否在该二维数组中。</summary>
     
     
     

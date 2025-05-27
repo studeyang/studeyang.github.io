@@ -15,8 +15,29 @@
     <atom:link href="https://studeyang.tech/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>愿你出走半生，归来仍是少年</description>
-    <pubDate>Wed, 07 May 2025 15:02:10 GMT</pubDate>
+    <pubDate>Tue, 27 May 2025 14:17:59 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>EasyKafka：让消息收发更简单</title>
+      <link>https://studeyang.tech/2025/0508.html</link>
+      <guid>https://studeyang.tech/2025/0508.html</guid>
+      <pubDate>Thu, 08 May 2025 15:00:00 GMT</pubDate>
+      
+      <description>Make kafka easier to use.（基于 Spring Kafka 增强，让消息收发更简单）</description>
+      
+      
+      
+      
+      <category domain="https://studeyang.tech/categories/technotes/">technotes</category>
+      
+      
+      <category domain="https://studeyang.tech/tags/Kafka/">Kafka</category>
+      
+      
+      <comments>https://studeyang.tech/2025/0508.html#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>深入Spring Kafka：消费者是如何创建的？</title>
@@ -414,27 +435,6 @@
       
       
       <comments>https://studeyang.tech/2023/0717.html#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>今日算法02-二维数组中的查找</title>
-      <link>https://studeyang.tech/2023/0714.html</link>
-      <guid>https://studeyang.tech/2023/0714.html</guid>
-      <pubDate>Fri, 14 Jul 2023 01:00:00 GMT</pubDate>
-      
-      <description>在一个 n * m 的二维数组中，每一行都按照从左到右递增排序，每一列也按照从上到下递增排序。给定一个数，判断这个数是否在该二维数组中。</description>
-      
-      
-      
-      
-      <category domain="https://studeyang.tech/categories/%E4%BB%8A%E6%97%A5%E7%AE%97%E6%B3%95/">今日算法</category>
-      
-      
-      <category domain="https://studeyang.tech/tags/LeetCode/">LeetCode</category>
-      
-      
-      <comments>https://studeyang.tech/2023/0714.html#disqus_thread</comments>
       
     </item>
     
