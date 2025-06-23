@@ -6,7 +6,7 @@
   <link href="https://studeyang.tech/atom.xml" rel="self"/>
   
   <link href="https://studeyang.tech/"/>
-  <updated>2025-05-27T14:17:59.760Z</updated>
+  <updated>2025-06-23T14:11:35.220Z</updated>
   <id>https://studeyang.tech/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Spring Kafka进阶：实现多态消息消费</title>
+    <link href="https://studeyang.tech/2025/0620.html"/>
+    <id>https://studeyang.tech/2025/0620.html</id>
+    <published>2025-06-20T15:00:00.000Z</published>
+    <updated>2025-06-23T14:11:35.220Z</updated>
+    
+    
+    <summary type="html">Spring Kafka 官方提供了一种基于消息类型的消费模式，实现多态消息的自动路由处理。开发者可以基于此特性，轻松实现从简单文本消息到复杂领域事件的各种消息处理场景。</summary>
+    
+    
+    
+    <category term="technotes" scheme="https://studeyang.tech/categories/technotes/"/>
+    
+    
+    <category term="Kafka" scheme="https://studeyang.tech/tags/Kafka/"/>
+    
+  </entry>
   
   <entry>
     <title>EasyKafka：让消息收发更简单</title>
@@ -367,25 +386,6 @@
     
     
     <summary type="html">输入某二叉树的前序遍历和中序遍历的结果，请构建该二叉树并返回其根节点。</summary>
-    
-    
-    
-    <category term="今日算法" scheme="https://studeyang.tech/categories/%E4%BB%8A%E6%97%A5%E7%AE%97%E6%B3%95/"/>
-    
-    
-    <category term="LeetCode" scheme="https://studeyang.tech/tags/LeetCode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>今日算法03-替换空格</title>
-    <link href="https://studeyang.tech/2023/0717.html"/>
-    <id>https://studeyang.tech/2023/0717.html</id>
-    <published>2023-07-17T01:00:00.000Z</published>
-    <updated>2023-07-13T14:04:05.266Z</updated>
-    
-    
-    <summary type="html">将一个字符串中的空格替换成 &quot;%20&quot;。</summary>
     
     
     
