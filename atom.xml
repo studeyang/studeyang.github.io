@@ -6,7 +6,7 @@
   <link href="https://studeyang.tech/atom.xml" rel="self"/>
   
   <link href="https://studeyang.tech/"/>
-  <updated>2025-06-23T14:11:35.220Z</updated>
+  <updated>2026-04-30T14:56:16.645Z</updated>
   <id>https://studeyang.tech/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Claude Code 进阶指南：从记忆系统到子代理编排</title>
+    <link href="https://studeyang.tech/2026/0430.html"/>
+    <id>https://studeyang.tech/2026/0430.html</id>
+    <published>2026-04-30T01:00:00.000Z</published>
+    <updated>2026-04-30T14:56:16.645Z</updated>
+    
+    
+    <summary type="html">本文介绍了 Claude Code 的使用方法，涵盖环境配置、快速入门技巧，以及记忆系统、Skills 技能系统、子代理编排等进阶特性。</summary>
+    
+    
+    
+    <category term="technotes" scheme="https://studeyang.tech/categories/technotes/"/>
+    
+    
+    <category term="AI" scheme="https://studeyang.tech/tags/AI/"/>
+    
+  </entry>
   
   <entry>
     <title>Spring Kafka进阶：实现多态消息消费</title>
@@ -367,25 +386,6 @@
     
     
     <summary type="html">给定一个二叉树和其中的一个结点，请找出中序遍历顺序的下一个结点并且返回 。注意，树中的结点不仅包含左右子结点，同时包含指向父结点的指针。</summary>
-    
-    
-    
-    <category term="今日算法" scheme="https://studeyang.tech/categories/%E4%BB%8A%E6%97%A5%E7%AE%97%E6%B3%95/"/>
-    
-    
-    <category term="LeetCode" scheme="https://studeyang.tech/tags/LeetCode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>今日算法04-重建二叉树</title>
-    <link href="https://studeyang.tech/2023/0718.html"/>
-    <id>https://studeyang.tech/2023/0718.html</id>
-    <published>2023-07-18T01:00:00.000Z</published>
-    <updated>2023-07-17T15:10:02.991Z</updated>
-    
-    
-    <summary type="html">输入某二叉树的前序遍历和中序遍历的结果，请构建该二叉树并返回其根节点。</summary>
     
     
     
