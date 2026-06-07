@@ -6,7 +6,7 @@
   <link href="https://studeyang.tech/atom.xml" rel="self"/>
   
   <link href="https://studeyang.tech/"/>
-  <updated>2026-04-30T14:56:16.645Z</updated>
+  <updated>2026-06-07T02:57:20.553Z</updated>
   <id>https://studeyang.tech/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>丰巢寄件系统基于DDD服务拆分的落地实践</title>
+    <link href="https://studeyang.tech/2026/0527.html"/>
+    <id>https://studeyang.tech/2026/0527.html</id>
+    <published>2026-05-27T01:00:00.000Z</published>
+    <updated>2026-06-07T02:57:20.553Z</updated>
+    
+    
+    <summary type="html">在 2024 年，丰巢寄件系统面临高可用性、功能耦合度高、开发难度大等挑战。从数据层面看，所有数据表都放在一个数据库里，与服务耦合严重。基于以上原因，需要对寄件服务和数据表进行拆分。</summary>
+    
+    
+    
+    <category term="technotes" scheme="https://studeyang.tech/categories/technotes/"/>
+    
+    
+    <category term="DDD" scheme="https://studeyang.tech/tags/DDD/"/>
+    
+  </entry>
   
   <entry>
     <title>Claude Code 进阶指南：从记忆系统到子代理编排</title>
@@ -367,25 +386,6 @@
     
     
     <summary type="html">用两个栈来实现一个队列，完成队列的 Push 和 Pop 操作。</summary>
-    
-    
-    
-    <category term="今日算法" scheme="https://studeyang.tech/categories/%E4%BB%8A%E6%97%A5%E7%AE%97%E6%B3%95/"/>
-    
-    
-    <category term="LeetCode" scheme="https://studeyang.tech/tags/LeetCode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>今日算法05-二叉树的下一个结点</title>
-    <link href="https://studeyang.tech/2023/0719.html"/>
-    <id>https://studeyang.tech/2023/0719.html</id>
-    <published>2023-07-19T01:00:00.000Z</published>
-    <updated>2023-07-18T15:00:10.280Z</updated>
-    
-    
-    <summary type="html">给定一个二叉树和其中的一个结点，请找出中序遍历顺序的下一个结点并且返回 。注意，树中的结点不仅包含左右子结点，同时包含指向父结点的指针。</summary>
     
     
     

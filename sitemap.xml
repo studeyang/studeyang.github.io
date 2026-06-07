@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     
     <url>
+        <loc>https://studeyang.tech/2026/0527.html</loc>
+        
+        <lastmod>2026-06-07</lastmod>
+        
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    
+    <url>
         <loc>https://studeyang.tech/2026/0430.html</loc>
         
         <lastmod>2026-04-30</lastmod>
@@ -490,7 +499,7 @@
 
     <url>
         <loc>https://studeyang.tech/</loc>
-        <lastmod>2026-04-30</lastmod>
+        <lastmod>2026-06-07</lastmod>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
     </url>

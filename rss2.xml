@@ -15,8 +15,29 @@
     <atom:link href="https://studeyang.tech/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>愿你出走半生，归来仍是少年</description>
-    <pubDate>Thu, 30 Apr 2026 14:56:16 GMT</pubDate>
+    <pubDate>Sun, 07 Jun 2026 02:57:20 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>丰巢寄件系统基于DDD服务拆分的落地实践</title>
+      <link>https://studeyang.tech/2026/0527.html</link>
+      <guid>https://studeyang.tech/2026/0527.html</guid>
+      <pubDate>Wed, 27 May 2026 01:00:00 GMT</pubDate>
+      
+      <description>在 2024 年，丰巢寄件系统面临高可用性、功能耦合度高、开发难度大等挑战。从数据层面看，所有数据表都放在一个数据库里，与服务耦合严重。基于以上原因，需要对寄件服务和数据表进行拆分。</description>
+      
+      
+      
+      
+      <category domain="https://studeyang.tech/categories/technotes/">technotes</category>
+      
+      
+      <category domain="https://studeyang.tech/tags/DDD/">DDD</category>
+      
+      
+      <comments>https://studeyang.tech/2026/0527.html#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>Claude Code 进阶指南：从记忆系统到子代理编排</title>
@@ -414,27 +435,6 @@
       
       
       <comments>https://studeyang.tech/2023/0720.html#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>今日算法05-二叉树的下一个结点</title>
-      <link>https://studeyang.tech/2023/0719.html</link>
-      <guid>https://studeyang.tech/2023/0719.html</guid>
-      <pubDate>Wed, 19 Jul 2023 01:00:00 GMT</pubDate>
-      
-      <description>给定一个二叉树和其中的一个结点，请找出中序遍历顺序的下一个结点并且返回 。注意，树中的结点不仅包含左右子结点，同时包含指向父结点的指针。</description>
-      
-      
-      
-      
-      <category domain="https://studeyang.tech/categories/%E4%BB%8A%E6%97%A5%E7%AE%97%E6%B3%95/">今日算法</category>
-      
-      
-      <category domain="https://studeyang.tech/tags/LeetCode/">LeetCode</category>
-      
-      
-      <comments>https://studeyang.tech/2023/0719.html#disqus_thread</comments>
       
     </item>
     
